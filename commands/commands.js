@@ -1,0 +1,93 @@
+module.exports = {
+    name: 'commands',
+    description: 'Gives the commands in the bot',
+    execute(client, message, args, Discord) {
+        const user = message.member.user
+        if(message.author.id === '555991737072615424') {
+            message.channel.send("Hello sier, here are your commands")
+            const embedForCommands = new Discord.MessageEmbed()
+                .setTitle('Commands')
+                .setThumbnail(user.displayAvatarURL({ format: 'jpg', dynamic : true }))
+                .addField('%ping', 'Pings the bot to check if is online or not')
+                .addField('%info', 'Gives info on me (the bot)')
+                .addField('%userinfo', 'Gives info on yourself')
+                .addField('%coin flip', 'Flips a coin for you')
+                .addField('%AFK (Time)', 'Makes you become AFK for a sertain amount of time, for more info type "%AFK". DOSNT WORK FOR ADMINS')
+                .addField('%avatar', 'Shows the picture of your avatar')
+                .addField('%worseThanHitler (user)', 'Brings up a worse than hitler meme')
+                .addField('%newMember (user)', 'Brings up a meme for a new memeber')
+                .addField('%meme', 'Gives you a random meme from Reddit')
+                .addField('%suggest (suggestion)', 'Logs a suggestion')
+                .addField('%game-suggest (suggestion)', 'Logs a game night suggestion')
+                .addField('Bring Me Sheo', 'Brings you Sheo')
+                .addField('%warn (user) (reason)', 'Warns the specified user over dms')
+                .addField('%kick (user) (reason)', 'Kicks the specified user out of the server')
+                .addField('%ban (user) (reason)', 'Bans the specifed user out of the server')
+                .addField('%embed (embed name) (context)', 'Gives a custom embed for any channel')
+                .setColor('BLACK')
+                message.channel.send(embedForCommands)
+        } else {
+        if(message.member.roles.cache.has('804324183122903092')) {
+            const embedForCommands = new Discord.MessageEmbed()
+                .setTitle('Commands')
+                .addField('%ping', 'Pings the bot to check if is online or not')
+                .addField('%info', 'Gives info on me (the bot)')
+                .addField('%userinfo', 'Gives info on yourself')
+                .addField('%coin flip', 'Flips a coin for you')
+                .addField('%AFK (Time)', 'Makes you become AFK for a sertain amount of time, for more info type "%AFK". DOSNT WORK FOR ADMINS')
+                .addField('%avatar', 'Shows the picture of your avatar')
+                .addField('%worsethanhitler (user)', 'Brings up a worse than hitler meme')
+                .addField('%newMember (user)', 'Brings up a meme for a new memeber')
+                .addField('%meme', 'Gives you a random meme from Reddit')
+                .addField('%suggest (suggestion)', 'Logs a suggestion')
+                .addField('%game-suggest (suggestion)', 'Logs a game night suggestion')
+                .addField('Bring Me Sheo', 'Brings you Sheo')
+                .addField('%warn (user) (reason)', 'Warns the specified user over dms')
+                .addField('%kick (user) (reason)', 'Kicks the specified user out of the server')
+                .addField('%ban (user) (reason)', 'Bans the specifed user out of the server')
+                .setColor('BLACK')
+                message.channel.send(embedForCommands)
+        } else {
+            if(message.member.roles.cache.has('804589156692262913')) {
+                const embedForCommands = new Discord.MessageEmbed()
+                .setTitle('Commands')
+                .addField('%ping', 'Pings the bot to check if is online or not')
+                .addField('%info', 'Gives info on me (the bot)')
+                .addField('%userinfo', 'Gives info on yourself')
+                .addField('%coin flip', 'Flips a coin for you')
+                .addField('%AFK (Time)', 'Makes you become AFK for a sertain amount of time, for more info type "%AFK"')
+                .addField('%avatar', 'Shows the picture of your avatar')
+                .addField('%worsethanhitler (user)', 'Brings up a worse than hitler meme')
+                .addField('%newmember (user)', 'Brings up a meme for a new memeber')
+                .addField('%meme', 'Gives you a random meme from Reddit')
+                .addField('%suggest (suggestion)', 'Logs a suggestion')
+                .addField('%game-suggest (suggestion)', 'Logs a game night suggestion')
+                .addField('Bring Me Sheo', 'Brings you Sheo')
+                .addField('%warn (user) (reason)', 'Warns the specified user over dms')
+                .addField('%kick (user) (reason)', 'Kicks the specified user out of the server')
+                .addField('%ban (user) (reason)', 'Bans the specifed user out of the server')
+                .setColor('BLACK')
+                message.channel.send(embedForCommands)
+            } else {
+                const embedForCommands = new Discord.MessageEmbed()
+                .setTitle('Commands')
+                .addField('%ping', 'Pings the bot to check if is online or not')
+                .addField('%info', 'Gives info on me (the bot)')
+                .addField('%userinfo', 'Gives info on yourself')
+                .addField('%coin flip', 'Flips a coin for you')
+                .addField('%AFK (Time)', 'Makes you become AFK for a sertain amount of time, for more info type "%AFK"')
+                .addField('%avatar', 'Shows the picture of your avatar')
+                .addField('%worsethanhitler (user)', 'Brings up a worse than hitler meme')
+                .addField('%newmember (user)', 'Brings up a meme for a new memeber')
+                .addField('%meme', 'Gives you a random meme from Reddit')
+                .addField('%suggest (suggestion)', 'Logs a suggestion') 
+                .addField('%game-suggest (suggestion)', 'Logs a game night suggestion')
+                .addField('Bring Me Sheo', 'Brings you Sheo')
+                .setColor('BLACK')
+                message.channel.send(embedForCommands)
+            }
+        }
+    
+        }
+    }
+}
