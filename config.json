@@ -1,0 +1,8 @@
+{
+    "token": "ODA0NjEwMzUwMTI4OTU1Mzky.YBO1yA.6z6GnQvmSMQv0m23_EBDoGw0iX0",
+    "prefix": "%",
+    "mongoPath": "mongodb://localhost:27017/BlackBolt",
+    "confessions": "true",
+    "cooldownBooster": 1,
+    "cooldownNormal": 5
+}

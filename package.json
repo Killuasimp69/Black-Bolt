@@ -1,0 +1,23 @@
+{
+  "name": "blackbolt",
+  "version": "0.1.4",
+  "description": "Black Man",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Neo Haggard",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "djs-meme": "^1.2.8",
+    "get-dadjoke": "^2.0.2",
+    "inspirational-quotes": "^1.0.8",
+    "meme-fetch": "^1.0.3",
+    "mongoose": "^5.12.13",
+    "node-fetch": "^2.6.1",
+    "random-cat": "^1.0.1",
+    "random-puppy": "^1.1.0",
+    "snekfetch": "^4.0.4"
+  }
+}

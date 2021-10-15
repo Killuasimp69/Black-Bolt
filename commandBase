@@ -1,0 +1,12 @@
+module.exports = {
+    commands: ['test', 'testing'],
+    expectedArgs: '<num1> <num2>',
+    permissionError: "You need more permissions",
+    minArgs: 2,
+    maxArgs: 2,
+    permissions: [],
+    requiredRoles: [],
+    callback: (message, args, Discord, client) => {
+
+    }
+}
