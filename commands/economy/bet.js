@@ -14,6 +14,10 @@ module.exports = {
             return message.channel.send("Please provide a valid amount")
         }
 
+        if(parseFloat(args[0]) < parseFloat(6)) {
+            return message.channel.send("Please bet more than 5 BBC")
+        }
+
         await mongo().then(async (mongoose) => {
             try {
 
@@ -49,7 +53,7 @@ module.exports = {
                             }, {
                                 upsert: true
                             })
-                            return message.channel.send("You dont have enough money")
+                            return message.channel.send("You dont have enough BBC")
                         }
                         const newuseramt9 = parseFloat("1000") - parseFloat(args[0])
                         await userSchema.findOneAndUpdate({
@@ -59,16 +63,16 @@ module.exports = {
                         }, {
                             upsert: true
                         })
-                        embedForBetLose.setDescription(`You just lost **${args[0]} Money!**
+                        embedForBetLose.setDescription(`You just lost **${args[0]} BBC!**
                         
-                        *Balance:* ***${newuseramt9} Money***`)
+                        *Balance:* ***${newuseramt9} BBC***`)
                         return message.channel.send(embedForBetLose)
                     } else {
                         //lose 
                         //yes user result
                         if (parseFloat(userResult.money) < parseFloat(args[0])) {
                             //not enough money
-                            return message.channel.send("You dont have enough money")
+                            return message.channel.send("You dont have enough BBC")
                         }
                         //yes enough money
                         const newuseramt6 = parseFloat(userResult.money) - parseFloat(args[0])
@@ -79,9 +83,9 @@ module.exports = {
                         }, {
                             upsert: true
                         })
-                        embedForBetLose.setDescription(`You just lost **${args[0]} Money!**
+                        embedForBetLose.setDescription(`You just lost **${args[0]} BBC!**
                         
-                        *Balance:* ***${newuseramt6} Money***`)
+                        *Balance:* ***${newuseramt6} BBC***`)
                         return message.channel.send(embedForBetLose)
                     }
                 } else {
@@ -98,7 +102,7 @@ module.exports = {
                                 }, {
                                     upsert: true
                                 })
-                                return message.channel.send("You dont have enough money")
+                                return message.channel.send("You dont have enough BBC")
                             }
                             const newuseramt3 = parseFloat("1000") + parseFloat(args[0])
                             await userSchema.findOneAndUpdate({
@@ -108,16 +112,16 @@ module.exports = {
                             }, {
                                 upsert: true
                             })
-                            embedForBetWin.setDescription(`You just won **${args[0]} Money!**
+                            embedForBetWin.setDescription(`You just won **${args[0]} BBC!**
                         
-                            *Balance:* ***${newuseramt3} Money***`)
+                            *Balance:* ***${newuseramt3} BBC***`)
                             return message.channel.send(embedForBetWin)
                         } else {
                             //win
                             //yes user result
                             if (parseFloat(userResult.money) < parseFloat(args[0])) {
                                 //not enough money
-                                return message.channel.send("You dont have enough money")
+                                return message.channel.send("You dont have enough BBC")
                             }
                             //yes enough money
                             const newuseramt2 = parseFloat(userResult.money) + parseFloat(args[0])
@@ -128,9 +132,9 @@ module.exports = {
                             }, {
                                 upsert: true
                             })
-                            embedForBetWin.setDescription(`You just Won **${args[0]} Money!**
+                            embedForBetWin.setDescription(`You just Won **${args[0]} BBC!**
                         
-                        *Balance:* ***${newuseramt2} Money***`)
+                        *Balance:* ***${newuseramt2} BBC***`)
                             return message.channel.send(embedForBetWin)
                         }
                     } else {

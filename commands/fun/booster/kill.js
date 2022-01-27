@@ -20,11 +20,11 @@ module.exports = {
 
                 const embedForKill = new Discord.MessageEmbed()
                     .setDescription(`
-                <@${targetUser.id}>
+                <@${user.id}>
                 
                 ***KILLS***
                 
-                <@${user.id}>`)
+                <@${targetUser.id}>`)
                     .setThumbnail("https://cdn.discordapp.com/attachments/841197505001685002/860054351552315402/teletubby.gif")
                     .setColor("RED")
                     .setFooter(`They were painfully slaughterd and killed`)

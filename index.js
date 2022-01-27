@@ -35,19 +35,19 @@ client.on('ready', () => {
 //Sets the status of the bot  
 client.on('ready', () => {
     const activities_list = [
-        "with the %help command", 
+        "with the %help command",
         "with a cheese sandwich",
-        "with some code", 
+        "with some code",
         "with JavaScript",
         "with some kid i found",
         "with Neo ;)",
         "with cheese"
-    ]; 
-    
+    ];
+
     setInterval(() => {
-        const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); 
+        const index = Math.floor(Math.random() * (activities_list.length - 1) + 1);
         client.user.setActivity(activities_list[index]);
-    }, 10000); 
+    }, 10000);
     console.log('==========================')
     console.log('CONNECTIONS')
     console.log('==========================')

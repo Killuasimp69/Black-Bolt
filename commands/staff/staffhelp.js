@@ -17,9 +17,7 @@ module.exports = {
                             • %violations (user)
                             • %kick (user) (reason)
                             • %ban (user) (reason)
-                            • %fetch (confession/warnID)
-                            • !mute (user) (reason)
-                            • !tempmute (user) (time) (reason)`
+                            • %fetch (confession/warnID)`
                 }, {
                     name: "Other Commands",
                     value: `• %daily`

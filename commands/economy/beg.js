@@ -43,12 +43,12 @@ module.exports = {
                             })
 
                             embedForBeg.setTitle(`You made ${RandomBegAmts[randomJAmts]}`)
-                            embedForBeg.setDescription(`Jesus, fine. Here is ${RandomBegAmts[randomJAmts]} money`)
+                            embedForBeg.setDescription(`Jesus, fine. Here is ${RandomBegAmts[randomJAmts]} BBC`)
                             return message.channel.send(embedForBeg)
                         }
 
                         if (parseFloat(userResult.money) >= parseFloat("1000")) {
-                            return message.channel.send("You already have enough money")
+                            return message.channel.send("You already have enough BBC")
                         }
 
                         const newmoney = parseFloat(userResult.money) + parseFloat(RandomBegAmts[randomJAmts])
@@ -62,7 +62,7 @@ module.exports = {
                         })
 
                         embedForBeg.setTitle(`You made ${RandomBegAmts[randomJAmts]}`)
-                        embedForBeg.setDescription(`Jesus, fine. Here is ${RandomBegAmts[randomJAmts]} money`)
+                        embedForBeg.setDescription(`Jesus, fine. Here is ${RandomBegAmts[randomJAmts]} BBC`)
                         message.channel.send(embedForBeg)
 
                         coolDownBooster.add(message.author.id)
@@ -95,12 +95,12 @@ module.exports = {
                             })
 
                             embedForBeg.setTitle(`You made ${RandomBegAmts[randomJAmts]}`)
-                            embedForBeg.setDescription(`Jesus, fine. Here is ${RandomBegAmts[randomJAmts]} money`)
+                            embedForBeg.setDescription(`Jesus, fine. Here is ${RandomBegAmts[randomJAmts]} BBC`)
                             return message.channel.send(embedForBeg)
                         }
 
                         if (parseFloat(userResult.money) >= parseFloat("1000")) {
-                            return message.channel.send("You already have enough money")
+                            return message.channel.send("You already have enough BBC")
                         }
 
                         const newmoney = parseFloat(userResult.money) + parseFloat(RandomBegAmts[randomJAmts])
@@ -114,7 +114,7 @@ module.exports = {
                         })
 
                         embedForBeg.setTitle(`You made ${RandomBegAmts[randomJAmts]}`)
-                        embedForBeg.setDescription(`Jesus, fine. Here is ${RandomBegAmts[randomJAmts]} money`)
+                        embedForBeg.setDescription(`Jesus, fine. Here is ${RandomBegAmts[randomJAmts]} BBC`)
                         message.channel.send(embedForBeg)
 
                         coolDownNormal.add(message.author.id)

@@ -23,7 +23,7 @@ module.exports = {
                     })
                     const embedForBalance = new Discord.MessageEmbed()
                         .setAuthor(`${user.displayName} | Balance`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                        .setDescription(`You have **1000 money**, with a total of **1000**.`)
+                        .setDescription(`You have **1000 BBC**, with a total of **1000**.`)
                         .setColor('BLACK')
                     return message.channel.send(embedForBalance)
                 }
@@ -38,7 +38,7 @@ module.exports = {
                     })
                     const embedForBalance = new Discord.MessageEmbed()
                         .setAuthor(`${user.displayName} | Balance`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                        .setDescription(`You have **1000 money**, with a total of **1000**.`)
+                        .setDescription(`You have **1000 BBC**, with a total of **1000**.`)
                         .setColor('BLACK')
                     return message.channel.send(embedForBalance)
                 }
@@ -47,7 +47,7 @@ module.exports = {
 
                 const embedForBalance = new Discord.MessageEmbed()
                     .setAuthor(`${user.displayName} | Balance`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                    .setDescription(`You have **${moneyy} money**, with a total of **${moneyy}**.`)
+                    .setDescription(`You have **${moneyy} BBC**, with a total of **${moneyy}**.`)
                     .setColor('BLACK')
 
                 //message

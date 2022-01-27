@@ -12,7 +12,7 @@ module.exports = {
                 .setAuthor(`${message.author.username}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                 .setDescription(`**7 (and more to come) economy commands** for your crippling gambling addiction.
 
-                \`\`${prefix}balance\`\`, \`\`${prefix}beg\`\`, \`\`${prefix}give (amount) (user)\`\`, \`\`${prefix}work\`\`, \`\`${prefix}bet (amount)\`\`, \`\`${prefix}daily\`\`
+                \`\`${prefix}balance\`\`, \`\`${prefix}beg\`\`, \`\`${prefix}give (amount) (user)\`\`, \`\`${prefix}work\`\`, \`\`${prefix}bet (amount)\`\`, \`\`${prefix}daily\`\`, \`\`${prefix}leaderboard\`\`
                 
                 **[Booster Commands](${"https://discordapp.com/channels/804323987106168842/841196171795103754/853816838186336266"} "Boost our server to get special perks")** 
                 \`\`${prefix}steal (user)\`\`

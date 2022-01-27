@@ -2,7 +2,6 @@ const Discord = require('discord.js')
 const mongo = require('../mongo')
 const ServersSchema = require('../schemas/Servers')
 const ConfessionSchema = require('../schemas/confessionsSchema')
-const { confessions } = require('../config.json')
 
 module.exports = (client) => {
 

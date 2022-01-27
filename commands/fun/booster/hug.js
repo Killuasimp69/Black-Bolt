@@ -20,11 +20,11 @@ module.exports = {
 
                 const embedForHug = new Discord.MessageEmbed()
                     .setDescription(`
-                <@${targetUser.id}>
+                <@${user.id}>
                 
                 ***HUGS***
                 
-                <@${user.id}>`)
+                <@${targetUser.id}>`)
                     .setThumbnail("https://cdn.discordapp.com/emojis/628275866471759882.gif?v=1")
                     .setColor("#ff47ea")
                     .setFooter(`Damn not gonna lie they look good together`)

@@ -45,13 +45,13 @@ module.exports = {
                             }, {
                                 upsert: true
                             })
-                            embedForWorkCmd.setTitle(`You made ${workAmounts[randomAmt]}`)
-                            embedForWorkCmd.setDescription(`${workJobs[randomJobs]} **${workAmounts[randomAmt]} money**`)
+                            embedForWorkCmd.setTitle(`You made ${workAmounts[randomAmt]} BBC`)
+                            embedForWorkCmd.setDescription(`${workJobs[randomJobs]} **${workAmounts[randomAmt]} BBC**`)
                             return message.channel.send(embedForWorkCmd)
                         }
 
                         if (parseFloat(userResult.money) < parseFloat("1000")) {
-                            return message.channel.send("You must have at least 1000 dollars to get a job")
+                            return message.channel.send("You must have at least 1000 BBC to get a job")
                         }
 
                         const amountForNormal = parseFloat(userResult.money) + workAmounts[randomAmt]
@@ -64,8 +64,8 @@ module.exports = {
                             upsert: true
                         })
 
-                        embedForWorkCmd.setTitle(`You made ${workAmounts[randomAmt]}`)
-                        embedForWorkCmd.setDescription(`${workJobs[randomJobs]} **${workAmounts[randomAmt]} money**`)
+                        embedForWorkCmd.setTitle(`You made ${workAmounts[randomAmt]} BBC`)
+                        embedForWorkCmd.setDescription(`${workJobs[randomJobs]} **${workAmounts[randomAmt]} BBC**`)
                         message.channel.send(embedForWorkCmd)
 
                         //cooldown
@@ -97,13 +97,13 @@ module.exports = {
                             }, {
                                 upsert: true
                             })
-                            embedForWorkCmd.setTitle(`You made ${workAmounts[randomAmt]}`)
-                            embedForWorkCmd.setDescription(`${workJobs[randomJobs]} **${workAmounts[randomAmt]} money**`)
+                            embedForWorkCmd.setTitle(`You made ${workAmounts[randomAmt]} BBC`)
+                            embedForWorkCmd.setDescription(`${workJobs[randomJobs]} **${workAmounts[randomAmt]} BBC**`)
                             return message.channel.send(embedForWorkCmd)
                         }
 
                         if (parseFloat(userResult.money) < parseFloat("1000")) {
-                            return message.channel.send("You must have at least 1000 dollars to get a job")
+                            return message.channel.send("You must have at least 1000 BBC to get a job")
                         }
 
                         const amountForNormal = parseFloat(userResult.money) + workAmounts[randomAmt]
@@ -116,8 +116,8 @@ module.exports = {
                             upsert: true
                         })
 
-                        embedForWorkCmd.setTitle(`You made ${workAmounts[randomAmt]}`)
-                        embedForWorkCmd.setDescription(`${workJobs[randomJobs]} **${workAmounts[randomAmt]} money**`)
+                        embedForWorkCmd.setTitle(`You made ${workAmounts[randomAmt]} BBC`)
+                        embedForWorkCmd.setDescription(`${workJobs[randomJobs]} **${workAmounts[randomAmt]} BBC**`)
                         message.channel.send(embedForWorkCmd)
 
                         //cooldown

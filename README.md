@@ -22,5 +22,9 @@ Here are some major frameworks and libraries that I used to bootstrap Black Bolt
 * [random-puppy](https://www.npmjs.com/package/random-puppy)
 * [snekfetch](https://www.npmjs.com/package/snekfetch)
 
+<<<<<<< Updated upstream
 ## License
 
+=======
+## License
+>>>>>>> Stashed changes

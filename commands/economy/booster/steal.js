@@ -1,6 +1,6 @@
 const mongo = require('../../../mongo')
 const userSchema = require('../../../schemas/userSchema')
-let cdSecs = 300
+let cdSecs = 60
 let cooldown = new Set()
 const stealAmounts = [4000, 847, 999, 1352, 3957, 2102, 459, 792, 578, 194]
 
@@ -27,23 +27,29 @@ module.exports = {
                         //money randomizers
 
                         const randomStealAmounts = Math.floor(Math.random() * (stealAmounts.length))
+                        const stealReasons = [`You hacked into ${args[0]}'s bank and stole ${stealAmounts[randomStealAmounts]} BBC`, `You broke into ${args[0]}'s stripper club and stole ${stealAmounts[randomStealAmounts]} BBC`, `You caught ${args[0]} having naughty time and they gave you ${stealAmounts[randomStealAmounts]} BBC to keep quiet`, `You banned ${args[0]} from your Discord server, they payed you ${stealAmounts[randomStealAmounts]} BBC to let them back in`]
+                        const randomStealReasons = Math.floor(Math.random() * (stealReasons.length))
 
                         const userResult = await userSchema.findOne({ _id: user })
                         const targetResult = await userSchema.findOne({ _id: message.mentions.members.first().user })
+
+                        if (message.author.id == message.mentions.members.first().id) {
+                            return message.channel.send("You cannot steal from yourself")
+                        }
 
                         //template
 
                         const embedForSteal = new Discord.MessageEmbed()
                             .setAuthor(message.member.displayName, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setTitle("Steal")
-                            .setDescription(`You hacked into ${args[0]}'s bank and stole ${stealAmounts[randomStealAmounts]} money`)
+                            .setDescription(stealReasons[randomStealReasons])
                             .setFooter(`Booster only command`)
                             .setColor("BLACK")
 
                         //database / messages
 
                         if (cooldown.has(message.author.id)) {
-                            return message.channel.send('You must wait 5 minutes inbetween stealing')
+                            return message.channel.send('You must wait 1 minute inbetween stealing')
                         } else {
 
                             if (!targetResult || !targetResult.money) {
@@ -71,7 +77,7 @@ module.exports = {
                                             upsert: true
                                         })
 
-                                        embedForSteal.setDescription(`You hacked into ${args[0]}'s bank and stole ${allMoney} money`)
+                                        embedForSteal.setDescription(`You hacked into ${args[0]}'s bank and stole ${allMoney} BBC`)
                                         cooldown.add(message.author.id)
                                         setTimeout(() => {
                                             cooldown.delete(message.author.id)
@@ -133,7 +139,7 @@ module.exports = {
                                             upsert: true
                                         })
 
-                                        embedForSteal.setDescription(`You hacked into ${args[0]}'s bank and stole ${allMoney} money`)
+                                        embedForSteal.setDescription(`You hacked into ${args[0]}'s bank and stole ${allMoney} BBC`)
                                         cooldown.add(message.author.id)
                                         setTimeout(() => {
                                             cooldown.delete(message.author.id)
@@ -194,7 +200,7 @@ module.exports = {
                                             upsert: true
                                         })
 
-                                        embedForSteal.setDescription(`You hacked into ${args[0]}'s bank and stole ${targetResult.money} money`)
+                                        embedForSteal.setDescription(`You hacked into ${args[0]}'s bank and stole ${targetResult.money} BBC`)
                                         cooldown.add(message.author.id)
                                         setTimeout(() => {
                                             cooldown.delete(message.author.id)
@@ -253,7 +259,7 @@ module.exports = {
                                             upsert: true
                                         })
 
-                                        embedForSteal.setDescription(`You hacked into ${args[0]}'s bank and stole ${targetResult.money} money`)
+                                        embedForSteal.setDescription(`You hacked into ${args[0]}'s bank and stole ${targetResult.money} BBC`)
                                         cooldown.add(message.author.id)
                                         setTimeout(() => {
                                             cooldown.delete(message.author.id)

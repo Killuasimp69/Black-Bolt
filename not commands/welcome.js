@@ -36,5 +36,13 @@ module.exports = client => {
             .setTimestamp()
         channel.send(embedForWelcome)
 
+        const welcomeRole = member.guild.roles.cache.find(role => role.id === "838596264199323688")
+        const welcomeRole1 = member.guild.roles.cache.find(role => role.id === "838679702842376242")
+        const welcomeRole2 = member.guild.roles.cache.find(role => role.id === "838596516938645524")
+
+        member.roles.add(welcomeRole)
+        member.roles.add(welcomeRole1)
+        member.roles.add(welcomeRole2)
+
     })
 }

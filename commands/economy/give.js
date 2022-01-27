@@ -4,7 +4,7 @@ const { prefix } = require('../../config.json')
 
 module.exports = {
     commands: ['give', 'transfur'],
-    expectedArgs: '(amount) (user)',
+    expectedArgs: '(user) (amount)',
     minArgs: 2,
     maxArgs: 2,
     callback: async (message, args, Discord, client) => {
@@ -14,7 +14,7 @@ module.exports = {
 
         if (isNaN(args[1])) return message.channel.send("Please specify a number not a letter")
 
-        if (args[1] < 6) return message.channel.send("The amount has to be higher than 5 dollars")
+        if (args[1] < 6) return message.channel.send("The amount has to be higher than 5 BBC")
 
         const user = message.mentions.members.first()
         await mongo().then(async (mongoose) => {
@@ -33,7 +33,7 @@ module.exports = {
                     }, {
                         upsert: true
                     })
-                    return message.channel.send(`You gave ${args[1]} money to ${args[0]}. They now have ${newuserMoney} money`)
+                    return message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${newuserMoney} BBC`)
                 }
 
                 if (!senderResult || !senderResult.money) {
@@ -45,10 +45,10 @@ module.exports = {
                     }, {
                         upsert: true
                     })
-                    return message.channel.send(`You gave ${args[1]} money to ${args[0]}. They now have ${newuserMoney} money`)
+                    return message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${newuserMoney} BBC`)
                 }
 
-                if(senderResult.money < parseFloat(args[1])) return message.channel.send('You dont have enough money')
+                if(senderResult.money < parseFloat(args[1])) return message.channel.send('You dont have enough BBC')
 
                 //original user
                 const money = parseFloat(userResult.money) + parseFloat(args[1])
@@ -69,7 +69,7 @@ module.exports = {
                     upsert: true
                 })
 
-                message.channel.send(`You gave ${args[1]} money to ${args[0]}. They now have ${money} money`)
+                message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${money} BBC`)
             } finally {
                 mongoose.connection.close()
 

@@ -25,9 +25,9 @@ module.exports = {
                         //templates
                         const embedForMoney = new Discord.MessageEmbed()
                             .setTitle(`$${moneytogive}`)
-                            .setDescription(`You just got $${moneytogive}`)
+                            .setDescription(`You just got $${moneytogive} BBC`)
                             .setColor("BLACK")
-                            .setFooter(`Your new balance is $${moneyAmount}`)
+                            .setFooter(`Your new balance is $${moneyAmount} BBC`)
 
                         //database
 
@@ -55,9 +55,9 @@ module.exports = {
                         //templates
                         const embedForMoney = new Discord.MessageEmbed()
                             .setTitle(`$${moneytogive}`)
-                            .setDescription(`You just got $${moneytogive}`)
+                            .setDescription(`You just got $${moneytogive} BBC`)
                             .setColor("BLACK")
-                            .setFooter(`Your new balance is $${moneyAmount}`)
+                            .setFooter(`Your new balance is $${moneyAmount} BBC`)
 
                         //database
 
@@ -93,9 +93,9 @@ module.exports = {
                         //templates
                         const embedForMoney = new Discord.MessageEmbed()
                             .setTitle(`$${moneytogive}`)
-                            .setDescription(`You just got $${moneytogive}`)
+                            .setDescription(`You just got $${moneytogive} BBC`)
                             .setColor("BLACK")
-                            .setFooter(`Your new balance is $${moneyAmount}`)
+                            .setFooter(`Your new balance is $${moneyAmount} BBC`)
 
                         //database
 
@@ -123,9 +123,9 @@ module.exports = {
                         //templates
                         const embedForMoney = new Discord.MessageEmbed()
                             .setTitle(`$${moneytogive}`)
-                            .setDescription(`You just got $${moneytogive}`)
+                            .setDescription(`You just got $${moneytogive} BBC`)
                             .setColor("BLACK")
-                            .setFooter(`Your new balance is $${moneyAmount}`)
+                            .setFooter(`Your new balance is $${moneyAmount} BBC`)
 
                         //database
 
