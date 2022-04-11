@@ -1,4 +1,3 @@
-const mongo = require('../../mongo')
 const userSchema = require('../../schemas/userSchema')
 const { prefix } = require('../../config.json')
 let coolDownNormal = new Set()
@@ -16,7 +15,7 @@ const workJobs = ["You cleaned the floors and made",
 
 module.exports = {
     commands: ['work'],
-    callback: async (message, args, Discord, client) => {
+    callback: async (message, args, Discord, client, mongo) => {
         const user = message.mentions.members.first() || message.member
         await mongo().then(async (mongoose) => {
             try {

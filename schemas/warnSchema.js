@@ -6,11 +6,19 @@ const warnsSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    warnNum: {
+        type: String,
+        required: true,
+    },
     mod: {
         type: String,
         required: true,
     },
     warneduser: {
+        type: String,
+        required: true,
+    },
+    warneduserID: {
         type: String,
         required: true,
     },

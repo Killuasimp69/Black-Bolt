@@ -1,11 +1,10 @@
-const mongo = require('../../mongo')
 const userSchema = require('../../schemas/userSchema')
 const { prefix } = require('../../config.json')
 
 module.exports = {
     commands: ['balance', 'bal'],
     expectedArgs: '',
-    callback: async (message, args, Discord, client) => {
+    callback: async (message, args, Discord, client, mongo) => {
         const user = message.mentions.members.first() || message.member
         await mongo().then(async (mongoose) => {
             try {

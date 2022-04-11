@@ -1,4 +1,3 @@
-const mongo = require('../../mongo')
 const userSchema = require('../../schemas/userSchema')
 const { prefix } = require('../../config.json')
 let coolDown = new Set()
@@ -7,7 +6,7 @@ let cdSecs = 86400
 module.exports = {
     commands: ['daily', 'day'],
     expectedArgs: '',
-    callback: async (message, args, Discord, client) => {
+    callback: async (message, args, Discord, client, mongo) => {
         const user = message.member.user
         await mongo().then(async (mongoose) => {
             try {

@@ -1,5 +1,6 @@
 const { prefix } = require('../config.json')
 const Discord = require('discord.js')
+const mongo = require('../mongo')
 
 const validatePermissions = (permissions) => {
     const validPermissions = [
@@ -113,7 +114,7 @@ module.exports = (client, commandOptions) => {
                 }
 
                 //handle code
-                callback(message, args, Discord, client, args.join(' '))
+                callback(message, args, Discord, client, mongo, args.join(' '))
 
                 return
             }

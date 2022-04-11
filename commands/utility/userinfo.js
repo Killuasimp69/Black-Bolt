@@ -47,9 +47,6 @@ module.exports = {
                         }, {
                             name: 'Role Count',
                             value: member.roles.cache.size - 1
-                        }, {
-                            name: 'Cat Coins',
-                            value: `0`
                         })
 
                         return message.channel.send(embedForUserInfo)

@@ -6,7 +6,7 @@ module.exports = {
     maxArgs: 2,
     permissions: [],
     requiredRoles: [],
-    callback: (message, args, Discord, client) => {
+    callback: (message, args, Discord, client, mongo) => {
 
     }
 }

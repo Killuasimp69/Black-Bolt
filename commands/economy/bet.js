@@ -1,4 +1,3 @@
-const mongo = require('../../mongo')
 const userSchema = require('../../schemas/userSchema')
 const { prefix } = require('../../config.json')
 
@@ -7,7 +6,7 @@ module.exports = {
     expectedArgs: '(amount)',
     minArgs: 1,
     maxArgs: 1,
-    callback: async (message, args, Discord, client) => {
+    callback: async (message, args, Discord, client, mongo) => {
         const user = message.member.user
 
         if (isNaN(args[0])) {

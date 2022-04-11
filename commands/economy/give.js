@@ -1,6 +1,6 @@
-const mongo = require('../../mongo')
 const userSchema = require('../../schemas/userSchema')
 const { prefix } = require('../../config.json')
+const mongo = require("../../mongo")
 
 module.exports = {
     commands: ['give', 'transfur'],

@@ -10,9 +10,9 @@ module.exports = {
         if (args[0] == 'economy') {
             const embedForEconCommands = new Discord.MessageEmbed()
                 .setAuthor(`${message.author.username}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                .setDescription(`**7 (and more to come) economy commands** for your crippling gambling addiction.
+                .setDescription(`**8 (and more to come) economy commands** for your crippling gambling addiction.
 
-                \`\`${prefix}balance\`\`, \`\`${prefix}beg\`\`, \`\`${prefix}give (amount) (user)\`\`, \`\`${prefix}work\`\`, \`\`${prefix}bet (amount)\`\`, \`\`${prefix}daily\`\`, \`\`${prefix}leaderboard\`\`
+                \`\`${prefix}balance\`\`, \`\`${prefix}beg\`\`, \`\`${prefix}give (amount) (user)\`\`, \`\`${prefix}work\`\`, \`\`${prefix}bet (amount)\`\`, \`\`${prefix}daily\`\`, \`\`${prefix}leaderboard\`\`, \`\`${prefix}buy (product) (extra)\`\`
                 
                 **[Booster Commands](${"https://discordapp.com/channels/804323987106168842/841196171795103754/853816838186336266"} "Boost our server to get special perks")** 
                 \`\`${prefix}steal (user)\`\`
@@ -23,9 +23,9 @@ module.exports = {
         } else if (args[0] == 'utility') {
             const embedForUtilCommands = new Discord.MessageEmbed()
                 .setAuthor(`${message.member.displayName}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                .setDescription(`**12 utility commands** that are useful for when you, erm... use me.
+                .setDescription(`**9 utility commands** that are useful for when you, erm... use me.
 
-                \`\`${prefix}ping\`\`, \`\`${prefix}botinfo\`\`, \`\`${prefix}commands\`\`, \`\`${prefix}invite\`\`, \`\`${prefix}members\`\`, \`\`${prefix}userinfo\`\`, \`\`${prefix}version\`\`, \`\`${prefix}avatar\`\`, \`\`${prefix}confession (confessHereChannel) (confessionsChannel)\`\`, \`\`${prefix}conToggle (true/false)\`\`, \`\`${prefix}changeLog\`\`,
+                \`\`${prefix}ping\`\`, \`\`${prefix}botinfo\`\`, \`\`${prefix}commands\`\`, \`\`${prefix}invite\`\`, \`\`${prefix}members\`\`, \`\`${prefix}userinfo\`\`, \`\`${prefix}version\`\`, \`\`${prefix}avatar\`\`, \`\`${prefix}store\`\`
                 
                 **[Booster Commands](${"https://discordapp.com/channels/804323987106168842/841196171795103754/853816838186336266"} "Boost our server to get special perks")** 
                 \`\`${prefix}color\`\`
@@ -38,7 +38,7 @@ module.exports = {
                 .setAuthor(`${message.author.username}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                 .setDescription(`**10 fun commands** that can amuse even your dying grandma.
 
-                \`\`${prefix}dadjoke\`\`, \`\`${prefix}yomumma\`\`, \`\`${prefix}ppsize\`\`, \`\`${prefix}cat\`\`, \`\`${prefix}inspire\`\`, \`\`${prefix}meme\`\`, \`\`${prefix}8ball\`\`
+                \`\`${prefix}dadjoke\`\`, \`\`${prefix}yomumma\`\`, \`\`${prefix}ppsize\`\`, \`\`${prefix}inspire\`\`, \`\`${prefix}meme\`\`, \`\`${prefix}8ball\`\`
 
                 **[Booster Commands](${"https://discordapp.com/channels/804323987106168842/841196171795103754/853816838186336266"} "Boost our server to get special perks")** 
                 \`\`${prefix}hug (user)\`\` \`\`${prefix}kiss (user)\`\` \`\`${prefix}kill (user)\`\`

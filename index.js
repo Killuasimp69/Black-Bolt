@@ -41,7 +41,8 @@ client.on('ready', () => {
         "with JavaScript",
         "with some kid i found",
         "with Neo ;)",
-        "with cheese"
+        "with cheese",
+        `running version ${version}`
     ];
 
     setInterval(() => {

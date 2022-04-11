@@ -1,12 +1,11 @@
-const mongo = require('../../mongo')
 const userSchema = require('../../schemas/userSchema')
 
 module.exports = {
-    commands: ['setbalance'],
+    commands: ['setbalance', 'setbal'],
     expectedArgs: '(amount) (user)',
     minArgs: 2,
     maxArgs: 2,
-    callback: async (message, args, Discord, client) => {
+    callback: async (message, args, Discord, client, mongo) => {
         const user = message.mentions.members.first() || message.author
 
         if (message.author.id != ('555991737072615424') || message.author.id != ('555991737072615424')) {

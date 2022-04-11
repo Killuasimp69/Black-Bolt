@@ -27,7 +27,8 @@ module.exports = {
                                 const memeberToWarn = message.mentions.members.first()
                                 const user = message.mentions.members.first().user
                                 const userResult = await userSchema.findOne({ _id: user })
-                                const warnID = Math.floor(Math.random() * (10000000000 - 100000) + 100000)
+                                const warningfirst = Math.floor(Math.random() * (10000000000 - 100000) + 100000)
+                                const warnID = "$" + warningfirst
                                 const warnResult = await warnSchema.findOne({ _id: warnID })
 
                                 var currentdate = new Date();
@@ -39,6 +40,11 @@ module.exports = {
                                     + currentdate.getSeconds();
                                 var datetime = yestime.replace(`Last Sync: `, ``)
 
+                                if (userResult == null) {
+                                    warnNumber = 1
+                                } else {
+                                    warnNumber = parseFloat(userResult.warns) + parseFloat(1)
+                                } 
                                 //templates
 
                                 const channelTemplate = new Discord.MessageEmbed()
@@ -75,6 +81,13 @@ module.exports = {
                                     await warnSchema.findOneAndUpdate({
                                         _id: warnID
                                     }, {
+                                        warneduserID: memeberToWarn.id
+                                    }, {
+                                        upsert: true
+                                    })
+                                    await warnSchema.findOneAndUpdate({
+                                        _id: warnID
+                                    }, {
                                         warning: reason
                                     }, {
                                         upsert: true
@@ -83,6 +96,13 @@ module.exports = {
                                         _id: warnID
                                     }, {
                                         time: datetime
+                                    }, {
+                                        upsert: true
+                                    })
+                                    await warnSchema.findOneAndUpdate({
+                                        _id: warnID
+                                    }, {
+                                        warnNum: warnNumber
                                     }, {
                                         upsert: true
                                     })
@@ -101,6 +121,14 @@ module.exports = {
                                         _id: user
                                     }, {
                                         warns: '1'
+                                    }, {
+                                        upsert: true
+                                    })
+
+                                    await warnSchema.findOneAndUpdate({
+                                        _id: warnID
+                                    }, {
+                                        warnNum: warnNumber
                                     }, {
                                         upsert: true
                                     })
@@ -126,6 +154,14 @@ module.exports = {
                                         _id: user
                                     }, {
                                         warns: '1'
+                                    }, {
+                                        upsert: true
+                                    })
+
+                                    await warnSchema.findOneAndUpdate({
+                                        _id: warnID
+                                    }, {
+                                        warnNum: warnNumber
                                     }, {
                                         upsert: true
                                     })
@@ -168,7 +204,6 @@ module.exports = {
                             } finally {
                                 mongoose.connection.close()
                             }
-
                         })
                     } else {
                         const reason = message.content.replace(`${prefix}warn ${args[0]} `, ``)
@@ -192,6 +227,7 @@ module.exports = {
                             .catch((err) => {
                                 channelTemplate.setFooter("Could not dm user")
                             })
+                            
 
                         message.channel.send(channelTemplate)
                     }
