@@ -15,8 +15,6 @@ module.exports = {
                     name: "Moderation Commands",
                     value: `• %warn (user) (reason)
                             • %violations (user)
-                            • %kick (user) (reason)
-                            • %ban (user) (reason)
                             • %fetch (confession/warnID/userID) (warnNum [if needed])`
                 }, {
                     name: "Other Commands",

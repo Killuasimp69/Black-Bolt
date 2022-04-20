@@ -31,7 +31,7 @@ module.exports = {
                             name: "Warned User",
                             value: fetch.warneduser
                         }, {
-                            name: "Warning",
+                            name: "Warning Description",
                             value: fetch.warning
                         }, {
                             name: "Time",
@@ -46,17 +46,37 @@ module.exports = {
                 } else if (args[1]) {
 
                     //warnNum
+                    let WarnedUserFetchID = args[0]
+                    const user213 = message.mentions.members.first()
 
-                    const fetch = await warnSchema.findOne({ warneduserID: args[0] }, { warnNum: args[1] })
+                    if(args[0].startsWith("<@")) {
+                        WarnedUserFetchID =  user213.user.id
+                    }
+
+                    if(isNaN(args[1])) {
+                        return message.channel.send("Please specify a warning number.")
+                    }
+
+                    const fetch = await warnSchema.find({warneduserID: WarnedUserFetchID})
+
                     if (!fetch) {
                         return message.channel.send("I cant find that warning")
                     }
-                    const fetchInfo = await warnSchema.findOne({ _id: fetch._id })
+                    
+                    const goodArgs = parseFloat(args[1]) - 1
+                    const IdAndWarnedUserID = fetch[goodArgs]
+
+                    if(!IdAndWarnedUserID || !IdAndWarnedUserID._id) {
+                        return message.channel.send("That warning dosnt exist.")
+                    }
+
+                    const fetchInfo = await warnSchema.findOne({_id: IdAndWarnedUserID._id})
+
                     const embedForFetch = new Discord.MessageEmbed()
                         .addFields(
                             {
                                 name: "ID",
-                                value: fetch._id
+                                value: fetchInfo._id
                             }, {
                             name: "Moderator",
                             value: fetchInfo.mod
@@ -71,12 +91,12 @@ module.exports = {
                             value: fetchInfo.time
                         }, {
                             name: "Warn Number",
-                            value: fetch.warnNum
+                            value: fetchInfo.warnNum
                         })
                         .setColor("BLACK")
                     message.channel.send(embedForFetch)
 
-                } else {
+                } else { 
                     //confessions
                     const fetch = await confessionSchema.findOne({ _id: id })
                     if (!fetch || !fetch.Confession) {

@@ -1,6 +1,6 @@
 {
-    "token": "ODA0NjEwMzUwMTI4OTU1Mzky.YBO1yA._9wvP1RHeK41R2aZBNaQIaB1Qdc",
-    "prefix": "%",
+    "token": "NzgzNzg5OTgyMzAwMzczMDUz.X8f3TQ._8NrePGGbafqEMLHq4jpvif9wDU",
+    "prefix": "test%",
     "mongoPath": "mongodb://localhost:27017/BlackBolt",
     "confessions": "true",
     "cooldownBooster": 1,

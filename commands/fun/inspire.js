@@ -9,7 +9,7 @@ module.exports = {
     expectedArgs: '<num1>',
     callback: (message, args, Discord, client) => {
         const user = message.member.user
-        if(message.member.roles.cache.has('808120014690844713') || message.member.roles.cache.has('838677417659727928') || message.member.roles.cache.has('838677789413736509')) {
+        if(message.member.roles.cache.has('838596018856919040')) {
             if(coolDownBooster.has(message.author.id)) {
                 return message.channel.send("Please wait 1 more second")
             } else {

@@ -10,7 +10,7 @@ module.exports = {
         const user = message.member.user
         await mongo().then(async (mongoose) => {
             try {
-                if (message.member.roles.cache.has('838677417659727928') || message.member.roles.cache.has('838677789413736509') || message.member.roles.cache.has('838679476774371408')) {
+                if (message.member.roles.cache.has('838596018856919040')) {
                     if (coolDown.has(message.author.id)) {
                         return message.channel.send("Please return tommorow")
                     }

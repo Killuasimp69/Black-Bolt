@@ -6,6 +6,10 @@ const warnsSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    __v: {
+        type: String,
+        required: true,
+    },
     warnNum: {
         type: String,
         required: true,
