@@ -10,6 +10,9 @@ module.exports = {
     callback: async (message, args, Discord, client) => {
         await mongo().then(async (mongoose) => {
             try {
+                if(!message.member.roles.cache.has('838596018856919040')) {
+                    return message.channel.send("You do not have the correct permissions.")
+                }
                 const id = args[0]
                 const user = message.member.user
                 if (args[0].startsWith("$")) {

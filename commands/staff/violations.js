@@ -8,9 +8,12 @@ module.exports = {
     permissionError: "You do not have the required permissions to execute this command",
     minArgs: 1,
     maxArgs: 1,
-    permissions: ['KICK_MEMBERS'],
     callback: async (message, args, Discord, client) => {
         const user = message.mentions.members.first()
+
+        if(!message.member.roles.cache.has('838596018856919040')) {
+            return message.channel.send("You do not have the correct permissions.")
+        }
 
         if (!message.mentions.members.first()) {
             return message.channel.send("Please specify a user to check")
@@ -66,7 +69,6 @@ module.exports = {
 
             } finally {
                 mongoose.connection.close()
-
             }
         })
     }

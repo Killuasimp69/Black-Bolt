@@ -8,9 +8,8 @@ module.exports = {
     expectedArgs: '(user) (reason)',
     permissionError: "You do not have the required permissions to execute this command",
     minArgs: 1,
-    permissions: ['KICK_MEMBERS'],
     callback: async (message, args, Discord, client) => {
-        if (!message.member.hasPermission(`KICK_MEMBERS`)) {
+        if (!message.member.roles.cache.has('838596018856919040')) {
             message.channel.send('Sorry, you cant use that command.')
         } else {
             if (!message.mentions.members.first()) {
