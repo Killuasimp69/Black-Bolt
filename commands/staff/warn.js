@@ -22,6 +22,7 @@ module.exports = {
                         await mongo().then(async (mongoose) => {
                             try {
 
+                                message.delete()
                                 const reason = message.content.replace(`${prefix}warn ${args[0]} `, ``)
                                 const memeberToWarn = message.mentions.members.first()
                                 const user = message.mentions.members.first().user

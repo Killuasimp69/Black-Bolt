@@ -1,22 +1,52 @@
 {
-    "VanityCustomRole": {
-        "Name": "VanityCustomRole",
-        "Price": "1000000",
-        "Info": "An admin will contact you to discuss the role.",
-        "Description": "A custom role with a custom name and color just for you."
+    "Other": {
+        "VanityCustomRole": {
+            "Name": "VanityCustomRole",
+            "Price": "5000000",
+            "Info": "An admin will contact you to discuss the role.",
+            "Description": "A custom role with a custom name and color just for you."
+        },
+        "MuteUser": {
+            "Name": "MuteUser",
+            "Price": "1000000",
+            "Info": "The specified user will be muted straight away",
+            "Description": "Able to mute any user for 12 hours at a time (cannot send messages)"
+        }
     },
-
-    "RolePermissions": {
-        "Name": "RolePermissions",
-        "Price": "300000 BBC per permission",
-        "Info": "An admin will contact you to discuss what permissions will be added.",
-        "Description": "Specific permissions that can be added to your vanity role. (You must already have a vanity role)."
+    "Houses": {
+        "Large": {
+            "Name": "Large House",
+            "Price": "50000000"
+        },
+        "Medium": {
+            "Name": "Medium House",
+            "Price": "2500000"
+        },
+        "Small": {
+            "Name": "Small House",
+            "Price": "1000000"
+        }
     },
-
-    "MuteUser": {
-        "Name": "MuteUser",
-        "Price": "500000",
-        "Info": "The specified user will be muted straight away",
-        "Description": "Able to mute any user for 12 hours at a time (cannot send messages)"
+    "Levels": {
+        "Level1": {
+            "Name": "Level 1",
+            "Price": "30000"
+        },
+        "Level2": {
+            "Name": "Level 2",
+            "Price": "100000"
+        },
+        "Level3": {
+            "Name": "Level 3",
+            "Price": "500000"
+        },
+        "Level4": {
+            "Name": "Level 4",
+            "Price": "1000000"
+        },
+        "Level5": {
+            "Name": "Level 5",
+            "Price": "10000000"
+        }
     }
 }

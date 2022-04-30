@@ -42,6 +42,7 @@ client.on('ready', () => {
         "with some kid i found",
         "with Neo ;)",
         "with cheese",
+        "with White Bolt",
         `running version ${version}`
     ];
 

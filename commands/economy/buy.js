@@ -11,11 +11,10 @@ module.exports = {
     maxArgs: 3,
     permissionError: "You need more permissions",
     callback: async (message, args, Discord, client, mongo) => {
-        return message.channel.send("Sorry but this command is not yet available")
         const user = message.member.user
         const MessageContent = message.content.replace(`${prefix}buy `, ``)
 
-        if (message.guild.id != '804323987106168842') return message.content.send("This command cannot be used in this server")
+        if (message.guild.id != '804323987106168842') return message.channel.send("This command cannot be used in this server")
 
         await mongo().then(async (mongoose) => {
             try {
@@ -24,44 +23,38 @@ module.exports = {
                 //fuctions
                 //vanity
                 async function VanityRole() {
-                    if (!userresult || parseFloat(userresult.money) <= parseFloat(Items.VanityCustomRole.Price)) {
+                    if (!userresult || parseFloat(userresult.money) <= parseFloat(Items.Other.VanityCustomRole.Price)) {
                         return message.channel.send("You do not have enough BBC.")
                     }
 
                     const VanityRole = new Discord.MessageEmbed()
-                        .setAuthor(`${Items.VanityCustomRole.Name} | Purchased`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                        .setAuthor(`${Items.Other.VanityCustomRole.Name} | Purchased`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                         .setColor("BLACK")
-                        .setDescription(`**${Items.VanityCustomRole.Price}** BBC has been deducted from your account. ${Items.VanityCustomRole.Info}`)
+                        .setDescription(`**${Items.Other.VanityCustomRole.Price}** BBC has been deducted from your account. ${Items.Other.VanityCustomRole.Info}`)
                     message.channel.send(VanityRole)
 
                     const channel = client.channels.cache.find(channel => channel.id === "936487024347713536")
 
                     const VanityRoleTransaction = new Discord.MessageEmbed()
-                        .setAuthor(`${Items.VanityCustomRole.Name} | Purchased`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                        .setAuthor(`${Items.Other.VanityCustomRole.Name} | Purchased`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                         .addFields({
                             name: "Member:",
                             value: message.member.user.tag
                         }, {
                             name: "Product:",
-                            value: Items.VanityCustomRole.Name
+                            value: Items.Other.VanityCustomRole.Name
                         }, {
                             name: "Price:",
-                            value: Items.VanityCustomRole.Price + "BBC"
+                            value: Items.Other.VanityCustomRole.Price + "BBC"
                         })
                         .setColor("BLACK")
                     channel.send(VanityRoleTransaction)
                 }
 
-                //perms
-
-                function RolePermissions() {
-
-                }
-
                 //mute
 
                 function MuteMember() {
-                    if (!userresult || parseFloat(userresult.money) <= parseFloat(Items.MuteUser.Price)) {
+                    if (!userresult || parseFloat(userresult.money) <= parseFloat(Items.Other.MuteUser.Price)) {
                         return message.channel.send("You do not have enough BBC.")
                     }
 
@@ -71,7 +64,7 @@ module.exports = {
                         .setAuthor(`${message.mentions.members.first().displayName} | Muted`, message.mentions.members.first().user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                         .setColor("BLACK")
                         .setDescription(`${message.mentions.members.first().displayName} has been muted for 12 hours.`)
-                        .setFooter(`${Items.MuteUser.Price} BBC has been deducted from your acc`)
+                        .setFooter(`${Items.Other.MuteUser.Price} BBC has been deducted from your acc`)
                     message.channel.send(embedForMuteMember)
 
                     setTimeout(() => {
@@ -82,16 +75,16 @@ module.exports = {
                     const channel = client.channels.cache.find(channel => channel.id === "936487024347713536")
 
                     const VanityRoleTransaction = new Discord.MessageEmbed()
-                        .setAuthor(`${Items.MuteUser.Name} | Purchased`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                        .setAuthor(`${Items.Other.MuteUser.Name} | Purchased`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                         .addFields({
                             name: "Member:",
                             value: message.member.user.tag
                         }, {
                             name: "Product:",
-                            value: Items.MuteUser.Name
+                            value: Items.Other.MuteUser.Name
                         }, {
                             name: "Price:",
-                            value: Items.MuteUser.Price + "BBC"
+                            value: Items.Other.MuteUser.Price + "BBC"
                         })
                         .setColor("BLACK")
                     channel.send(VanityRoleTransaction)
@@ -99,38 +92,261 @@ module.exports = {
 
                 //execute here
 
-                if (args[0] === Items.VanityCustomRole.Name) {
-                    VanityRole()
-                    const Money = parseFloat(userresult.money) - parseFloat(Items.VanityCustomRole.Price)
-                    await userSchema.findOneAndUpdate({
-                        _id: user
-                    }, {
-                        money: Money
-                    }, {
-                        upsert: true
-                    })
+                if (args[0] == Items.Other.VanityCustomRole.Name || args[0] == Items.Other.MuteUser.Name) {
 
-                } else if (args[0] === Items.RolePermissions.Name) {
-                    RolePermissions()
-                } else if (args[0] === Items.MuteUser.Name) {
-                    if (!userresult || parseFloat(userresult.money) <= parseFloat(Items.MuteUser.Price)) {
-                        return message.channel.send("You do not have enough BBC.")
+                    if (args[0] === Items.Other.MuteUser.Name) {
+                        if (!userresult || parseFloat(userresult.money) <= parseFloat(Items.Other.MuteUser.Price)) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+                        if (!args[1] || !args[1].startsWith("<@")) {
+                            return message.channel.send("You must ping somone to mute")
+                        }
+                        if (message.mentions.members.first().hasPermission(`BAN_MEMBERS`)) {
+                            return message.channel.send("You cannot mute that user.")
+                        }
+                        MuteMember()
+                        const monay = parseFloat(userresult.money) - parseFloat(Items.Other.MuteUser.Price)
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: monay
+                        }, {
+                            upsert: true
+                        })
+
+                    } else if (args[0] === Items.Other.VanityCustomRole.Name) {
+
+                        VanityRole()
+                        const Money = parseFloat(userresult.money) - parseFloat(Items.Other.VanityCustomRole.Price)
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: Money
+                        }, {
+                            upsert: true
+                        })
+
                     }
-                    if (!args[1] || !args[1].startsWith("<@")) {
-                        return message.channel.send("You must ping somone to mute")
+                } else if (args[0].startsWith("level") || args[0].startsWith("Level")) {
+                    if (isNaN(args[1])) {
+                        return message.channel.send("Please specify a level to buy.")
                     }
-                    if (message.mentions.members.first().hasPermission(`BAN_MEMBERS`)) {
-                        return message.channel.send("You cannot mute that user.")
+                    if (!userresult || !userresult.level) {
+
+                        //Level 1 buy here
+
+                        if (parseFloat(args[1]) != 1) {
+                            return message.channel.send("You cannot buy that level.")
+                        }
+
+                        if (!userresult || !userresult.money || parseFloat(Items.Levels.Level1.Price) >= parseFloat(userresult.money)) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+
+                        const newMoneyAmount = parseFloat(userresult.money) - parseFloat(Items.Levels.Level1.Price)
+
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: newMoneyAmount
+                        }, {
+                            upsert: true
+                        })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            level: 1
+                        }, {
+                            upsert: true
+                        })
+
+                        const embedForLevels = new Discord.MessageEmbed()
+                            .setAuthor(`${message.member.displayName} | Level 1`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                            .setColor("#644223")
+                            .setDescription(`You are now level 1 and have access to all level 1 perks.
+                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "Veiw the perks")`)
+                            .setFooter(`${Items.Levels.Level1.Price} BBC has been deducted from your account`)
+                            .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847381057556/bronze-removebg-preview.png")
+                        return message.channel.send(embedForLevels)
                     }
-                    MuteMember()
-                    const monay = parseFloat(userresult.money) - parseFloat(Items.MuteUser.Price)
-                    await userSchema.findOneAndUpdate({
-                        _id: user
-                    }, {
-                        money: monay
-                    }, {
-                        upsert: true
-                    })
+                    if (userresult.level == args[1] || parseFloat(userresult.level) >= parseFloat(args[1])) {
+                        return message.channel.send("You cannot buy that level.")
+                    }
+
+                    if (args[1] == "2") {
+
+                        //level 2
+
+                        if (!userresult || !userresult.level || !userresult.money) {
+                            return message.channel.send("You cannot buy that level.")
+                        }
+
+                        if (parseFloat(Items.Levels.Level2.Price) >= parseFloat(userresult.money)) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+
+                        if (userresult.level != 1) {
+                            return message.channel.send("You cannot buy that level.")
+                        }
+
+                        const newMoneyAmount = parseFloat(userresult.money) - parseFloat(Items.Levels.Level2.Price)
+
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: newMoneyAmount
+                        }, {
+                            upsert: true
+                        })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            level: 2
+                        }, {
+                            upsert: true
+                        })
+
+                        const embedForLevels = new Discord.MessageEmbed()
+                            .setAuthor(`${message.member.displayName} | Level 2`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                            .setColor("#a7b2b9")
+                            .setDescription(`You are now level 2 and have access to all level 2 perks.
+                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "Veiw the perks")`)
+                            .setFooter(`${Items.Levels.Level2.Price} BBC has been deducted from your account`)
+                            .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812848458993694/silvaa-removebg-preview.png")
+                        message.channel.send(embedForLevels)
+
+                    } else if (args[1] == "3") {
+
+                        //level 3
+
+                        if (!userresult || !userresult.level || !userresult.money) {
+                            return message.channel.send("You cannot buy that level.")
+                        }
+
+                        if (parseFloat(Items.Levels.Level3.Price) >= parseFloat(userresult.money)) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+
+                        if (userresult.level != 2) {
+                            return message.channel.send("You cannot buy that level.")
+                        }
+
+                        const newMoneyAmount = parseFloat(userresult.money) - parseFloat(Items.Levels.Level3.Price)
+
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: newMoneyAmount
+                        }, {
+                            upsert: true
+                        })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            level: 3
+                        }, {
+                            upsert: true
+                        })
+
+                        const embedForLevels = new Discord.MessageEmbed()
+                            .setAuthor(`${message.member.displayName} | Level 3`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                            .setColor("#f2ba2d")
+                            .setDescription(`You are now level 3 and have access to all level 3 perks.
+                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "Veiw the perks")`)
+                            .setFooter(`${Items.Levels.Level3.Price} BBC has been deducted from your account`)
+                            .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847628546078/gowld-removebg-preview.png")
+                        message.channel.send(embedForLevels)
+
+                    } else if (args[1] == "4") {
+
+                        //level 4
+
+                        if (!userresult || !userresult.level || !userresult.money) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+
+                        if (parseFloat(Items.Levels.Level4.Price) >= parseFloat(userresult.money)) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+
+                        if (userresult.level != 3) {
+                            return message.channel.send("You cannot buy that level.")
+                        }
+
+                        const newMoneyAmount = parseFloat(userresult.money) - parseFloat(Items.Levels.Level4.Price)
+
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: newMoneyAmount
+                        }, {
+                            upsert: true
+                        })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            level: 4
+                        }, {
+                            upsert: true
+                        })
+
+                        const embedForLevels = new Discord.MessageEmbed()
+                            .setAuthor(`${message.member.displayName} | Level 4`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                            .setColor("#9b2b61")
+                            .setDescription(`You are now level 4 and have access to all level 4 perks.
+                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "Veiw the perks")`)
+                            .setFooter(`${Items.Levels.Level4.Price} BBC has been deducted from your account`)
+                            .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812848165400616/Plat-removebg-preview.png")
+                        message.channel.send(embedForLevels)
+
+                    } else if (args[1] == "5") {
+
+                        //level 5
+
+                        if (!userresult || !userresult.level || !userresult.money) {
+                            return message.channel.send("You cannot buy that level.")
+                        }
+
+                        if (parseFloat(Items.Levels.Level5.Price) >= parseFloat(userresult.money)) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+
+                        if (userresult.level != 4) {
+                            return message.channel.send("You cannot buy that level.")
+                        }
+
+                        const newMoneyAmount = parseFloat(userresult.money) - parseFloat(Items.Levels.Level5.Price)
+
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: newMoneyAmount
+                        }, {
+                            upsert: true
+                        })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            level: 5
+                        }, {
+                            upsert: true
+                        })
+
+                        const embedForLevels = new Discord.MessageEmbed()
+                            .setAuthor(`${message.member.displayName} | Level 5`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                            .setColor("#a084a3")
+                            .setDescription(`You are now level 5 and have access to all level 5 perks.
+                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "Veiw the perks")`)
+                            .setFooter(`${Items.Levels.Level5.Price} BBC has been deducted from your account`)
+                            .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847917932554/Highest-removebg-preview.png")
+                        message.channel.send(embedForLevels)
+
+                    } else {
+                        return message.channel.send("That is not a purchasable level.")
+                    }
+
+                } else if(args[1] == "house" || args[1] == "House") {
+                    //make houses purchaseable here
                 } else {
                     message.channel.send("That is not an item for sale.")
                 }
