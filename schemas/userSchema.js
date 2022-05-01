@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema({
         required: true,
     },
     money: {
-        type: String,
+        type: String, 
         required: true,
     },
     warns: {
