@@ -13,7 +13,7 @@ module.exports = (client) => {
                 const channel = client.channels.cache.find(channel => channel.id === "897945427687636993")
                 const serverResult = await ServersSchema.findOne({ _id: message.guild.id })
 
-                //checks
+                //checks 
 
                 if (message.author.id == '783789982300373053' || message.author.id == '804610350128955392') return
                 
