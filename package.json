@@ -16,6 +16,7 @@
     "djs-meme": "^1.2.8",
     "get-dadjoke": "^2.0.2",
     "git": "^0.1.5",
+    "gpg": "^0.6.0",
     "inspirational-quotes": "^1.0.8",
     "meme-fetch": "^1.0.3",
     "mime": "^3.0.0",
