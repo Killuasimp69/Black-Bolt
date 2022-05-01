@@ -353,7 +353,6 @@ module.exports = {
 
             } finally {
                 mongoose.connection.close()
-
             }
         })
     }
