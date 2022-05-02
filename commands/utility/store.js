@@ -32,7 +32,7 @@ module.exports = {
                         name: `> <:Level5:969799270427402340> Level 5`,
                         value: `\`\`${prefix}buy level 5\`\` | 💵 ${Items.Levels.Level5.Price} BBC`
                     })
-                    .setFooter("To buy something please simply just type \"%buy (item) \"")
+                    .setFooter(`To buy something please simply just type "${prefix}buy (item) "`)
                 message.channel.send(embedForSore)
             }
 
@@ -52,7 +52,7 @@ module.exports = {
                         name: `> 🏘️ Large House`,
                         value: `\`\`${prefix}buy house large\`\` | 💵 ${Items.Houses.Large.Price} BBC`
                     })
-                    .setFooter("To buy something please simply just type \"%buy (item) \"")
+                    .setFooter(`To buy something please simply just type "${prefix}buy (item) "`)
                 message.channel.send(embedForSore)
             }
 
@@ -70,7 +70,7 @@ module.exports = {
                         value: `\`\`${prefix}buy ${Items.Other.VanityCustomRole.Name}\`\` | 💵 ${Items.Other.VanityCustomRole.Price} BBC`
                     }
                     )
-                    .setFooter("To buy somthing please simply just type \"%buy (item) \"")
+                    .setFooter(`To buy somthing please simply just type "${prefix}buy (item) "`)
                 message.channel.send(embedForSore)
             }
 
@@ -94,7 +94,7 @@ module.exports = {
                     value: `\`\`${prefix}store other\`\``,
                     inline: true
                 })
-                .setFooter("To buy somthing please simply just type \"%buy (item) \"")
+                .setFooter(`To buy somthing please simply just type "${prefix}buy (item) "`)
             message.channel.send(embedForSore)
         }
     }

@@ -1,8 +1,0 @@
-{
-    "No Level": "UP TO 1000",
-    "level 1": "MIN = 1000, MAX = 10000",
-    "level 2": "MIN = 10000, MAX = 20000",
-    "level 3": "MIN = 20000, MAX = 40000",
-    "level 4": "MIN = 40000, MAX = 80000",
-    "level 5": "MIN = 80000, MAX = 160000"
-}

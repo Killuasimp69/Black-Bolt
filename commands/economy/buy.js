@@ -12,7 +12,6 @@ module.exports = {
     permissionError: "You need more permissions",
     callback: async (message, args, Discord, client, mongo) => {
         const user = message.member.user
-        const MessageContent = message.content.replace(`${prefix}buy `, ``)
 
         if (message.guild.id != '804323987106168842') return message.channel.send("This command cannot be used in this server")
 
@@ -159,7 +158,16 @@ module.exports = {
                         }, {
                             upsert: true
                         })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            levelbadge: "<:Level1:969799269542412319>"
+                        }, {
+                            upsert: true
+                        })
 
+                        const role = message.guild.roles.cache.find(r => r.id === "970499708684468354")
+                        message.member.roles.add(role)
                         const embedForLevels = new Discord.MessageEmbed()
                             .setAuthor(`${message.member.displayName} | Level 1`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setColor("#644223")
@@ -205,7 +213,16 @@ module.exports = {
                         }, {
                             upsert: true
                         })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            levelbadge: "<:Level2:969799270435782656>"
+                        }, {
+                            upsert: true
+                        })
 
+                        const role = message.guild.roles.cache.find(r => r.id === "970499864297353236")
+                        message.member.roles.add(role)
                         const embedForLevels = new Discord.MessageEmbed()
                             .setAuthor(`${message.member.displayName} | Level 2`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setColor("#a7b2b9")
@@ -247,7 +264,16 @@ module.exports = {
                         }, {
                             upsert: true
                         })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            levelbadge: "<:Level3:969799270347735081>"
+                        }, {
+                            upsert: true
+                        })
 
+                        const role = message.guild.roles.cache.find(r => r.id === "970500010938613760")
+                        message.member.roles.add(role)
                         const embedForLevels = new Discord.MessageEmbed()
                             .setAuthor(`${message.member.displayName} | Level 3`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setColor("#f2ba2d")
@@ -289,7 +315,16 @@ module.exports = {
                         }, {
                             upsert: true
                         })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            levelbadge: "<:Level4:969799270251237436>"
+                        }, {
+                            upsert: true
+                        })
 
+                        const role = message.guild.roles.cache.find(r => r.id === "970500037517922356")
+                        message.member.roles.add(role)
                         const embedForLevels = new Discord.MessageEmbed()
                             .setAuthor(`${message.member.displayName} | Level 4`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setColor("#9b2b61")
@@ -331,7 +366,16 @@ module.exports = {
                         }, {
                             upsert: true
                         })
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            levelbadge: "<:Level5:969799270427402340>"
+                        }, {
+                            upsert: true
+                        })
 
+                        const role = message.guild.roles.cache.find(r => r.id === "970500059705798716")
+                        message.member.roles.add(role)
                         const embedForLevels = new Discord.MessageEmbed()
                             .setAuthor(`${message.member.displayName} | Level 5`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setColor("#a084a3")
@@ -345,12 +389,198 @@ module.exports = {
                         return message.channel.send("That is not a purchasable level.")
                     }
 
-                } else if(args[1] == "house" || args[1] == "House") {
-                    //make houses purchaseable here
+                } else if (args[0] == "house" || args[0] == "House") {
+                    if (!userresult || !userresult.money) {
+                        return message.channel.send("You do not have enough BBC.")
+                    }
+                    const argsLowerCase = args[1].toLowerCase()
+                    if (argsLowerCase == "large") {
+                        if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Large.Price)) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+                        const ItemResult = await ItemSchema.find({ type: "Large-House" })
+                        if (!ItemResult[0]) {
+                            return message.channel.send("There are no large houses avalible right now.")
+                        }
+                        const unowned = ItemResult.find(({ owner }) => owner === 'false')
+                        if (!unowned || unowned == "undefined") {
+                            return message.channel.send("There are no large houses avalible right now.")
+                        }
+
+                        if(!userresult.houses) {} else {
+                            userresult.houses.split(/[ ]+/)
+                            if(args[4]) {
+                                return message.channel.send("You can only own 5 houses")
+                            }
+                        }
+
+                        await ItemSchema.findOneAndUpdate({
+                            _id: unowned._id
+                        }, {
+                            owner: message.member.id
+                        }, {
+                            upsert: true
+                        })
+                        const Money = parseFloat(userresult.money) - parseFloat(Items.Houses.Large.Price)
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: Money
+                        }, {
+                            upsert: true
+                        })
+                        if (!userresult.houses) {
+                            const items = unowned._id + " "
+                            await userSchema.findOneAndUpdate({
+                                _id: user
+                            }, {
+                                houses: items
+                            }, {
+                                upsert: true
+                            })
+                        } else {
+                            const items = userresult.houses + unowned._id + " "
+                            await userSchema.findOneAndUpdate({
+                                _id: user
+                            }, {
+                                houses: items
+                            }, {
+                                upsert: true
+                            })
+                        }
+                        const embedForLrgeHouse = new Discord.MessageEmbed()
+                            .setAuthor(`${message.member.displayName} | New House`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                            .setDescription("Congratulations on your new house!")
+                            .setThumbnail(unowned.image)
+                            .setColor("BLACK")
+                            .setFooter(`${Items.Houses.Large.Price} BBC has been deducted from your accunt.`)
+                        message.channel.send(embedForLrgeHouse)
+
+                    } else if (argsLowerCase == "medium") {
+                        if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Medium.Price)) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+                        const ItemResult = await ItemSchema.find({ type: "Medium-House" })
+                        if (!ItemResult[0]) {
+                            return message.channel.send("There are no medium houses avalible right now.")
+                        }
+                        const unowned = ItemResult.find(({ owner }) => owner === 'false')
+                        if (!unowned || unowned == "undefined") {
+                            return message.channel.send("There are no medium houses avalible right now.")
+                        }
+                        if(!userresult.houses) {} else {
+                            userresult.houses.split(/[ ]+/)
+                            if(args[4]) {
+                                return message.channel.send("You can only own 5 houses")
+                            }
+                        }
+                        await ItemSchema.findOneAndUpdate({
+                            _id: unowned._id
+                        }, {
+                            owner: message.member.id
+                        }, {
+                            upsert: true
+                        })
+                        const Money = parseFloat(userresult.money) - parseFloat(Items.Houses.Medium.Price)
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: Money
+                        }, {
+                            upsert: true
+                        })
+                        if (!userresult.houses) {
+                            const items = unowned._id + " "
+                            await userSchema.findOneAndUpdate({
+                                _id: user
+                            }, {
+                                houses: items
+                            }, {
+                                upsert: true
+                            })
+                        } else {
+                            const items = userresult.houses + unowned._id + " "
+                            await userSchema.findOneAndUpdate({
+                                _id: user
+                            }, {
+                                houses: items
+                            }, {
+                                upsert: true
+                            })
+                        }
+                        const embedForMdiumHouse = new Discord.MessageEmbed()
+                            .setAuthor(`${message.member.displayName} | New House`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                            .setDescription("Congratulations on your new house!")
+                            .setThumbnail(unowned.image)
+                            .setColor("BLACK")
+                            .setFooter(`${Items.Houses.Medium.Price} BBC has been deducted from your accunt.`)
+                        message.channel.send(embedForMdiumHouse)
+
+                    } else if (argsLowerCase == "small") {
+                        if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Small.Price)) {
+                            return message.channel.send("You do not have enough BBC.")
+                        }
+                        const ItemResult = await ItemSchema.find({ type: "Small-House" })
+                        if (!ItemResult[0]) {
+                            return message.channel.send("There are no small houses avalible right now.")
+                        }
+                        const unowned = ItemResult.find(({ owner }) => owner === 'false')
+                        if (!unowned || unowned == "undefined") {
+                            return message.channel.send("There are no small houses avalible right now.")
+                        }
+                        if(!userresult.houses) {} else {
+                            userresult.houses.split(/[ ]+/)
+                            if(args[4]) {
+                                return message.channel.send("You can only own 5 houses")
+                            }
+                        }
+                        await ItemSchema.findOneAndUpdate({
+                            _id: unowned._id
+                        }, {
+                            owner: message.member.id
+                        }, {
+                            upsert: true
+                        })
+                        const Money = parseFloat(userresult.money) - parseFloat(Items.Houses.Small.Price)
+                        await userSchema.findOneAndUpdate({
+                            _id: user
+                        }, {
+                            money: Money
+                        }, {
+                            upsert: true
+                        })
+                        if (!userresult.houses) {
+                            const items = unowned._id + " "
+                            await userSchema.findOneAndUpdate({
+                                _id: user
+                            }, {
+                                houses: items
+                            }, {
+                                upsert: true
+                            })
+                        } else {
+                            const items = userresult.houses + unowned._id + " "
+                            await userSchema.findOneAndUpdate({
+                                _id: user
+                            }, {
+                                houses: items
+                            }, {
+                                upsert: true
+                            })
+                        }
+                        const embedForMdiumHouse = new Discord.MessageEmbed()
+                            .setAuthor(`${message.member.displayName} | New House`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                            .setDescription("Congratulations on your new house!")
+                            .setThumbnail(unowned.image)
+                            .setColor("BLACK")
+                            .setFooter(`${Items.Houses.Small.Price} BBC has been deducted from your accunt.`)
+                        message.channel.send(embedForMdiumHouse)
+                    } else {
+                        return message.channel.send("That is not a house for sale.")
+                    }
                 } else {
                     message.channel.send("That is not an item for sale.")
                 }
-
             } finally {
                 mongoose.connection.close()
             }

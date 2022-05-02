@@ -9,14 +9,16 @@ function getDifference(a, b) {
     return Math.abs(a - b)
 }
 
-const workJobs = ["You cleaned the floors and made",
+const workJobs = [
+    "You cleaned the floors and made",
     "You delived 9000 pizzas and made",
     "You made 8734 dollars counterfreight cash witch eaquls to",
     "You were higherd for somones stripper birthday party and made",
     "Your hitman skills were higherd and you made",
-    "You changed the HDMI channel on your grandmas tv and made"]
-
-
+    "You changed the HDMI channel on your grandmas tv and made",
+    "Some crack head on the street told you he would pay you if you gave him a succ. You made",
+    "You found 50 ETH on a USB from 10 years ago. Thats the same as",
+    "Somone robbed you for 100 mil. Then they relised thats kinda fucked so they gave it all back with a bonus of"]
 
 module.exports = {
     commands: ['work'],

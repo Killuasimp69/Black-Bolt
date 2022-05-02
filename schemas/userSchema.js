@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema({
         required: true,
     },
     money: {
-        type: String, 
+        type: Number,
         required: true,
     },
     warns: {
@@ -15,6 +15,15 @@ const userSchema = mongoose.Schema({
         required: true,
     },
     level: {
+        type: Number,
+        default: 0,
+        required: true,
+    },
+    levelbadge: {
+        type: String,
+        required: true,
+    },
+    houses: {
         type: String,
         required: true,
     },

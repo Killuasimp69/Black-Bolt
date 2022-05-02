@@ -56,8 +56,6 @@ module.exports = (client) => {
                                 m.delete()
                             }, 5000);
                         })
-
-
                 }
 
                 //database
