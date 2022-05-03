@@ -14,8 +14,8 @@ module.exports = {
             return message.channel.send("Sorry but this command only works in Meme Arcade")
         } else {
             const user = message.member.user
-            if (!message.member.roles.cache.has('808120014690844713')) {
-                return message.channel.send("Sorry but your not a booster. If you would like to use this command, boost our server")
+            if (!message.member.roles.cache.has('970499864297353236')) {
+                return message.channel.send("Sorry but your not level 2.")
             } else {
                 if (!message.mentions.members.first()) {
                     return message.channel.send("Sorry but you need to specify somone to steal from")
@@ -27,7 +27,7 @@ module.exports = {
                         //money randomizers
 
                         const randomStealAmounts = Math.floor(Math.random() * (stealAmounts.length))
-                        const stealReasons = [`You hacked into ${args[0]}'s bank and stole ${stealAmounts[randomStealAmounts]} BBC`, `You broke into ${args[0]}'s stripper club and stole ${stealAmounts[randomStealAmounts]} BBC`, `You caught ${args[0]} having naughty time and they gave you ${stealAmounts[randomStealAmounts]} BBC to keep quiet`, `You banned ${args[0]} from your Discord server, they payed you ${stealAmounts[randomStealAmounts]} BBC to let them back in`]
+                        const stealReasons = [`You hacked into ${args[0]}'s bank and stole ${stealAmounts[randomStealAmounts]} BBC`, `You broke into ${args[0]}'s strip club and stole ${stealAmounts[randomStealAmounts]} BBC`, `You caught ${args[0]} having naughty time and they gave you ${stealAmounts[randomStealAmounts]} BBC to keep quiet`, `You banned ${args[0]} from your Discord server, they payed you ${stealAmounts[randomStealAmounts]} BBC to let them back in`]
                         const randomStealReasons = Math.floor(Math.random() * (stealReasons.length))
 
                         const userResult = await userSchema.findOne({ _id: user })

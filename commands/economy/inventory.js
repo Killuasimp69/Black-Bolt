@@ -36,19 +36,19 @@ module.exports = {
                         embedForHouses.addFields(
                             {
                                 name: house1.name,
-                                value: `> 💵 **${house1.worth} BBC**`
+                                value: `> 💵 **${house1.worth} BBC** | ID: ${house1._id}`
                             }, {
                             name: house2.name,
-                            value: `> 💵 **${house2.worth} BBC**`
+                            value: `> 💵 **${house2.worth} BBC** | ID: ${house2._id}`
                         }, {
                             name: house3.name,
-                            value: `> 💵 **${house3.worth} BBC**`
+                            value: `> 💵 **${house3.worth} BBC** | ID: ${house3._id}`
                         }, {
                             name: house4.name,
-                            value: `> 💵 **${house4.worth} BBC**`
+                            value: `> 💵 **${house4.worth} BBC** | ID: ${house4._id}`
                         }, {
                             name: house5.name,
-                            value: `> 💵 **${house5.worth} BBC**`
+                            value: `> 💵 **${house5.worth} BBC** | ID: ${house5._id}`
                         })
                         message.channel.send(embedForHouses)
                     } else if (housesID[3]) {
@@ -59,16 +59,16 @@ module.exports = {
                         embedForHouses.addFields(
                             {
                                 name: house1.name,
-                                value: `> 💵 **${house1.worth} BBC**`
+                                value: `> 💵 **${house1.worth} BBC** | ID: ${house1._id}`
                             }, {
                             name: house2.name,
-                            value: `> 💵 **${house2.worth} BBC**`
+                            value: `> 💵 **${house2.worth} BBC** | ID: ${house2._id}`
                         }, {
                             name: house3.name,
-                            value: `> 💵 **${house3.worth} BBC**`
+                            value: `> 💵 **${house3.worth} BBC** | ID: ${house3._id}`
                         }, {
                             name: house4.name,
-                            value: `> 💵 **${house4.worth} BBC**`
+                            value: `> 💵 **${house4.worth} BBC** | ID: ${house4._id}`
                         }, {
                             name: "Empty",
                             value: `Slot Empty`
@@ -81,13 +81,13 @@ module.exports = {
                         embedForHouses.addFields(
                             {
                                 name: house1.name,
-                                value: `> 💵 **${house1.worth} BBC**`
+                                value: `> 💵 **${house1.worth} BBC** | ID: ${house1._id}`
                             }, {
                             name: house2.name,
-                            value: `> 💵 **${house2.worth} BBC**`
+                            value: `> 💵 **${house2.worth} BBC** | ID: ${house2._id}`
                         }, {
                             name: house3.name,
-                            value: `> 💵 **${house3.worth} BBC**`
+                            value: `> 💵 **${house3.worth} BBC** | ID: ${house3._id}`
                         }, {
                             name: "Empty",
                             value: `Slot Empty`
@@ -102,10 +102,10 @@ module.exports = {
                         embedForHouses.addFields(
                             {
                                 name: house1.name,
-                                value: `> 💵 **${house1.worth} BBC**`
+                                value: `> 💵 **${house1.worth} BBC** | ID: ${house1._id}`
                             }, {
                             name: house2.name,
-                            value: `> 💵 **${house2.worth} BBC**`
+                            value: `> 💵 **${house2.worth} BBC** | ID: ${house2._id}`
                         }, {
                             name: "Empty",
                             value: `Slot Empty`
@@ -122,7 +122,7 @@ module.exports = {
                         embedForHouses.addFields(
                             {
                                 name: house1.name,
-                                value: `> 💵 **${house1.worth} BBC**`
+                                value: `> 💵 **${house1.worth} BBC** | ID: ${house1._id}`
                             }, {
                             name: "Empty",
                             value: `Slot Empty`

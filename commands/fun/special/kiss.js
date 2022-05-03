@@ -1,5 +1,5 @@
 module.exports = {
-    commands: ['hug'],
+    commands: ['kiss'],
     expectedArgs: '(user)',
     permissionError: "Sorry but your not a booster. If you would like to use this command, boost our server",
     minArgs: 1,
@@ -8,27 +8,27 @@ module.exports = {
         if (message.guild.id != '804323987106168842') {
             return message.channel.send("Sorry but that command only works in Meme Arcade")
         } else {
-            if ( message.author.id != "555991737072615424" && !message.member.roles.cache.has('808120014690844713')) {
-                return message.channel.send("Sorry but your not a booster. If you would like to use this command, boost our server")
+            if (!message.member.roles.cache.has('970499864297353236')) {
+                return message.channel.send("Sorry but your not level 2.")
             } else {
                 if (!message.mentions.members.first()) {
-                    return message.channel.send("Please specify somone to hug")
+                    return message.channel.send("Please specify somone to kiss")
                 }
 
                 const targetUser = message.mentions.members.first()
                 const user = message.member
 
-                const embedForHug = new Discord.MessageEmbed()
+                const embedForKiss = new Discord.MessageEmbed()
                     .setDescription(`
                 <@${user.id}>
                 
-                ***HUGS***
+                ***KISSES***
                 
                 <@${targetUser.id}>`)
-                    .setThumbnail("https://cdn.discordapp.com/emojis/628275866471759882.gif?v=1")
+                    .setThumbnail("https://cdn.discordapp.com/emojis/667880571166261329.gif?v=1")
                     .setColor("#ff47ea")
                     .setFooter(`Damn not gonna lie they look good together`)
-                message.channel.send(embedForHug)
+                message.channel.send(embedForKiss)
             }
         }
     }

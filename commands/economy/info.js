@@ -16,8 +16,25 @@ module.exports = {
                     return message.channel.send("I cannot find that NFT")
                 }
                 const embedForItems = new Discord.MessageEmbed()
-                .setAuthor(`${message.member.displayName} | Houses`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                .setAuthor(`${message.member.displayName} | Info`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                 .setColor("BLACK")
+                .addFields({
+                    name: `House ID`,
+                    value: itemResult._id
+                }, {
+                    name: `House Owner:`,
+                    value: `<@${itemResult.owner}>`
+                }, {
+                    name: "House Name:",
+                    value: itemResult.name
+                }, {
+                    name: "House Value:",
+                    value: itemResult.worth + " BBC"
+                }, {
+                    name: "House Type:",
+                    value: itemResult.type
+                })
+                message.channel.send(embedForItems)
             } finally {
                 mongoose.connection.close()
 
