@@ -8,6 +8,10 @@ module.exports = {
     minArgs: 2,
     maxArgs: 2,
     callback: async (message, args, Discord, client) => {
+        if(message.guild === null) {
+            console.log("returning")
+            return
+        }
         if (!message.mentions.members.first()) return message.channel.send('Please say who you would like to send money too')
 
         if (args[1].startsWith("<@")) return message.channel.send("Please @ the user first")

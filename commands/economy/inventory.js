@@ -9,6 +9,10 @@ module.exports = {
     minArgs: 0,
     maxArgs: 1,
     callback: async (message, args, Discord, client) => {
+        if(message.guild === null) {
+            console.log("returning")
+            return
+        }
         const user = message.member.user
         await mongo().then(async (mongoose) => {
             try {

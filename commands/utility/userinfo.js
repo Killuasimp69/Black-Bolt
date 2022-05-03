@@ -6,6 +6,9 @@ module.exports = {
     commands: ['userinfo'],
     expectedArgs: '(user)',
     callback: async (message, args, Discord, client) => {
+        if(message.guild === null) {
+            return
+        }
         await mongo().then(async (mongoose) => {
             try {
                 const user = message.mentions.members.first() || message.member

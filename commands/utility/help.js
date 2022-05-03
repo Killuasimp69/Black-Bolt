@@ -10,7 +10,7 @@ module.exports = {
         if (args[0] == 'economy') {
             const embedForEconCommands = new Discord.MessageEmbed()
                 .setAuthor(`${message.author.username}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                .setDescription(`**8 (and more to come) economy commands** for your crippling gambling addiction.
+                .setDescription(`**14 economy commands** for your crippling gambling addiction.
 
                 \`\`${prefix}balance\`\`, \`\`${prefix}beg\`\`, \`\`${prefix}give (amount) (user)\`\`, \`\`${prefix}work\`\`, \`\`${prefix}bet (amount)\`\`, \`\`${prefix}daily\`\`, \`\`${prefix}leaderboard\`\`, \`\`${prefix}buy (product) (extra)\`\`
                 

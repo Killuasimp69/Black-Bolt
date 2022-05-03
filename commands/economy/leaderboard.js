@@ -7,6 +7,10 @@ module.exports = {
     expectedArgs: '',
     minArgs: 0,
     callback: async (message, args, Discord, client) => {
+        if(message.guild === null) {
+            console.log("returning")
+            return
+        }
         await mongo().then(async (mongoose) => {
             try {
 

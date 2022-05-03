@@ -7,6 +7,10 @@ module.exports = {
     commands: ['daily', 'day'],
     expectedArgs: '',
     callback: async (message, args, Discord, client, mongo) => {
+        if(message.guild === null) {
+            console.log("returning")
+            return
+        }
         const user = message.member.user
         await mongo().then(async (mongoose) => {
             try {

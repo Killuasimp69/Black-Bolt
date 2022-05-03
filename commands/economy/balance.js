@@ -5,6 +5,9 @@ module.exports = {
     commands: ['balance', 'bal'],
     expectedArgs: '',
     callback: async (message, args, Discord, client, mongo) => {
+        if(message.guild === null) {
+            return
+        }
         const user = message.mentions.members.first() || message.member
         await mongo().then(async (mongoose) => {
             try {

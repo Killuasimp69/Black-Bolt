@@ -8,6 +8,10 @@ module.exports = {
     commands: ['meme'],
     expectedArgs: '<num1>',
     callback: async (message, args, Discord, client) => {
+        if(message.guild === null) {
+            console.log("returning")
+            return
+        }
         const user = message.member.user
         if (message.member.roles.cache.has('838596018856919040')) {
             if (cooldownBooster.has(message.author.id)) {

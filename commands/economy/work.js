@@ -23,6 +23,10 @@ const workJobs = [
 module.exports = {
     commands: ['work'],
     callback: async (message, args, Discord, client, mongo) => {
+        if(message.guild === null) {
+            console.log("returning")
+            return
+        }
         const user = message.member
         await mongo().then(async (mongoose) => {
             try {

@@ -5,6 +5,10 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     callback: (message, args, Discord, client) => {
+        if(message.guild === null) {
+            console.log("returning")
+            return
+        }
         if (message.guild.id != '804323987106168842') {
             return message.channel.send("Sorry but that command only works in Meme Arcade")
         } else {

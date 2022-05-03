@@ -6,6 +6,9 @@ const { prefix } = require('../../config.json')
 module.exports = {
     commands: ['store', 'shop'],
     callback: async (message, args, Discord, client, mongo) => {
+        if(message.guild === null) {
+            return
+        }
         const user = message.member.user
 
         if (args[0]) {

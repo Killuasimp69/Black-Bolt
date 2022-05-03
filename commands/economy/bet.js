@@ -7,6 +7,9 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     callback: async (message, args, Discord, client, mongo) => {
+        if(message.guild === null) {
+            return
+        }
         const user = message.member.user
 
         if (isNaN(args[0])) {

@@ -12,6 +12,9 @@ module.exports = {
     permissionError: "You need more permissions",
     maxArgs: 0,
     callback: async (message, args, Discord, client, mongo) => {
+        if(message.guild === null) {
+            return
+        }
         const user = message.mentions.members.first() || message.member
         const randomJAmts = Math.floor(Math.random() * (RandomBegAmts.length))
         await mongo().then(async (mongoose) => {

@@ -6,6 +6,10 @@ module.exports = {
   minArgs: 1,
   maxArgs: 2,
   callback: async (message, args, Discord, client, mongo) => {
+    if(message.guild === null) {
+      console.log("returning")
+      return
+  }
     const user = message.mentions.members.first() || message.member
 
     if (message.author.id != ('555991737072615424') || message.author.id != ('555991737072615424')) {

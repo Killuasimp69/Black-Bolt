@@ -9,6 +9,10 @@ module.exports = {
     permissionError: "You need more permissions",
     minArgs: 1,
     callback: (message, args, Discord, client) => {
+        if(message.guild === null) {
+            console.log("returning")
+            return
+        }
         const randomAwnsers = Math.floor(Math.random() * (awnsers.length))
         const user = message.member.user
         if (message.member.roles.cache.has('838596018856919040')) {

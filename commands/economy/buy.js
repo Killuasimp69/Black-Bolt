@@ -11,6 +11,9 @@ module.exports = {
     maxArgs: 3,
     permissionError: "You need more permissions",
     callback: async (message, args, Discord, client, mongo) => {
+        if(message.guild === null) {
+            return
+        }
         const user = message.member.user
 
         if (message.guild.id != '804323987106168842') return message.channel.send("This command cannot be used in this server")
