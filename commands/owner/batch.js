@@ -3,8 +3,8 @@ const itemSchema = require("../../schemas/ItemSchema")
 
 module.exports = {
     commands: ['batch'],
-    expectedArgs: '',
-    minArgs: 0,
+    expectedArgs: '(worth) (name) (type) (image)',
+    minArgs: 4,
     callback: async (message, args, Discord, client, mongo) => {
         await mongo().then(async (mongoose) => {
             try { 

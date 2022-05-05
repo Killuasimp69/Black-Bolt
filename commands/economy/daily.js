@@ -1,7 +1,7 @@
 const userSchema = require('../../schemas/userSchema')
 const { prefix } = require('../../config.json')
 let coolDown = new Set()
-let cdSecs = 86400
+let cdSecs = 43200
 
 module.exports = {
     commands: ['daily', 'day'],
