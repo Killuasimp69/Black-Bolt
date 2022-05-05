@@ -8,7 +8,7 @@ module.exports = {
     expectedArgs: '(NFT)',
     minArgs: 0,
     maxArgs: 1,
-    callback: async (message, args, Discord, client) => {
+    callback: async (message, housesID, Discord, client) => {
         if(message.guild === null) {
             console.log("returning")
             return
@@ -18,8 +18,8 @@ module.exports = {
             try {
                 const userResult = await userSchema.findOne({ _id: user })
                 let lowerCase = "false"
-                if (args[0]) {
-                    lowerCase = args[0].toLowerCase()
+                if (housesID[0]) {
+                    lowerCase = housesID[0].toLowerCase()
                 }
                 if (lowerCase == "houses" || lowerCase == "houses") {
                     if (!userResult || !userResult.money || !userResult.houses) {
@@ -30,7 +30,9 @@ module.exports = {
                         .setColor("BLACK")
                         .setAuthor(`${message.member.displayName} | Houses`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
 
-                    const housesID = userResult.houses.split(/[ ]+/)
+                    let housesID = userResult.houses.split(/[ ]+/)
+                    console.log(housesID)
+
                     if (housesID[4]) {
                         const house1 = await ItemSchema.findOne({ _id: housesID[0] })
                         const house2 = await ItemSchema.findOne({ _id: housesID[1] })
@@ -103,6 +105,7 @@ module.exports = {
                     } else if (housesID[1]) {
                         const house1 = await ItemSchema.findOne({ _id: housesID[0] })
                         const house2 = await ItemSchema.findOne({ _id: housesID[1] })
+                        console.log(house1)
                         embedForHouses.addFields(
                             {
                                 name: house1.name,
@@ -123,6 +126,7 @@ module.exports = {
                         message.channel.send(embedForHouses)
                     } else if (housesID[0]) {
                         const house1 = await ItemSchema.findOne({ _id: housesID[0] })
+                        console.log(house1)
                         embedForHouses.addFields(
                             {
                                 name: house1.name,
@@ -149,7 +153,7 @@ module.exports = {
                     if (!userResult || !userResult.money) {
                         return message.channel.send("You dont have any Cars.")
                     }
-                } else if (!args[0]) {
+                } else if (!housesID[0]) {
                     const embedForMenu = new Discord.MessageEmbed()
                         .setAuthor(`${message.member.displayName} | Inventory`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                         .setColor("BLACK")
