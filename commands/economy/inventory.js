@@ -31,7 +31,6 @@ module.exports = {
                         .setAuthor(`${message.member.displayName} | Houses`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
 
                     let housesID = userResult.houses.split(/[ ]+/)
-                    console.log(housesID)
 
                     if (housesID[4]) {
                         const house1 = await ItemSchema.findOne({ _id: housesID[0] })
@@ -105,7 +104,6 @@ module.exports = {
                     } else if (housesID[1]) {
                         const house1 = await ItemSchema.findOne({ _id: housesID[0] })
                         const house2 = await ItemSchema.findOne({ _id: housesID[1] })
-                        console.log(house1)
                         embedForHouses.addFields(
                             {
                                 name: house1.name,
@@ -126,7 +124,6 @@ module.exports = {
                         message.channel.send(embedForHouses)
                     } else if (housesID[0]) {
                         const house1 = await ItemSchema.findOne({ _id: housesID[0] })
-                        console.log(house1)
                         embedForHouses.addFields(
                             {
                                 name: house1.name,
