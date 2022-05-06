@@ -20,6 +20,14 @@ module.exports = {
             return message.channel.send("Please bet more than 5 BBC")
         }
 
+        if(parseFloat(args[0]) >= parseFloat(10000000)) {
+            return message.channel.send("You cannot bet more than 10mil BBC.")
+        }
+
+        if(message.content.includes(".")) {
+            return message.channel.send("You cannot bet that amount")
+        }
+
         await mongo().then(async (mongoose) => {
             try {
 

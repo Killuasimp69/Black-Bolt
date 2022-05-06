@@ -16,11 +16,11 @@ module.exports = {
                     return message.channel.send("You cannot use that")
                 }
                 const userResult = await userSchema.findOne({ _id: user })
-                if(!userResult) {
+                if(!userResult || !userResult.money) {
                     await userSchema.findOneAndUpdate({
                         _id: user
                     }, {
-                        money: 1
+                        money: 1 + 1000
                     }, {
                         upsert: true
                     })

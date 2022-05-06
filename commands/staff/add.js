@@ -4,6 +4,7 @@ const { prefix } = require('../../config.json')
 module.exports = {
     commands: ['add'],
     expectedArgs: '(amount) (member)',
+    minArgs: 2,
     callback: async (message, args, Discord, client, mongo) => {
         const user = message.mentions.members.first().user
         await mongo().then(async (mongoose) => {
