@@ -23,3 +23,4 @@ Here are some major frameworks and libraries that I use to bootstrap Black Bolt.
 * [canvas](https://www.npmjs.com/package/canvas)
 * [git](https://www.npmjs.com/package/git)
 * [ms](https://www.npmjs.com/package/ms)
+* [nodemon](https://www.npmjs.com/package/nodemon)
