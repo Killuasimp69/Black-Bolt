@@ -49,7 +49,7 @@ module.exports = {
                             name: "Price:",
                             value: Items.Other.VanityCustomRole.Price + "BBC"
                         })
-                        .setColor("BLACK")
+                        .setColor("RED")
                     channel.send(VanityRoleTransaction)
                 }
 
