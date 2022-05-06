@@ -8,7 +8,7 @@ module.exports = {
     expectedArgs: '(NFT)',
     minArgs: 0,
     maxArgs: 1,
-    callback: async (message, housesID, Discord, client) => {
+    callback: async (message, args, Discord, client) => {
         if(message.guild === null) {
             console.log("returning")
             return

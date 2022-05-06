@@ -12,9 +12,9 @@ module.exports = {
                 .setAuthor(`${message.author.username}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                 .setDescription(`**14 economy commands** for your crippling gambling addiction.
 
-                \`\`${prefix}balance\`\`, \`\`${prefix}beg\`\`, \`\`${prefix}give (amount) (user)\`\`, \`\`${prefix}work\`\`, \`\`${prefix}bet (amount)\`\`, \`\`${prefix}daily\`\`, \`\`${prefix}leaderboard\`\`, \`\`${prefix}buy (product) (extra)\`\`
+                \`\`${prefix}balance\`\`, \`\`${prefix}beg\`\`, \`\`${prefix}give (amount) (user)\`\`, \`\`${prefix}work\`\`, \`\`${prefix}bet (amount)\`\`, \`\`${prefix}daily\`\`, \`\`${prefix}leaderboard\`\`, \`\`${prefix}buy (product) (extra)\`\`, \`\`${prefix}sell (NFT) (NFT number)\`\`, \`\`${prefix}info (NFT) (NFT numner)\`\`, \`\`${prefix}inventory (NFT)\`\`
                 
-                **[Booster Commands](${"https://discordapp.com/channels/804323987106168842/841196171795103754/853816838186336266"} "Boost our server to get special perks")** 
+                **[Special Commands](${"https://discord.com/channels/804323987106168842/838592520429764638/971004520589045850"} "Get level 2 to get access to these commands")** 
                 \`\`${prefix}steal (user)\`\`
                 `)
                 .setColor('BLACK')
@@ -23,11 +23,11 @@ module.exports = {
         } else if (args[0] == 'utility') {
             const embedForUtilCommands = new Discord.MessageEmbed()
                 .setAuthor(`${message.member.displayName}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                .setDescription(`**9 utility commands** that are useful for when you, erm... use me.
+                .setDescription(`**11 utility commands** that are useful for when you, erm... use me.
 
-                \`\`${prefix}ping\`\`, \`\`${prefix}botinfo\`\`, \`\`${prefix}commands\`\`, \`\`${prefix}invite\`\`, \`\`${prefix}members\`\`, \`\`${prefix}userinfo\`\`, \`\`${prefix}version\`\`, \`\`${prefix}avatar\`\`, \`\`${prefix}store\`\`
+                \`\`${prefix}ping\`\`, \`\`${prefix}botinfo\`\`, \`\`${prefix}commands\`\`, \`\`${prefix}invite\`\`, \`\`${prefix}members\`\`, \`\`${prefix}userinfo\`\`, \`\`${prefix}version\`\`, \`\`${prefix}avatar\`\`, \`\`${prefix}store\`\`, \`\`${prefix}help\`\`, \`\`${prefix}level\`\`
                 
-                **[Booster Commands](${"https://discordapp.com/channels/804323987106168842/841196171795103754/853816838186336266"} "Boost our server to get special perks")** 
+                **[Special Commands](${"https://discord.com/channels/804323987106168842/838592520429764638/971004520589045850"} "Get level 2 to get access to these commands")** 
                 \`\`${prefix}color\`\`
                 `)
                 .setColor('BLACK')
@@ -40,7 +40,7 @@ module.exports = {
 
                 \`\`${prefix}dadjoke\`\`, \`\`${prefix}yomumma\`\`, \`\`${prefix}ppsize\`\`, \`\`${prefix}inspire\`\`, \`\`${prefix}meme\`\`, \`\`${prefix}8ball\`\`
 
-                **[Booster Commands](${"https://discordapp.com/channels/804323987106168842/841196171795103754/853816838186336266"} "Boost our server to get special perks")** 
+                **[Special Commands](${"https://discord.com/channels/804323987106168842/838592520429764638/971004520589045850"} "Get level 2 to get access to these commands")** 
                 \`\`${prefix}hug (user)\`\` \`\`${prefix}kiss (user)\`\` \`\`${prefix}kill (user)\`\`
                 `)
                 .setColor('BLACK')
