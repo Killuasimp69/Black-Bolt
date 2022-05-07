@@ -17,11 +17,12 @@ module.exports = {
         await mongo().then(async (mongoose) => {
             try {
                 const userResult = await userSchema.findOne({ _id: user })
+                let housesID = userResult.houses.split(/[ ]+/)
                 let lowerCase = "false"
-                if (housesID[0]) {
+                if (args[0]) {
                     lowerCase = housesID[0].toLowerCase()
                 }
-                if (lowerCase == "houses" || lowerCase == "houses") {
+                if (args[0] == "houses" || lowerCase == "houses") {
                     if (!userResult || !userResult.money || !userResult.houses) {
                         return message.channel.send("You dont have any houses.")
                     }
@@ -29,8 +30,6 @@ module.exports = {
                     let embedForHouses = new Discord.MessageEmbed()
                         .setColor("BLACK")
                         .setAuthor(`${message.member.displayName} | Houses`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-
-                    let housesID = userResult.houses.split(/[ ]+/)
 
                     if (housesID[4]) {
                         const house1 = await ItemSchema.findOne({ _id: housesID[0] })
