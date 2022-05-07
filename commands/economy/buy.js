@@ -396,8 +396,8 @@ module.exports = {
                     if (!userresult || !userresult.money) {
                         return message.channel.send("You do not have enough BBC.")
                     }
-                    const argsLowerCase = args[1].toLowerCase()
-                    if (argsLowerCase == "large") {
+                    
+                    if (args[1] == "large") {
                         if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Large.Price)) {
                             return message.channel.send("You do not have enough BBC.")
                         }
@@ -459,7 +459,7 @@ module.exports = {
                             .setFooter(`${Items.Houses.Large.Price} BBC has been deducted from your accunt.`)
                         message.channel.send(embedForLrgeHouse)
 
-                    } else if (argsLowerCase == "medium") {
+                    } else if (args[1] == "medium") {
                         if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Medium.Price)) {
                             return message.channel.send("You do not have enough BBC.")
                         }
@@ -519,7 +519,7 @@ module.exports = {
                             .setFooter(`${Items.Houses.Medium.Price} BBC has been deducted from your accunt.`)
                         message.channel.send(embedForMdiumHouse)
 
-                    } else if (argsLowerCase == "small") {
+                    } else if (args[1] == "small") {
                         if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Small.Price)) {
                             return message.channel.send("You do not have enough BBC.")
                         }

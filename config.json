@@ -1,5 +1,5 @@
 {
-    "token": "ODA0NjEwMzUwMTI4OTU1Mzky.YBO1yA.L9JVzLhI8QQH7COZOyjskfXSNIc",
+    "token": "",
     "prefix": "%",
     "mongoPath": "mongodb://localhost:27017/BlackBolt",
     "confessions": "true",

@@ -17,15 +17,11 @@ module.exports = {
         await mongo().then(async (mongoose) => {
             try {
                 const userResult = await userSchema.findOne({ _id: user })
-                let housesID = userResult.houses.split(/[ ]+/)
-                let lowerCase = "false"
-                if (args[0]) {
-                    lowerCase = housesID[0].toLowerCase()
-                }
-                if (args[0] == "houses" || lowerCase == "houses") {
+                if (args[0] == "houses" || args[0] == "houses") {
                     if (!userResult || !userResult.money || !userResult.houses) {
                         return message.channel.send("You dont have any houses.")
                     }
+                    let housesID = userResult.houses.split(/[ ]+/)
 
                     let embedForHouses = new Discord.MessageEmbed()
                         .setColor("BLACK")
@@ -144,12 +140,12 @@ module.exports = {
                     } else {
                         message.channel.send("Error 404")
                     }
-                } else if (lowerCase == 'cars' || lowerCase == 'car') {
+                } else if (args[0] == 'cars' || args[0] == 'car') {
                     return message.channel.send("Cars are currently unavalible.")
                     if (!userResult || !userResult.money) {
                         return message.channel.send("You dont have any Cars.")
                     }
-                } else if (!housesID[0]) {
+                } else {
                     const embedForMenu = new Discord.MessageEmbed()
                         .setAuthor(`${message.member.displayName} | Inventory`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                         .setColor("BLACK")
@@ -165,9 +161,7 @@ module.exports = {
                         .setDescription("Here is the menu to navigate your inventory.")
                         .setFooter(`To get more information on a NFT please simply just type ${prefix}info (item)`)
                     message.channel.send(embedForMenu)
-                } else {
-                    message.channel.send("That is not a NFT for sale.")
-                }
+                    }
             } finally {
                 mongoose.connection.close()
             }
