@@ -20,7 +20,7 @@ module.exports = {
             return message.channel.send("Please bet more than 5 BBC")
         }
 
-        if(parseFloat(args[0]) >= parseFloat(10000000)) {
+        if(parseFloat(args[0]) >= parseFloat(10000001)) {
             return message.channel.send("You cannot bet more than 10mil BBC.")
         }
 

@@ -16,7 +16,7 @@ module.exports = {
 
                 //add levels to leaderboard, in next update. (cant add now as users without levels on leaderboard will cause crashes.)
                 const user = message.member.user
-                const results = await userSchema.find().sort({ money : -1 }).limit((10))
+                const results = await userSchema.find().sort({ "money" : -1 })
 
                 const embedForLeaderBoard = new Discord.MessageEmbed()
                 .setAuthor(`${message.member.displayName} | Leader Board`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))

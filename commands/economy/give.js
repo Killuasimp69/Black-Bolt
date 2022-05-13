@@ -52,6 +52,10 @@ module.exports = {
                     return message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${newuserMoney} BBC`)
                 }
 
+                if(parseFloat(senderResult.money) == parseFloat[args]) {
+                    return message.channel.send("You cannot give all your money to somone.")
+                }
+
                 if(senderResult.money < parseFloat(args[1])) return message.channel.send('You dont have enough BBC')
 
                 //original user
