@@ -4,7 +4,7 @@
             "Name": "VanityCustomRole",
             "Price": "5000000",
             "Info": "An admin will contact you to discuss the role.",
-            "Description": "A custom role with a custom name and color just for you."
+            "Description": "A custom role with a custom name and colour just for you."
         },
         "MuteUser": {
             "Name": "MuteUser",
