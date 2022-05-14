@@ -22,7 +22,7 @@ module.exports = {
                 const embedFor8Ball = new Discord.MessageEmbed()
                     .setAuthor(`${message.member.displayName} | 8Ball`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setDescription(`
-                    Thy sacred 8 ball says...
+                    The sacred 8 ball says...
                     **${awnsers[randomAwnsers]}**`)
                     .setThumbnail("https://cdn.discordapp.com/attachments/841197505001685002/860070840736153600/8_ball.jpg")
                     .setColor("#5f0387")
@@ -40,7 +40,7 @@ module.exports = {
                 const embedFor8Ball = new Discord.MessageEmbed()
                     .setAuthor(`${message.member.displayName} | 8Ball`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setDescription(`
-                    Thy sacred 8 ball says...
+                    The sacred 8 ball says...
                     **${awnsers[randomAwnsers]}**`)
                     .setThumbnail("https://cdn.discordapp.com/attachments/841197505001685002/860070840736153600/8_ball.jpg")
                     .setColor("#5f0387")
