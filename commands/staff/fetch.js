@@ -70,7 +70,7 @@ module.exports = {
                     const IdAndWarnedUserID = fetch[goodArgs]
 
                     if(!IdAndWarnedUserID || !IdAndWarnedUserID._id) {
-                        return message.channel.send("That warning dosnt exist.")
+                        return message.channel.send("That warning doesnt exist.")
                     }
 
                     const fetchInfo = await warnSchema.findOne({_id: IdAndWarnedUserID._id})
