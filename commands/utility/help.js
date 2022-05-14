@@ -60,7 +60,7 @@ module.exports = {
                 }, {
                     name: "🛠️ Utility",
                     value: `\`\`${prefix}help utility\`\`
-                    [Hover for info](${message.url} "Here will be the most usfull commands you will ever use")
+                    [Hover for info](${message.url} "Here will be the most usefull commands you will ever use")
                     
                     • [Community Server](${"https://discord.gg/Nx8MZSwsfU"} "Join our community server for heaps of fun")`,
                     inline: true
