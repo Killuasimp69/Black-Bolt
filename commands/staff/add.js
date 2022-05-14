@@ -14,7 +14,7 @@ module.exports = {
                 }
 
                 if(!message.mentions.members.first()){
-                    return message.channel.send("You must select somone to add.")
+                    return message.channel.send("You must select someone to add.")
                 }
 
                 if(isNaN(args[0])) {
