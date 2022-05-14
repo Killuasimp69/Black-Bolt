@@ -73,7 +73,7 @@ module.exports = {
                         value: `\`\`${prefix}buy ${Items.Other.VanityCustomRole.Name}\`\` | 💵 ${Items.Other.VanityCustomRole.Price} BBC`
                     }
                     )
-                    .setFooter(`To buy somthing please simply just type "${prefix}buy (item) "`)
+                    .setFooter(`To buy something please simply just type "${prefix}buy (item) "`)
                 message.channel.send(embedForSore)
             }
 
@@ -97,7 +97,7 @@ module.exports = {
                     value: `\`\`${prefix}store other\`\``,
                     inline: true
                 })
-                .setFooter(`To buy somthing please simply just type "${prefix}buy (item) "`)
+                .setFooter(`To buy something please simply just type "${prefix}buy (item) "`)
             message.channel.send(embedForSore)
         }
     }
