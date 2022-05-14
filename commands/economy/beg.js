@@ -74,7 +74,7 @@ module.exports = {
                     }
                 } else {
                     if (coolDownNormal.has(message.author.id)) {
-                        return message.channel.send("please wait 5 minutes")
+                        return message.channel.send("Please wait 5 minutes")
                     } else {
 
                         //templates
