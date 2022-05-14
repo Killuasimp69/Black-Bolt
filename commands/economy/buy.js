@@ -175,7 +175,7 @@ module.exports = {
                             .setAuthor(`${message.member.displayName} | Level 1`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setColor("#644223")
                             .setDescription(`You are now level 1 and have access to all level 1 perks.
-                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "Veiw the perks")`)
+                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "View the perks")`)
                             .setFooter(`${Items.Levels.Level1.Price} BBC has been deducted from your account`)
                             .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847381057556/bronze-removebg-preview.png")
                         return message.channel.send(embedForLevels)
@@ -281,7 +281,7 @@ module.exports = {
                             .setAuthor(`${message.member.displayName} | Level 3`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setColor("#f2ba2d")
                             .setDescription(`You are now level 3 and have access to all level 3 perks.
-                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "Veiw the perks")`)
+                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "View the perks")`)
                             .setFooter(`${Items.Levels.Level3.Price} BBC has been deducted from your account`)
                             .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847628546078/gowld-removebg-preview.png")
                         message.channel.send(embedForLevels)
@@ -332,7 +332,7 @@ module.exports = {
                             .setAuthor(`${message.member.displayName} | Level 4`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setColor("#9b2b61")
                             .setDescription(`You are now level 4 and have access to all level 4 perks.
-                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "Veiw the perks")`)
+                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "View the perks")`)
                             .setFooter(`${Items.Levels.Level4.Price} BBC has been deducted from your account`)
                             .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812848165400616/Plat-removebg-preview.png")
                         message.channel.send(embedForLevels)
@@ -383,7 +383,7 @@ module.exports = {
                             .setAuthor(`${message.member.displayName} | Level 5`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setColor("#a084a3")
                             .setDescription(`You are now level 5 and have access to all level 5 perks.
-                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "Veiw the perks")`)
+                            [Click Here To View Perks](${"https://discordapp.com/channels/804323987106168842/838592520429764638/840364106501980181"} "View the perks")`)
                             .setFooter(`${Items.Levels.Level5.Price} BBC has been deducted from your account`)
                             .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847917932554/Highest-removebg-preview.png")
                         message.channel.send(embedForLevels)
