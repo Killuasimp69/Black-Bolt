@@ -62,8 +62,6 @@ module.exports = (client, commandOptions) => {
         commands = [commands]
     }
 
-    console.log(`${commands[0]}✅`)
-
     //Ensure perms is array and valid
 
     if (permissions.length) {

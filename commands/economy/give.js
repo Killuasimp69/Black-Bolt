@@ -8,7 +8,7 @@ module.exports = {
     minArgs: 2,
     maxArgs: 2,
     callback: async (message, args, Discord, client) => {
-        if(message.guild === null) {
+        if (message.guild === null) {
             console.log("returning")
             return
         }
@@ -20,6 +20,14 @@ module.exports = {
 
         if (args[1] < 6) return message.channel.send("The amount has to be higher than 5 BBC")
 
+        if (args[1].startsWith("0")) {
+            return message.channel.send("You cannot transfur that amount.")
+        }
+
+        if(message.author.id == message.mentions.members.first().id) {
+            return message.channel.send("You cannot give money to yourself.")
+        }
+
         const user = message.mentions.members.first()
         await mongo().then(async (mongoose) => {
             try {
@@ -27,36 +35,41 @@ module.exports = {
                 const userResult = await userSchema.findOne({ _id: user.user })
                 const senderResult = await userSchema.findOne({ _id: message.member.user })
 
-                //newuser
-                if (!userResult || !userResult.money) {
-                    const newuserMoney = parseFloat("1000") + parseFloat(args[1])
-                    await userSchema.findOneAndUpdate({
-                        _id: user.user
-                    }, {
-                        money: newuserMoney
-                    }, {
-                        upsert: true
-                    })
-                    return message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${newuserMoney} BBC`)
-                }
-
-                if (!senderResult || !senderResult.money) {
-                    const newuserMoney = parseFloat("1000") - parseFloat(args[1])
-                    await userSchema.findOneAndUpdate({
-                        _id: message.member.user
-                    }, {
-                        money: newuserMoney
-                    }, {
-                        upsert: true
-                    })
-                    return message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${newuserMoney} BBC`)
-                }
-
-                if(parseFloat(senderResult.money) == parseFloat[args]) {
+                if (parseFloat(senderResult.money) == parseFloat[args[1]]) {
                     return message.channel.send("You cannot give all your money to somone.")
                 }
 
-                if(senderResult.money < parseFloat(args[1])) return message.channel.send('You dont have enough BBC')
+                //newuser
+                if (!userResult || !userResult.money || !senderResult || !senderResult.money) {
+                    if (!userResult || !userResult.money) {
+                        const newuserMoney1 = parseFloat("1000") + parseFloat(args[1])
+                        await userSchema.findOneAndUpdate({
+                            _id: user.user
+                        }, {
+                            money: newuserMoney1
+                        }, {
+                            upsert: true
+                        })
+                    }
+
+                    if (!senderResult || !senderResult.money) {
+                        if(parseFloat(args[1]) >= 1000) {
+                            return message.channel.send("You dont have enough money.")
+                        }
+                        const newuserMoney = parseFloat("1000") - parseFloat(args[1])
+                        await userSchema.findOneAndUpdate({
+                            _id: message.member.user
+                        }, {
+                            money: newuserMoney
+                        }, {
+                            upsert: true
+                        })
+                    }
+                    const newuserMoney1 = parseFloat("1000") + parseFloat(args[1])
+                    return message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${newuserMoney1} BBC`)
+                }
+
+                if (senderResult.money < parseFloat(args[1])) return message.channel.send('You dont have enough BBC')
 
                 //original user
                 const money = parseFloat(userResult.money) + parseFloat(args[1])

@@ -39,7 +39,7 @@ module.exports = {
                 const embedForBetLose = new Discord.MessageEmbed()
                     .setAuthor(message.member.displayName, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setTitle(`Bet - LOSE`)
-                    .setThumbnail("https://cdn.discordapp.com/attachments/860400894578786344/861516683196629012/lose_bet.jpg")
+                    .setThumbnail("https://cdn.discordapp.com/attachments/969556878445121576/974893809127264286/394-3943625_you-lose-png-you-lose-pixel-art-transparent.png")
                     .setColor("RED")
 
                 const embedForBetWin = new Discord.MessageEmbed()
