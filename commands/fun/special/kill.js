@@ -16,7 +16,7 @@ module.exports = {
                 return message.channel.send("Sorry but your not level 2.")
             } else {
                 if (!message.mentions.members.first()) {
-                    return message.channel.send("Please specify somone to hug")
+                    return message.channel.send("Please specify someone to hug")
                 }
 
                 const targetUser = message.mentions.members.first()
