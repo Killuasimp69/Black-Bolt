@@ -16,7 +16,7 @@ module.exports = {
             try {
                 if (message.member.roles.cache.has('838596018856919040')) {
                     if (coolDown.has(message.author.id)) {
-                        return message.channel.send("Please return tommorow")
+                        return message.channel.send("Please return tommorrow")
                     }
 
                     const userresult = await userSchema.findOne({ _id: user })
@@ -84,7 +84,7 @@ module.exports = {
 
                 } else {
                     if (coolDown.has(message.author.id)) {
-                        return message.channel.send("Please return tommorow")
+                        return message.channel.send("Please return tommorrow")
                     }
 
                     const userresult = await userSchema.findOne({ _id: user })
