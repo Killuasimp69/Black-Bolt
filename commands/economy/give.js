@@ -3,7 +3,7 @@ const { prefix } = require('../../config.json')
 const mongo = require("../../mongo")
 
 module.exports = {
-    commands: ['give', 'transfur'],
+    commands: ['give', 'transfer'],
     expectedArgs: '(user) (amount)',
     minArgs: 2,
     maxArgs: 2,
@@ -67,6 +67,10 @@ module.exports = {
                     }
                     const newuserMoney1 = parseFloat("1000") + parseFloat(args[1])
                     return message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${newuserMoney1} BBC`)
+
+                if(parseFloat(senderResult.money) == parseFloat[args]) {
+                    return message.channel.send("You cannot give all your money to someone.")
+
                 }
 
                 if (senderResult.money < parseFloat(args[1])) return message.channel.send('You dont have enough BBC')

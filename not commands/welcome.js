@@ -25,7 +25,10 @@ module.exports = client => {
 
         client.user.setActivity(`${member.displayName} is our newest member, dont forget to say hello`);
 
-        let info = `${randomDescriptions[desc]} Welcome to Meme Arcade, a fast growing gaming server with memes, active chat and me (the server bot). Im so happy your here. To gain full acess to the server just tap the "complete" button at the bottem or top of your screen.`
+        let info = `${randomDescriptions[desc]} Welcome to Meme Arcade, a fast growing gaming server with memes, active chat and me (the server bot). Im so happy your here. To gain full acess to the server just tap the "complete" button at the bottom or top of your screen.`
+
+        let info = `${randomDescriptions[desc]} Welcome to Meme Arcade, a fast growing gaming server with memes, active chat and me (the server bot). Im so happy your here. To gain full access to the server just tap the "complete" button at the bottem or top of your screen.`
+
         const embedForWelcome = new Discord.MessageEmbed()
             .setTitle(`Welcome ${member.displayName}`)
             .setDescription(info)

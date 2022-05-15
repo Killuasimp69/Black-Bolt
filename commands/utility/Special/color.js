@@ -11,7 +11,7 @@ module.exports = {
                 const Color = user.displayColor
                 const embedForColor = new Discord.MessageEmbed()
                 .setAuthor(`${user.displayName} | Color`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                .setDescription(`**${Color}** is your Discord color code`)
+                .setDescription(`**${Color}** is your Discord colour code`)
                 .setColor(Color)
                 message.channel.send(embedForColor)
             }

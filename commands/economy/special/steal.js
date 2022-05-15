@@ -21,7 +21,7 @@ module.exports = {
                 return message.channel.send("Sorry but your not level 2.")
             } else {
                 if (!message.mentions.members.first()) {
-                    return message.channel.send("Sorry but you need to specify somone to steal from")
+                    return message.channel.send("Sorry but you need to specify someone to steal from")
                 }
 
                 await mongo().then(async (mongoose) => {
