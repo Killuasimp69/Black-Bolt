@@ -25,7 +25,7 @@ module.exports = {
                 .setAuthor(`${message.member.displayName}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                 .setDescription(`**11 utility commands** that are useful for when you, erm... use me.
 
-                \`\`${prefix}ping\`\`, \`\`${prefix}botinfo\`\`, \`\`${prefix}commands\`\`, \`\`${prefix}invite\`\`, \`\`${prefix}members\`\`, \`\`${prefix}userinfo\`\`, \`\`${prefix}version\`\`, \`\`${prefix}avatar\`\`, \`\`${prefix}store\`\`, \`\`${prefix}help\`\`, \`\`${prefix}level\`\`
+                \`\`${prefix}ping\`\`, \`\`${prefix}botinfo\`\`, \`\`${prefix}invite\`\`, \`\`${prefix}members\`\`, \`\`${prefix}userinfo\`\`, \`\`${prefix}version\`\`, \`\`${prefix}avatar\`\`, \`\`${prefix}store\`\`, \`\`${prefix}help\`\`, \`\`${prefix}level\`\`
                 
                 **[Special Commands](${"https://discord.com/channels/804323987106168842/838592520429764638/971004520589045850"} "Get level 2 to get access to these commands")** 
                 \`\`${prefix}color\`\`

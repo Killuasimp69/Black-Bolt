@@ -65,6 +65,7 @@ client.on('ready', () => {
             Final: "Started",
         }
         console.table(clientinfo2)
+        console.log("==========================")
     }, 1 * 1000);
 
     setInterval(() => {

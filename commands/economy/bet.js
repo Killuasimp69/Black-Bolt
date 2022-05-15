@@ -39,13 +39,13 @@ module.exports = {
                 const embedForBetLose = new Discord.MessageEmbed()
                     .setAuthor(message.member.displayName, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setTitle(`Bet - LOSE`)
-                    .setThumbnail("https://cdn.discordapp.com/attachments/969556878445121576/974893809127264286/394-3943625_you-lose-png-you-lose-pixel-art-transparent.png")
+                    .setThumbnail("https://cdn.discordapp.com/attachments/974900127602974730/975309665908973598/ose.png")
                     .setColor("RED")
 
                 const embedForBetWin = new Discord.MessageEmbed()
                     .setAuthor(message.member.displayName, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setTitle(`Bet - WIN`)
-                    .setThumbnail("https://cdn.discordapp.com/attachments/860400894578786344/861519854448279581/real_u_win.png")
+                    .setThumbnail("https://cdn.discordapp.com/attachments/974900127602974730/975310311072600064/you_win.png")
                     .setColor("GREEN")
 
                 //database
