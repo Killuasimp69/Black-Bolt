@@ -21,6 +21,7 @@ const userSchema = mongoose.Schema({
     },
     levelbadge: {
         type: String,
+        default: "",
         required: true,
     },
     houses: {

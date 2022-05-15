@@ -411,8 +411,8 @@ module.exports = {
                         }
 
                         if(!userresult.houses) {} else {
-                            userresult.houses.split(/[ ]+/)
-                            if(args[4]) {
+                            const splitA = userresult.houses.split(/[ ]+/)
+                            if(splitA[4]) {
                                 return message.channel.send("You can only own 5 houses")
                             }
                         }
@@ -472,8 +472,8 @@ module.exports = {
                             return message.channel.send("There are no medium houses avalible right now.")
                         }
                         if(!userresult.houses) {} else {
-                            userresult.houses.split(/[ ]+/)
-                            if(args[4]) {
+                            const splitA = userresult.houses.split(/[ ]+/)
+                            if(splitA[4]) {
                                 return message.channel.send("You can only own 5 houses")
                             }
                         }
@@ -532,8 +532,8 @@ module.exports = {
                             return message.channel.send("There are no small houses avalible right now.")
                         }
                         if(!userresult.houses) {} else {
-                            userresult.houses.split(/[ ]+/)
-                            if(args[4]) {
+                            const splitA = userresult.houses.split(/[ ]+/)
+                            if(splitA[4]) {
                                 return message.channel.send("You can only own 5 houses")
                             }
                         }

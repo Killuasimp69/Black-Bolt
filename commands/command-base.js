@@ -1,6 +1,7 @@
 const { prefix } = require('../config.json')
 const Discord = require('discord.js')
 const mongo = require('../mongo')
+const userSchema = require('../schemas/userSchema')
 
 const validatePermissions = (permissions) => {
     const validPermissions = [
@@ -62,8 +63,6 @@ module.exports = (client, commandOptions) => {
         commands = [commands]
     }
 
-    console.log(`${commands[0]}✅`)
-
     //Ensure perms is array and valid
 
     if (permissions.length) {
@@ -116,6 +115,68 @@ module.exports = (client, commandOptions) => {
                 //handle code
                 callback(message, args, Discord, client, mongo, args.join(' '))
 
+                const randomizerForChest = Math.floor(Math.random() * 100) + 1
+
+                //to chest or not to chest. That is thy question
+
+                if (randomizerForChest == 12) {
+
+                    let filter = m => m.author.id === message.author.id
+                    const embedForChest = new Discord.MessageEmbed()
+                        .setAuthor(message.member.displayName + " | Found A Chest", message.member.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                        .setDescription("**YOU FOUND A CHEST!** Type ``'cheese'`` to claim before anyone else can.")
+                        .setTimestamp()
+                        .setColor("GOLD")
+                        .setThumbnail("https://cdn.discordapp.com/attachments/974900127602974730/975300721937362965/chest.png")
+                    message.channel.send(embedForChest).then(() => {
+                        message.channel.awaitMessages(filter, {
+                            max: 1,
+                            time: 60000,
+                            errors: ['time']
+                        })
+                            .then( async message => {
+                                message = message.first()
+                                if (message.content.toUpperCase() == 'CHEESE') {
+                                    const embedForYouwin = new Discord.MessageEmbed()
+                                        .setAuthor(message.member.displayName + " | Claimed A Chest", message.member.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                                        .setColor("GOLD")
+                                        .setTimestamp()
+                                        .setDescription("100 million BBC has been deposited into your account")
+                                        .setThumbnail("https://cdn.discordapp.com/attachments/974900127602974730/975300721937362965/chest.png")
+                                    await mongo().then(async (mongoose) => {
+                                        try {
+                                            const userResult = await userSchema.findOne({ _id: message.member.user })
+                                            if (!userResult) {
+                                                const amount1 = 100000000 + 1000
+                                                await userSchema.findOneAndUpdate({
+                                                    _id: user
+                                                }, {
+                                                    money: amount1
+                                                }, {
+                                                    upsert: true
+                                                })
+                                                return message.channel.send(embedForYouwin)
+                                            }
+                                            const amount2 = parseFloat(userResult.money) + 100000000
+                                            await userSchema.findOneAndUpdate({
+                                                _id: message.member.user
+                                            }, {
+                                                money: amount2
+                                            }, {
+                                                upsert: true
+                                            })
+                                            message.channel.send(embedForYouwin)
+                                        } finally {
+                                            mongoose.connection.close()
+                                        }
+                                    })
+                                }
+                            })
+                            .catch(collected => {
+                                message.channel.send('Nobody claimed the chest in time *Black Bolt Sadness*');
+                            });
+                    })
+                }
                 return
             }
         }

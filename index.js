@@ -1,13 +1,20 @@
+console.log("==========================")
+console.log("BOOTING")
+console.log("==========================")
+
 const Discord = require('discord.js');
 const { token } = require('./config.json')
 const { version } = require('./package.json')
+const { name } = require('./package.json')
 const client = new Discord.Client();
 const path = require('path')
 const fs = require('fs')
 
-console.log("==========================")
-console.log("COMMANDS")
-console.log("==========================")
+var clientinfo = {
+    name: name,
+    version: version,
+    booted: "true",
+}
 
 //makes commands work
 client.setMaxListeners(1000)
@@ -46,19 +53,32 @@ client.on('ready', () => {
         `running version ${version}`
     ];
 
+    console.clear()
+
+    setTimeout(() => {
+        console.log("==========================")
+        console.table(clientinfo)
+        console.log("==========================")
+        var clientinfo2 = {
+            Status: "COMING SOON",
+            DataBase: "Connected",
+            Final: "Started",
+        }
+        console.table(clientinfo2)
+        console.log("==========================")
+    }, 1 * 1000);
+
     setInterval(() => {
         const index = Math.floor(Math.random() * (activities_list.length - 1) + 1);
         client.user.setActivity(activities_list[index]);
     }, 10000);
-    console.log('==========================')
-    console.log('CONNECTIONS')
-    console.log('==========================')
-    console.log('Status Set!')
 })
 
 //not commands
 const confessions = require('./not commands/confessions')
-const welcome = require('./not commands/welcome')
+const welcome = require('./not commands/welcome');
+const { Git } = require('git');
+const { env } = require('process');
 client.on('ready', () => {
     confessions(client)
     welcome(client)
