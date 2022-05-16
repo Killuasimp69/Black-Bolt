@@ -24,7 +24,7 @@ module.exports = {
             return message.channel.send("You cannot transfur that amount.")
         }
 
-        if(message.author.id == message.mentions.members.first().id) {
+        if (message.author.id == message.mentions.members.first().id) {
             return message.channel.send("You cannot give money to yourself.")
         }
 
@@ -53,7 +53,7 @@ module.exports = {
                     }
 
                     if (!senderResult || !senderResult.money) {
-                        if(parseFloat(args[1]) >= 1000) {
+                        if (parseFloat(args[1]) >= 1000) {
                             return message.channel.send("You dont have enough money.")
                         }
                         const newuserMoney = parseFloat("1000") - parseFloat(args[1])
@@ -67,8 +67,9 @@ module.exports = {
                     }
                     const newuserMoney1 = parseFloat("1000") + parseFloat(args[1])
                     return message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${newuserMoney1} BBC`)
+                }
 
-                if(parseFloat(senderResult.money) == parseFloat[args]) {
+                if (parseFloat(senderResult.money) == parseFloat[args]) {
                     return message.channel.send("You cannot give all your money to someone.")
 
                 }
@@ -95,9 +96,9 @@ module.exports = {
                 })
 
                 message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${money} BBC`)
+
             } finally {
                 mongoose.connection.close()
-
             }
         })
     }
