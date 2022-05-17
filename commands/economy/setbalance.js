@@ -1,46 +1,51 @@
-const userSchema = require('../../schemas/userSchema')
+const userSchema = require("../../schemas/userSchema");
 
 module.exports = {
-  commands: ['setbalance', 'setbal'],
-  expectedArgs: '(amount) (user)',
+  commands: ["setbalance", "setbal"],
+  expectedArgs: "(amount) (user)",
   minArgs: 1,
   maxArgs: 2,
   callback: async (message, args, Discord, client, mongo) => {
-    if(message.guild === null) {
-      console.log("returning")
-      return
-  }
-    const user = message.mentions.members.first() || message.member
+    const user = message.mentions.members.first() || message.member;
 
-    if (message.author.id != ('555991737072615424') || message.author.id != ('555991737072615424')) {
-      return message.channel.send('You do not have permission to use that')
+    if (
+      message.author.id != "555991737072615424" ||
+      message.author.id != "555991737072615424"
+    ) {
+      return message.channel.send("You do not have permission to use that");
     }
 
     if (!args[0]) {
-      return message.channel.send('Please specify a amount to set')
+      return message.channel.send("Please specify a amount to set");
     }
 
-    if (args[0].startsWith('<@')) {
-      return message.channel.send('Please put the user to ping after the number')
+    if (args[0].startsWith("<@")) {
+      return message.channel.send(
+        "Please put the user to ping after the number"
+      );
     }
 
     if (isNaN(args[0])) {
-      return message.channel.send('Please specify a number not a letter')
+      return message.channel.send("Please specify a number not a letter");
     }
 
     await mongo().then(async (mongoose) => {
       try {
-        await userSchema.findOneAndUpdate({
-          _id: user.user
-        }, {
-          money: args[0]
-        }, {
-          upsert: true
-        })
+        await userSchema.findOneAndUpdate(
+          {
+            _id: user.user,
+          },
+          {
+            money: args[0],
+          },
+          {
+            upsert: true,
+          }
+        );
       } finally {
-        mongoose.connection.close()
+        mongoose.connection.close();
       }
-    })
-    message.channel.send(`Great, the balance was set to "${args[0]}"`)
-  }
-}
+    });
+    message.channel.send(`Great, the balance was set to "${args[0]}"`);
+  },
+};

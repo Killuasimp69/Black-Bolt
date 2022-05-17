@@ -41,7 +41,6 @@ module.exports = {
                 message.channel.send(embedForItems)
             } finally {
                 mongoose.connection.close()
-
             }
         })
     }

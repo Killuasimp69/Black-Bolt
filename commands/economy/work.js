@@ -12,21 +12,17 @@ function getDifference(a, b) {
 const workJobs = [
     "You cleaned the floors and made",
     "You delivered 9000 pizzas and made",
-    "You made 8734 dollars counterfreit cash which equals to",
+    "You made 8734 dollars counterfeit cash which equals to",
     "You were hired for someones stripper birthday party and made",
     "Your hitman skills were hired and you made",
     "You changed the HDMI channel on your grandmas tv and made",
     "Some crack head on the street told you he would pay you if you gave him a succ. You made",
     "You found 50 ETH on a USB from 10 years ago. Thats the same as",
-    "Someone robbed you for 100 mil. Then they realised thats kinda fucked so they gave it all back with a bonus of"]
+    "Someone robbed you for 100 mil. Then they realized thats kinda fucked so they gave it all back with a bonus of"]
 
 module.exports = {
     commands: ['work'],
     callback: async (message, args, Discord, client, mongo) => {
-        if(message.guild === null) {
-            console.log("returning")
-            return
-        }
         const user = message.member
         await mongo().then(async (mongoose) => {
             try {
@@ -50,7 +46,7 @@ module.exports = {
 
                         if(!userResult.level){
 
-                            const newUserMoney = parseFloat(NoLevel) + parseFloat(1000)
+                            const newUserMoney = NoLevel + 1000
 
                             await userSchema.findOneAndUpdate({
                                 _id: user.user
@@ -76,35 +72,35 @@ module.exports = {
 
                         const embedForWorkCmd = new Discord.MessageEmbed()
 
-                        let Money = "false"
+                        let Money = 0
 
                         if (userResult.level == "1") {
-                            const difference = Math.abs(1000 - parseFloat(Level1))
+                            const difference = Math.abs(1000 - Level1)
                             embedForWorkCmd.setFooter(`Level 1 gave you ${difference} extra BBC compared to no levels`)
                             embedForWorkCmd.setColor("#644223")
                             embedForWorkCmd.setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847381057556/bronze-removebg-preview.png")
                             Money = Level1
                         } else if (userResult.level == "2") {
-                            const difference = Math.abs(10000 - parseFloat(Level2))
-                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 1 • ${Math.abs(1000 - parseFloat(Level2))} BBC compared to no level`)
+                            const difference = Math.abs(10000 - Level2)
+                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 1 • ${Math.abs(1000 - Level2)} BBC compared to no level`)
                             embedForWorkCmd.setColor("#a7b2b9")
                             embedForWorkCmd.setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812848458993694/silvaa-removebg-preview.png")
                             Money = Level2
                         } else if (userResult.level == "3") {
-                            const difference = Math.abs(20000 - parseFloat(Level3))
-                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 2 • ${Math.abs(1000 - parseFloat(Level3))} BBC compared to no level`)
+                            const difference = Math.abs(20000 - Level3)
+                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 2 • ${Math.abs(1000 - Level3)} BBC compared to no level`)
                             embedForWorkCmd.setColor("#f2ba2d")
                             embedForWorkCmd.setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847628546078/gowld-removebg-preview.png")
                             Money = Level3
                         } else if (userResult.level == "4") {
-                            const difference = Math.abs(40000 - parseFloat(Level4))
-                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 3 • ${Math.abs(1000 - parseFloat(Level4))} BBC compared to no level`)
+                            const difference = Math.abs(40000 - Level4)
+                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 3 • ${Math.abs(1000 - Level4)} BBC compared to no level`)
                             embedForWorkCmd.setColor("#9b2b61")
                             embedForWorkCmd.setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812848165400616/Plat-removebg-preview.png")
                             Money = Level4
                         } else if (userResult.level == "5") {
                             const difference = Math.abs(80000 - Level5)
-                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 4 • ${Math.abs(1000 - parseFloat(Level5))} BBC compared to no level`)
+                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 4 • ${Math.abs(1000 - Level5)} BBC compared to no level`)
                             embedForWorkCmd.setColor("#a084a3")
                             embedForWorkCmd.setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847917932554/Highest-removebg-preview.png")
                             Money = Level5
@@ -114,7 +110,7 @@ module.exports = {
                             return message.channel.send("Money not set correctly. Please contact a admin.")
                         }
 
-                        const newMoney = parseFloat(userResult.money) + parseFloat(Money)
+                        const newMoney = parseFloat(userResult.money) + Money
 
                         await userSchema.findOneAndUpdate({
                             _id: user.user
@@ -152,7 +148,7 @@ module.exports = {
 
                         if (!userResult || !userResult.money || !userResult.level) {
 
-                            const newUserMoney = parseFloat(NoLevel) + parseFloat(1000)
+                            const newUserMoney = NoLevel + 1000
 
                             await userSchema.findOneAndUpdate({
                                 _id: user.user
@@ -179,7 +175,7 @@ module.exports = {
 
                         let embedForWorkCmd = new Discord.MessageEmbed()
 
-                        let Money = "false"
+                        let Money = 0
 
                         if (userResult.level == "1") {
                             const difference = Math.abs(1000 - Level1)
@@ -189,25 +185,25 @@ module.exports = {
                             Money = Level1
                         } else if (userResult.level == "2") {
                             const difference = Math.abs(10000 - Level2)
-                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 1 • ${Math.abs(1000 - parseFloat(Level2))} BBC compared to no level`)
+                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 1 • ${Math.abs(1000 - Level2)} BBC compared to no level`)
                             embedForWorkCmd.setColor("#a7b2b9")
                             embedForWorkCmd.setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812848458993694/silvaa-removebg-preview.png")
                             Money = Level2
                         } else if (userResult.level == "3") {
                             const difference = Math.abs(20000 - Level3)
-                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 2 • ${Math.abs(1000 - parseFloat(Level3))} BBC compared to no level`)
+                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 2 • ${Math.abs(1000 - Level3)} BBC compared to no level`)
                             embedForWorkCmd.setColor("#f2ba2d")
                             embedForWorkCmd.setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847628546078/gowld-removebg-preview.png")
                             Money = Level3
                         } else if (userResult.level == "4") {
                             const difference = Math.abs(40000 - Level4)
-                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 3 • ${Math.abs(1000 - parseFloat(Level4))} BBC compared to no level`)
+                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 3 • ${Math.abs(1000 - Level4)} BBC compared to no level`)
                             embedForWorkCmd.setColor("#9b2b61")
                             embedForWorkCmd.setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812848165400616/Plat-removebg-preview.png")
                             Money = Level4
                         } else if (userResult.level == "5") {
                             const difference = Math.abs(80000 - Level5)
-                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 4 • ${Math.abs(1000 - parseFloat(Level5))} BBC compared to no level`)
+                            embedForWorkCmd.setFooter(`${difference} BBC compared to level 4 • ${Math.abs(1000 - Level5)} BBC compared to no level`)
                             embedForWorkCmd.setColor("#a084a3")
                             embedForWorkCmd.setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847917932554/Highest-removebg-preview.png")
                             Money = Level5
@@ -222,7 +218,7 @@ module.exports = {
                             return message.channel.send("Money not set correctly. Please contact a admin.")
                         }
 
-                        const newMoney = parseFloat(userResult.money) + parseFloat(Money)
+                        const newMoney = parseFloat(userResult.money) + Money
 
                         await userSchema.findOneAndUpdate({
                             _id: user.user
@@ -243,7 +239,6 @@ module.exports = {
                 }
             } finally {
                 mongoose.connection.close()
-
             }
         })
     }

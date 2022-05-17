@@ -80,8 +80,6 @@ client.on('ready', () => {
 //not commands
 const confessions = require('./not commands/confessions')
 const welcome = require('./not commands/welcome');
-const { Git } = require('git');
-const { env } = require('process');
 client.on('ready', () => {
     confessions(client)
     welcome(client)
