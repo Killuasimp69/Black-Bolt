@@ -108,7 +108,7 @@ module.exports = (client, commandOptions) => {
                 if (args.length < minArgs || (
                     maxArgs !== null && args.length > maxArgs
                 )) {
-                    message.channel.send(`Incorrect sytax! Use \`\`${prefix}${alias} ${expectedArgs}\`\``)
+                    message.channel.send(`Use \`\`${prefix}${alias} ${expectedArgs}\`\``)
                     return
                 }
 

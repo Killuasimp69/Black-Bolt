@@ -17,7 +17,8 @@ module.exports = {
         await mongo().then(async (mongoose) => {
             try {
                 const userResult = await userSchema.findOne({ _id: user })
-                if (args[0] == "houses" || args[0] == "houses") {
+                const ToUpperrCase = `${args[0]}`.toUpperCase()
+                if (ToUpperrCase == "HOUSES" || ToUpperrCase == "HOMES") {
                     if (!userResult || !userResult.money || !userResult.houses) {
                         return message.channel.send("You dont have any houses.")
                     }
@@ -156,6 +157,10 @@ module.exports = {
                         }, {
                             name: "🚙 Cars",
                             value: `\`\`${prefix}inventory cars\`\``,
+                            inline: true
+                        }, {
+                            name: "📉 Stocks",
+                            value: `\`\`${prefix}inventory stocks\`\``,
                             inline: true
                         })
                         .setDescription("Here is the menu to navigate your inventory.")

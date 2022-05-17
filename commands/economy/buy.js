@@ -93,10 +93,11 @@ module.exports = {
                 }
 
                 //execute here
+                const ToUpperCase = args[0].toUpperCase()
 
-                if (args[0] == Items.Other.VanityCustomRole.Name || args[0] == Items.Other.MuteUser.Name) {
+                if (ToUpperCase == Items.Other.VanityCustomRole.Name.toUpperCase() || ToUpperCase == Items.Other.MuteUser.Name.toUpperCase()) {
 
-                    if (args[0] === Items.Other.MuteUser.Name) {
+                    if (ToUpperCase === Items.Other.MuteUser.Name) {
                         if (!userresult || parseFloat(userresult.money) <= parseFloat(Items.Other.MuteUser.Price)) {
                             return message.channel.send("You do not have enough BBC.")
                         }
@@ -116,7 +117,7 @@ module.exports = {
                             upsert: true
                         })
 
-                    } else if (args[0] === Items.Other.VanityCustomRole.Name) {
+                    } else if (ToUpperCase === Items.Other.VanityCustomRole.Name.toUpperCase()) {
 
                         VanityRole()
                         const Money = parseFloat(userresult.money) - parseFloat(Items.Other.VanityCustomRole.Price)
@@ -129,7 +130,7 @@ module.exports = {
                         })
 
                     }
-                } else if (args[0].startsWith("level") || args[0].startsWith("Level")) {
+                } else if (ToUpperCase.startsWith("LEVEL")) {
                     if (isNaN(args[1])) {
                         return message.channel.send("Please specify a level to buy.")
                     }
@@ -392,12 +393,12 @@ module.exports = {
                         return message.channel.send("That is not a purchasable level.")
                     }
 
-                } else if (args[0] == "house" || args[0] == "House") {
+                } else if (ToUpperCase == "HOUSE") {
                     if (!userresult || !userresult.money) {
                         return message.channel.send("You do not have enough BBC.")
                     }
                     
-                    if (args[1] == "large") {
+                    if (args[1].toUpperCase() == "LARGE") {
                         if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Large.Price)) {
                             return message.channel.send("You do not have enough BBC.")
                         }
@@ -459,7 +460,7 @@ module.exports = {
                             .setFooter(`${Items.Houses.Large.Price} BBC has been deducted from your accunt.`)
                         message.channel.send(embedForLrgeHouse)
 
-                    } else if (args[1] == "medium") {
+                    } else if (args[1].toUpperCase() == "MEDIUM") {
                         if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Medium.Price)) {
                             return message.channel.send("You do not have enough BBC.")
                         }
@@ -519,7 +520,7 @@ module.exports = {
                             .setFooter(`${Items.Houses.Medium.Price} BBC has been deducted from your accunt.`)
                         message.channel.send(embedForMdiumHouse)
 
-                    } else if (args[1] == "small") {
+                    } else if (args[1].toUpperCase() == "SMALL") {
                         if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Small.Price)) {
                             return message.channel.send("You do not have enough BBC.")
                         }
@@ -578,8 +579,15 @@ module.exports = {
                             .setColor("BLACK")
                             .setFooter(`${Items.Houses.Small.Price} BBC has been deducted from your accunt.`)
                         message.channel.send(embedForMdiumHouse)
-                    } else {
-                        return message.channel.send("That is not a house for sale.")
+                    } else if(ToUpperCase == "CARS") {
+                        return message.channel.send("Cars are currently unnavalible")
+                    } else if (ToUpperCase == "STOCKS") {
+                        if(isNaN(args[1])) {
+                            message.channel.send("You must specify to buy a number.")
+                        }
+                        if(parseFloat(args[1]) <= 1) {
+                            return message.channel.send("You must buy more than 1 share.")
+                        }
                     }
                 } else {
                     message.channel.send("That is not an item for sale.")

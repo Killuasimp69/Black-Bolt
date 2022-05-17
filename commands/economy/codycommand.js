@@ -1,6 +1,6 @@
 const userSchema = require('../../schemas/userSchema')
 const { prefix } = require('../../config.json')
-const seconds = 1000
+const seconds = 60
 let coolDown = new Set()
 
 module.exports = {
@@ -14,6 +14,9 @@ module.exports = {
             try {
                 if(message.author.id != "650943066521468928") {
                     return message.channel.send("You cannot use that")
+                }
+                if(coolDown.has(message.author.id)) {
+                    return message.channel.send("Please wait 1 min.")
                 }
                 const userResult = await userSchema.findOne({ _id: user })
                 if(!userResult || !userResult.money) {
@@ -34,6 +37,7 @@ module.exports = {
                     upsert: true
                 })
                 message.channel.send("May the nig be with you. Here is 1 BBC")
+                coolDown.add(message.author.id)
                 setTimeout(() => {
                     coolDown.delete(message.author.id)
                 }, seconds * 1000)
