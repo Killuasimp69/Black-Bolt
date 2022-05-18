@@ -41,12 +41,12 @@ const validatePermissions = (permissions) => {
 
   for (const permission of permissions) {
     if (!validPermissions.includes(permission)) {
-      throw new Error(`Unkown permission node "${permission}`);
+      throw new Error(`Unknown permission node "${permission}`);
     }
   }
 };
 
-module.exports = (client, commandOptions) => {
+module.exports = async (client, commandOptions) => {
   let {
     commands,
     expectedArgs = "",
@@ -77,7 +77,6 @@ module.exports = (client, commandOptions) => {
   //listen for message
 
   client.on("message", async (message) => {
-
     const { member, content, guild } = message;
     for (const alias of commands) {
       if (content.toLowerCase().startsWith(`${prefix}${alias.toLowerCase()}`)) {
@@ -87,156 +86,73 @@ module.exports = (client, commandOptions) => {
 
         await mongo().then(async (mongoose) => {
           try {
-
             //check if command enabled
-            const commandResult = await commandSchema.findOne({ _id: commands[0] })
+            const commandResult = await commandSchema.findOne({
+              _id: commands[0],
+            });
             if (!commandResult) {
-              await commandSchema.findOneAndUpdate({
-                _id: commands[0]
-              }, {
-                enabled: "true"
-              }, {
-                upsert: true
-              })
+              await commandSchema.findOneAndUpdate(
+                {
+                  _id: commands[0],
+                },
+                {
+                  enabled: "true",
+                },
+                {
+                  upsert: true,
+                }
+              );
             } else {
-              if (commandResult.enabled == 'false') {
-                return message.channel.send("This command has been disabled.")
+              if (commandResult.enabled == "false") {
+                return message.channel.send("This command has been disabled.");
               }
-            }
-
-            //ensure correct perms
-            for (const permission of permissions) {
-              if (!member.hasPermission(permission)) {
-                message.reply(permissionError);
-              }
-            }
-
-            //ensure roles
-            for (const requoedRole of requiredRoles) {
-              const role = message.guild.roles.cache.find(r => r.name === requoedRole);
-
-              if (!role || !message.member.roles.cache.has(role.id)) {
-                return message.channel.send(
-                  `You must have the ${requoedRole} role to use this command`
-                );
-              }
-            }
-
-            //create args
-
-            const args = content.split(/[ ]+/);
-
-            //remove the command first index
-            args.shift();
-
-            //ensure correct args
-            if (
-              args.length < minArgs ||
-              (maxArgs !== null && args.length > maxArgs)
-            ) {
-              message.channel.send(`Use \`\`${prefix}${alias} ${expectedArgs}\`\``);
-              return;
-            }
-
-            //handle code
-            callback(message, args, Discord, client, mongo, args.join(" "));
-
-            const randomizerForChest = Math.floor(Math.random() * 100) + 1;
-
-            //to chest or not to chest. That is thy question
-
-            if (randomizerForChest == 12) {
-              let filter = (m) => m.author.id === message.author.id;
-              const embedForChest = new Discord.MessageEmbed()
-                .setAuthor(
-                  message.member.displayName + " | Found A Chest",
-                  message.member.user.displayAvatarURL({
-                    format: "jpg",
-                    dynamic: true,
-                  })
-                )
-                .setDescription(
-                  "**YOU FOUND A CHEST!** Type ``'cheese'`` to claim before anyone else can."
-                )
-                .setTimestamp()
-                .setColor("GOLD")
-                .setThumbnail(
-                  "https://cdn.discordapp.com/attachments/974900127602974730/975300721937362965/chest.png"
-                );
-              message.channel.send(embedForChest).then(() => {
-                message.channel
-                  .awaitMessages(filter, {
-                    max: 1,
-                    time: 60000,
-                    errors: ["time"],
-                  })
-                  .then(async (message) => {
-                    message = message.first();
-                    if (message.content.toUpperCase() == "CHEESE") {
-                      const embedForYouwin = new Discord.MessageEmbed()
-                        .setAuthor(
-                          message.member.displayName + " | Claimed A Chest",
-                          message.member.user.displayAvatarURL({
-                            format: "jpg",
-                            dynamic: true,
-                          })
-                        )
-                        .setColor("GOLD")
-                        .setTimestamp()
-                        .setDescription(
-                          "100 million BBC has been deposited into your account"
-                        )
-                        .setThumbnail(
-                          "https://cdn.discordapp.com/attachments/974900127602974730/975300721937362965/chest.png"
-                        );
-
-                      const userResult = await userSchema.findOne({
-                        _id: message.member.user,
-                      });
-                      if (!userResult) {
-                        const amount1 = 100000000 + 1000;
-                        await userSchema.findOneAndUpdate(
-                          {
-                            _id: message.member.user,
-                          },
-                          {
-                            money: amount1,
-                          },
-                          {
-                            upsert: true,
-                          }
-                        );
-                        return message.channel.send(embedForYouwin);
-                      }
-                      const amount2 = parseFloat(userResult.money) + 100000000;
-                      await userSchema.findOneAndUpdate(
-                        {
-                          _id: message.member.user,
-                        },
-                        {
-                          money: amount2,
-                        },
-                        {
-                          upsert: true,
-                        }
-                      );
-                      message.channel.send(embedForYouwin);
-                    }
-                  })
-                  .catch((collected) => {
-                    message.channel.send(
-                      "Nobody claimed the chest in time *Black Bolt Sadness*"
-                    );
-                  });
-              });
             }
           } finally {
             mongoose.connection.close();
           }
-        })
+        });
+
+        //ensure correct perms
+        for (const permission of permissions) {
+          if (!member.hasPermission(permission)) {
+            message.reply(permissionError);
+          }
+        }
+
+        //ensure roles
+        for (const requoedRole of requiredRoles) {
+          const role = message.guild.roles.cache.find(
+            (r) => r.name === requoedRole
+          );
+
+          if (!role || !message.member.roles.cache.has(role.id)) {
+            return message.channel.send(
+              `You must have the ${requoedRole} role to use this command`
+            );
+          }
+        }
+
+        //create args
+
+        const args = content.split(/[ ]+/);
+
+        //remove the command first index
+        args.shift();
+
+        //ensure correct args
+        if (
+          args.length < minArgs ||
+          (maxArgs !== null && args.length > maxArgs)
+        ) {
+          message.channel.send(`Use \`\`${prefix}${alias} ${expectedArgs}\`\``);
+          return;
+        }
+
+        //handle code
+        callback(message, args, Discord, client, mongo, args.join(" "));
+
         return;
       }
     }
-
   });
 };
