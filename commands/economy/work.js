@@ -44,7 +44,7 @@ module.exports = {
                             return message.channel.send("You must have at least 1000 BBC to get a job")
                         }
 
-                        if(!userResult.level){
+                        if (!userResult.level) {
 
                             const newUserMoney = NoLevel + 1000
 
