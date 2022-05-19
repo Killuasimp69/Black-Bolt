@@ -3,14 +3,10 @@ const userSchema = require("../../schemas/userSchema")
 
 module.exports = {
     commands: ['worsethanhitler', 'WTH'],
-    expectedArgs: '',
+    expectedArgs: '(user[op])',
     minArgs: 0,
     maxArgs: 1,
     callback: async (message, args, Discord, client, mongo) => {
-        if(message.guild === null) {
-            console.log("returning")
-            return
-        }
         const user = message.mentions.members.first() || message.member
         const canvas = Canvas.createCanvas(700, 450)
         const ctx = canvas.getContext('2d')

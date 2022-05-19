@@ -7,10 +7,6 @@ let cdBSecs = 1
 module.exports = {
     commands: ['yomumma', 'yawmumma', 'yourmumma', 'yomama'],
     callback: async (message, args, Discord, client) => {
-        if(message.guild === null) {
-            console.log("returning")
-            return
-        }
         const user = message.member.user
         if (message.member.roles.cache.has('838596018856919040')) {
             if (coolDownBooster.has(message.author.id)) {

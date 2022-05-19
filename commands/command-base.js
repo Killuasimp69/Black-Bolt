@@ -102,55 +102,124 @@ module.exports = async (client, commandOptions) => {
                   upsert: true,
                 }
               );
+            } else if (commandResult.enabled == "false") {
+              return message.channel.send("This command has been disabled.");
             } else {
-              if (commandResult.enabled == "false") {
-                return message.channel.send("This command has been disabled.");
+
+              //ensure correct perms
+              for (const permission of permissions) {
+                if (!member.hasPermission(permission)) {
+                  message.reply(permissionError);
+                }
               }
+
+              //ensure roles
+              for (const requoedRole of requiredRoles) {
+                const role = message.guild.roles.cache.find(
+                  (r) => r.name === requoedRole
+                );
+
+                if (!role || !message.member.roles.cache.has(role.id)) {
+                  return message.channel.send(
+                    `You must have the ${requoedRole} role to use this command`
+                  );
+                }
+              }
+
+              //create args
+
+              const args = content.split(/[ ]+/);
+
+              //remove the command first index
+              args.shift();
+
+              //ensure correct args
+              if (
+                args.length < minArgs ||
+                (maxArgs !== null && args.length > maxArgs)
+              ) {
+                message.channel.send(`Use \`\`${prefix}${alias} ${expectedArgs}\`\``);
+                return;
+              }
+
+              //handle code
+              callback(message, args, Discord, client, mongo, args.join(" "));
             }
-          } finally {
+          } catch {
             mongoose.connection.close();
+            console.log("Closed to prevent errors")
           }
         });
 
-        //ensure correct perms
-        for (const permission of permissions) {
-          if (!member.hasPermission(permission)) {
-            message.reply(permissionError);
+        //chest
+
+        if (message.author.id != "804610350128955392" && message.author.id != "783789982300373053") {
+          let randomAmount = Math.floor(Math.random() * 100) + 1;
+          if (randomAmount == 12) {
+            let filter = (m) => m.author.id === message.author.id;
+            const userResult = await userSchema.findOne({ _id: message.member.user })
+            if (!userResult || !userResult.money) return
+            let chestAmount = 0
+            let EmbedForE = new Discord.MessageEmbed()
+              .setAuthor(`${message.member.displayName} | CLAIMED`, message.member.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+              .setDescription("You claimed a chest! Great job.")
+              .setColor("GOLD")
+              .setThumbnail("https://cdn.discordapp.com/attachments/974900127602974730/975300721937362965/chest.png")
+            let EmbedFor = new Discord.MessageEmbed()
+              .setAuthor(`${message.member.displayName} | FOUND A CHEST`, message.member.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+              .setDescription("You found a chest. Type ``'claim'`` to claim before anyone else can.")
+              .setColor("GOLD")
+              .setThumbnail("https://cdn.discordapp.com/attachments/974900127602974730/975300721937362965/chest.png")
+            if (!userResult.level || userResult.level == 0) {
+              chestAmount = 20000
+            } else if (userResult.level == 1) {
+              chestAmount == 90000
+              EmbedForE.setFooter("Level 1 gave you 70k extra")
+            } else if (userResult.level == 2) {
+              chestAmount == 500000
+              EmbedForE.setFooter("Level 2 gave you 480k extra")
+            } else if (userResult.level == 3) {
+              chestAmount == 1000000
+              EmbedForE.setFooter("Level 3 gave you 980k extra")
+            } else if (userResult.level == 4) {
+              chestAmount == 1500000
+              EmbedForE.setFooter("Level 4 gave you 1m, 480k extra")
+            } else if (userResult.level == 5) {
+              chestAmount == 10000000
+              EmbedForE.setFooter("Level 5 gave you 9m 980k extra")
+            }
+            message.channel.send(EmbedFor).then(() => {
+              message.channel
+                .awaitMessages(filter, {
+                  max: 1,
+                  time: 60000,
+                  errors: ["time"],
+                }).then(async (message) => {
+                  message = message.first()
+                  if (message.author.id != "804610350128955392" && message.author.id != "783789982300373053") {
+                    if (message.content.toUpperCase() == "CLAIM") {
+                      console.log(message.content.toUpperCase())
+                      const newUserMoney = chestAmount + userResult.money
+                      await userSchema.findOneAndUpdate(
+                        {
+                          _id: message.member.user,
+                        },
+                        {
+                          money: newUserMoney,
+                        },
+                        {
+                          upsert: true,
+                        }
+                      );
+                      message.channel.send(EmbedForE)
+                    }
+                  }
+                }).catch(error => {
+                  message.channel.send("Nobody claimed the chest in time. *Black Bolt sadness*")
+                })
+            })
           }
         }
-
-        //ensure roles
-        for (const requoedRole of requiredRoles) {
-          const role = message.guild.roles.cache.find(
-            (r) => r.name === requoedRole
-          );
-
-          if (!role || !message.member.roles.cache.has(role.id)) {
-            return message.channel.send(
-              `You must have the ${requoedRole} role to use this command`
-            );
-          }
-        }
-
-        //create args
-
-        const args = content.split(/[ ]+/);
-
-        //remove the command first index
-        args.shift();
-
-        //ensure correct args
-        if (
-          args.length < minArgs ||
-          (maxArgs !== null && args.length > maxArgs)
-        ) {
-          message.channel.send(`Use \`\`${prefix}${alias} ${expectedArgs}\`\``);
-          return;
-        }
-
-        //handle code
-        callback(message, args, Discord, client, mongo, args.join(" "));
-
         return;
       }
     }

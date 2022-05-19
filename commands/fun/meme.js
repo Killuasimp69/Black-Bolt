@@ -6,12 +6,8 @@ const gottem = require('djs-meme');
 
 module.exports = {
     commands: ['meme'],
-    expectedArgs: '<num1>',
+    expectedArgs: '',
     callback: async (message, args, Discord, client) => {
-        if(message.guild === null) {
-            console.log("returning")
-            return
-        }
         const user = message.member.user
         if (message.member.roles.cache.has('838596018856919040')) {
             if (cooldownBooster.has(message.author.id)) {

@@ -1,5 +1,5 @@
 # Black Bolt
-## 1.0.0
+## 2.0
 
 Black Bolt is a great moderation, fun, and utility bot that has heaps of commands. Join our Discord at https://discord.gg/ea7av4r4MH
 

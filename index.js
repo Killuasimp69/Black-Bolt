@@ -9,6 +9,8 @@ const { name } = require('./package.json')
 const client = new Discord.Client();
 const path = require('path')
 const fs = require('fs')
+const mongo = require("./mongo");
+const shareSchema = require('./schemas/shareSchema')
 
 var clientinfo = {
     name: name,
@@ -38,6 +40,41 @@ client.on('ready', () => {
 
     readCommands('commands')
 })
+
+//week reset
+
+setInterval(async () => {
+    const newDate = new Date()
+    const currentDay = newDate.getDay()
+    if(currentDay == 0) {
+        await shareSchema.findOneAndUpdate({
+            _id: "default"
+        }, {
+            price: 100000
+        }, {
+            upsert: true
+        })
+    }
+}, 86400 * 1000)
+
+//todays shares
+
+setInterval(async () => {
+    await mongo().then(async (mongoose) => {
+        try {
+            const shareResult = await shareSchema.findOne({ _id: "default" })
+            await shareSchema.findOneAndUpdate({
+                _id: "default"
+            }, {
+                yesterdayshare: shareResult.price
+            }, {
+                upsert: true
+            })
+        } finally {
+            mongoose.connection.close()
+        }
+    })
+}, 86400 * 1000)
 
 //Sets the status of the bot  
 client.on('ready', () => {
@@ -80,6 +117,7 @@ client.on('ready', () => {
 //not commands
 const confessions = require('./not commands/confessions')
 const welcome = require('./not commands/welcome');
+const { schema } = require('./schemas/shareSchema');
 client.on('ready', () => {
     confessions(client)
     welcome(client)

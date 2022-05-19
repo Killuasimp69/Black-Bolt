@@ -6,7 +6,7 @@ let cdBSecs = 1
 
 module.exports = {
     commands: ['inspire', 'quote'],
-    expectedArgs: '<num1>',
+    expectedArgs: '',
     callback: (message, args, Discord, client) => {
         const user = message.member.user
         if(message.member.roles.cache.has('838596018856919040')) {
