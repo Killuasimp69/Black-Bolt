@@ -6,7 +6,7 @@ const { prefix } = require('../../config.json')
 module.exports = {
     commands: ['store', 'shop'],
     callback: async (message, args, Discord, client, mongo) => {
-        if(message.guild === null) {
+        if (message.guild === null) {
             return
         }
         const user = message.member.user
@@ -44,8 +44,10 @@ module.exports = {
                     .setAuthor(`${message.member.displayName} | Store`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setDescription("Here you can find all the NFTs that are for sale.")
                     .setColor("BLACK")
-                    .addFields(
-                    {
+                    .addFields({
+                        name: "Houses",
+                        value: "\u200b"
+                    }, {
                         name: `> 🛖 Small House`,
                         value: `\`\`${prefix}buy house small\`\` | 💵 ${Items.Houses.Small.Price} BBC`
                     }, {
@@ -54,8 +56,14 @@ module.exports = {
                     }, {
                         name: `> 🏘️ Large House`,
                         value: `\`\`${prefix}buy house large\`\` | 💵 ${Items.Houses.Large.Price} BBC`
+                    }, {
+                        name: "Trophys",
+                        value: "\u200b"
+                    }, {
+                        name: "MeeMoo",
+                        value: `\`\`${prefix}buy trophy MeeMoo\`\` | `
                     })
-                    .setFooter(`To buy something please simply just type "${prefix}buy (item) "`)
+                    .setFooter(`Eatch trophy comes with its own role."`)
                 message.channel.send(embedForSore)
             }
 
