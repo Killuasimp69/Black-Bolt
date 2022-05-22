@@ -1,3 +1,4 @@
+// @ts-nocheck
 const mongo = require('../../../mongo')
 const userSchema = require('../../../schemas/userSchema')
 let cdSecs = 60
@@ -46,7 +47,7 @@ module.exports = {
                             .setAuthor(message.member.displayName, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                             .setTitle("Steal")
                             .setDescription(stealReasons[randomStealReasons])
-                            .setFooter(`Booster only command`)
+                            .setFooter(`Level 2 only command`)
                             .setColor("BLACK")
 
                         //database / messages

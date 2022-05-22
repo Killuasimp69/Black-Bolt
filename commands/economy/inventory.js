@@ -8,6 +8,7 @@ module.exports = {
     expectedArgs: '(NFT)',
     minArgs: 0,
     maxArgs: 1,
+    economyCheck: "true",
     callback: async (message, args, Discord, client) => {
         const user = message.member.user
         await mongo().then(async (mongoose) => {

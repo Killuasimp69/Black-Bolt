@@ -3,7 +3,7 @@ const userSchema = require('../../schemas/userSchema')
 const mongo = require('../../mongo')
 
 module.exports = {
-    commands: ['violations'],
+    commands: ['violations', 'warns'],
     expectedArgs: '(user)',
     permissionError: "You do not have the required permissions to execute this command",
     minArgs: 1,

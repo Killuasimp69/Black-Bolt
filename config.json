@@ -4,5 +4,6 @@
     "mongoPath": "mongodb://localhost:27017/BlackBolt",
     "confessions": "true",
     "cooldownBooster": 1,
-    "cooldownNormal": 5
+    "cooldownNormal": 5,
+    "servers": ["804323987106168842"]
 }  

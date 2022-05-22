@@ -7,6 +7,7 @@ module.exports = {
     expectedArgs: '(user) (amount)',
     minArgs: 2,
     maxArgs: 2,
+    economyCheck: "true",
     callback: async (message, args, Discord, client) => {
         if (message.guild === null) {
             console.log("returning")

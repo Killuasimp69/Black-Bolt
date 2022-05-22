@@ -5,6 +5,7 @@ module.exports = {
   expectedArgs: "(amount) (user)",
   minArgs: 1,
   maxArgs: 2,
+  economyCheck: "true",
   callback: async (message, args, Discord, client, mongo) => {
     const user = message.mentions.members.first() || message.member;
 

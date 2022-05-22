@@ -6,6 +6,7 @@ module.exports = {
     commands: ['lb', 'leaderbored', 'leaderboard'],
     expectedArgs: '',
     minArgs: 0,
+    economyCheck: "true",
     callback: async (message, args, Discord, client) => {
         if(message.guild === null) {
             console.log("returning")

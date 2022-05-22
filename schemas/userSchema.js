@@ -29,6 +29,16 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    blacklisted: {
+        type: String,
+        default: "false",
+        required: true,
+    },
+    econverified: {
+        type: String,
+        default: "false",
+        required: true,
+    }
 })
 
 module.exports = mongoose.model('User', userSchema)

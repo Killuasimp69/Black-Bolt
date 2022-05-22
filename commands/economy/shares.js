@@ -6,9 +6,11 @@ module.exports = {
     maxArgs: 0,
     permissions: [],
     requiredRoles: [],
+    economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
         await mongo().then(async (mongoose) => {
             try {
+                return message.channel.send("Coming soon.")
                 const shareResult = await shareSchema.findOne({ _id: 'default' })
                 if (!shareResult) {
                     await shareSchema.findOneAndUpdate({

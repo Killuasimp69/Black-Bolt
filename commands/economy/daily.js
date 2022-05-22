@@ -6,6 +6,7 @@ let cdSecs = 43200;
 module.exports = {
   commands: ["daily", "day"],
   expectedArgs: "",
+  economyCheck: "true",
   callback: async (message, args, Discord, client, mongo) => {
     const user = message.member.user;
     const dailyjobs = ["You sold your hair for"];
@@ -167,7 +168,7 @@ module.exports = {
         }
 
         embedForMoney
-          .setTitle(`${amountToAdd} BBC`)
+          .setAuthor(`${message.member.displayName} | ${amountToAdd} BBC`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
           .setDescription(`You just got **${amountToAdd}** BBC`);
         message.channel.send(embedForMoney);
       } finally {

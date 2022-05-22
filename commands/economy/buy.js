@@ -10,6 +10,7 @@ module.exports = {
     minArgs: 1,
     maxArgs: 3,
     permissionError: "You need more permissions",
+    economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
         if(message.guild === null) {
             return

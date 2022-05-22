@@ -1,3 +1,4 @@
+// @ts-nocheck
 const mongo = require('../../mongo')
 const userSchema = require('../../schemas/userSchema')
 const { prefix } = require('../../config.json')
@@ -52,6 +53,29 @@ module.exports = {
                         .setThumbnail("https://cdn.discordapp.com/attachments/905726406552600586/969812847917932554/Highest-removebg-preview.png")
                 }
 
+                let gender
+                let Sexuality
+
+                if(message.member.roles.cache.has('838683485433626625')) {
+                    gender = "Male"
+                } else if(message.member.roles.cache.has('838683546826440734')) {
+                    gender = "Female"
+                } else if(message.member.roles.cache.has('838683755861639178')) {
+                    gender = "Other"
+                } else {
+                    gender = "Not Specified"
+                }
+
+                if(message.member.roles.cache.has('840046101314666576')) {
+                    Sexuality = 'Straight'
+                } else if(message.member.roles.cache.has('840046211990028349')) {
+                    Sexuality = "Gay"
+                } else if(message.member.roles.cache.has('840048399084421130')) {
+                    Sexuality = "Other"
+                } else {
+                    Sexuality = "Not Specified"
+                }
+
                 embedForUserInfo.addFields({
                     name: 'User Tag',
                     value: user.user.tag
@@ -74,6 +98,12 @@ module.exports = {
                 }, {
                     name: 'Role Count',
                     value: member.roles.cache.size - 1
+                }, {
+                    name : "Gender",
+                    value : gender
+                }, {
+                    name: "Sexuality", 
+                    value: Sexuality
                 })
 
                 message.channel.send(embedForUserInfo)

@@ -22,6 +22,7 @@ const workJobs = [
 
 module.exports = {
     commands: ['work'],
+    economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
         const user = message.member
         await mongo().then(async (mongoose) => {

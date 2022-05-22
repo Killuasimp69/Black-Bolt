@@ -6,6 +6,7 @@ module.exports = {
     expectedArgs: '(amount)',
     minArgs: 1,
     maxArgs: 1,
+    economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
         if(message.guild === null) {
             return
@@ -16,11 +17,11 @@ module.exports = {
             return message.channel.send("Please provide a valid amount")
         }
 
-        if(parseFloat(args[0]) < parseFloat(6)) {
+        if(parseFloat(args[0]) < 6) {
             return message.channel.send("Please bet more than 5 BBC")
         }
 
-        if(parseFloat(args[0]) >= parseFloat(10000001)) {
+        if(parseFloat(args[0]) >= 10000001) {
             return message.channel.send("You cannot bet more than 10mil BBC.")
         }
 

@@ -12,6 +12,7 @@ module.exports = {
     commands: ['beg'],
     permissionError: "You need more permissions",
     maxArgs: 0,
+    economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
         const user = message.mentions.members.first() || message.member
         const randomJAmts = Math.floor(Math.random() * (RandomBegAmts.length))

@@ -4,6 +4,7 @@ const { prefix } = require('../../config.json')
 module.exports = {
     commands: ['balance', 'bal'],
     expectedArgs: '',
+    economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
         if(message.guild === null) {
             return

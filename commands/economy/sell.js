@@ -1,3 +1,4 @@
+// @ts-nocheck
 const userSchema = require('../../schemas/userSchema')
 const itemSchema = require('../../schemas/ItemSchema')
 
@@ -6,6 +7,7 @@ module.exports = {
     expectedArgs: '(itemID/item type) (inv num)',
     minArgs: 1,
     maxArgs: 2,
+    economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
         if (message.guild === null) {
             return

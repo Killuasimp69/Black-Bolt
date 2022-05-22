@@ -5,6 +5,7 @@ let coolDown = new Set()
 
 module.exports = {
     commands: ['nig', 'big-black-cock'],
+    economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
         const user = message.member.user
         if (message.guild === null) {
