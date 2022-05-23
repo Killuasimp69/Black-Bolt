@@ -21,23 +21,33 @@ module.exports = {
                     return message.channel.send("I cannot find that NFT")
                 }
                 const embedForItems = new Discord.MessageEmbed()
-                .setAuthor(`${message.member.displayName} | Info`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                .setAuthor(`${itemResult.name} | Info`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                .setImage(itemResult.image)
                 .setColor("BLACK")
                 .addFields({
                     name: `House ID`,
-                    value: itemResult._id
+                    value: itemResult._id,
+                    inline: true
                 }, {
                     name: `House Owner:`,
-                    value: `<@${itemResult.owner}>`
+                    value: `<@${itemResult.owner}>`,
+                    inline: true
                 }, {
                     name: "House Name:",
-                    value: itemResult.name
+                    value: itemResult.name,
+                    inline: true
                 }, {
                     name: "House Value:",
-                    value: itemResult.worth + " BBC"
+                    value: itemResult.worth + " BBC",
+                    inline: true
                 }, {
                     name: "House Type:",
-                    value: itemResult.type
+                    value: itemResult.type,
+                    inline: true
+                }, {
+                    name: "Family",
+                    value: "Coming Soon",
+                    inline: true
                 })
                 message.channel.send(embedForItems)
             } finally {

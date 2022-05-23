@@ -38,6 +38,10 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "false",
         required: true,
+    },
+    xp : {
+        type: Number,
+        required: true
     }
 })
 

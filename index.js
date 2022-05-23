@@ -117,10 +117,11 @@ client.on('ready', () => {
 //not commands
 const confessions = require('./not commands/confessions')
 const welcome = require('./not commands/welcome');
-const { schema } = require('./schemas/shareSchema');
+const xp = require('./not commands/xp')
 client.on('ready', () => {
     confessions(client)
     welcome(client)
+    xp(client)
 })
 
 client.login(token)

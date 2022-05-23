@@ -8,10 +8,6 @@ module.exports = {
     minArgs: 0,
     economyCheck: "true",
     callback: async (message, args, Discord, client) => {
-        if(message.guild === null) {
-            console.log("returning")
-            return
-        }
         await mongo().then(async (mongoose) => {
             try {
 

@@ -29,6 +29,8 @@ module.exports = {
             return message.channel.send("You cannot give money to yourself.")
         }
 
+        if(message.content.includes(".")) return message.channel.send("You canot give that amount")
+
         const user = message.mentions.members.first()
         await mongo().then(async (mongoose) => {
             try {

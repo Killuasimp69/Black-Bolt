@@ -3,7 +3,7 @@ const { prefix } = require('../../config.json')
 const mongo = require("../../mongo")
 
 module.exports = {
-    commands: ['commandset', 'set'],
+    commands: ['commandset'],
     expectedArgs: '(command) (true/false)',
     permissionError: "This command is ``admin`` only",
     minArgs: 2,
@@ -13,6 +13,9 @@ module.exports = {
     callback: async (message, args, Discord, client, mongo) => {
         await mongo().then(async (mongoose) => {
             try {
+                if(!message.member.roles.cache.has('838679476774371408')) {
+                    return message.channel.send("You cannot use that")
+                }
                 let seter 
                 let sender
                 if(args[1] == "true") {

@@ -5,12 +5,15 @@ const mongo = require("../../mongo")
 
 module.exports = {
     commands: ['inventory', 'inv'],
-    expectedArgs: '(NFT)',
+    expectedArgs: '(NFT) (user[optional])',
     minArgs: 0,
-    maxArgs: 1,
+    maxArgs: 2,
     economyCheck: "true",
     callback: async (message, args, Discord, client) => {
-        const user = message.member.user
+        let user = message.member.user
+        if(message.mentions.members.first()) {
+            user = message.mentions.members.first().user
+        }
         await mongo().then(async (mongoose) => {
             try {
                 const userResult = await userSchema.findOne({ _id: user })

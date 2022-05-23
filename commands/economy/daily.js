@@ -42,7 +42,6 @@ module.exports = {
         let newUserMoney = 0;
         let amountToAdd;
 
-        if (userResult.level) {
           if (userResult.level == 1) {
             const randomizer = Math.floor(Math.random() * 70000);
             amountToAdd = moneyToBase + randomizer;
@@ -165,11 +164,11 @@ module.exports = {
             );
             embedForMoney.setColor("BLACK");
           }
-        }
 
         embedForMoney
           .setAuthor(`${message.member.displayName} | ${amountToAdd} BBC`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-          .setDescription(`You just got **${amountToAdd}** BBC`);
+          .setDescription(`You just got **${amountToAdd}** BBC`)
+          .setColor("BLACK");
         message.channel.send(embedForMoney);
       } finally {
         mongoose.connection.close();

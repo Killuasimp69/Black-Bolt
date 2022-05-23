@@ -13,10 +13,12 @@ module.exports = {
         await mongo().then(async (mongoose) => {
             try {
 
+                let xp
+
                 const userResult = await userSchema.findOne({ _id: user.user })
 
                 //newuser
-                if (userResult) { } else {
+                if (!userResult || !userResult.money) {
                     await userSchema.findOneAndUpdate({
                         _id: user.user
                     }, {
@@ -31,26 +33,17 @@ module.exports = {
                     return message.channel.send(embedForBalance)
                 }
 
-                if (!userResult.money) {
-                    await userSchema.findOneAndUpdate({
-                        _id: user.user
-                    }, {
-                        money: '1000'
-                    }, {
-                        upsert: true
-                    })
-                    const embedForBalance = new Discord.MessageEmbed()
-                        .setAuthor(`${user.displayName} | Balance`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                        .setDescription(`You have **1000 BBC**, with a total of **1000**.`)
-                        .setColor('BLACK')
-                    return message.channel.send(embedForBalance)
+                if(userResult.xp) {
+                    xp = userResult.xp
+                } else {
+                    xp = 0
                 }
 
                 const moneyy = parseFloat(userResult.money)
 
                 const embedForBalance = new Discord.MessageEmbed()
                     .setAuthor(`${user.displayName} | Balance`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                    .setDescription(`You have **${moneyy} BBC**, with a total of **${moneyy}**.`)
+                    .setDescription(`You have **${moneyy} BBC** and **${xp} xp**, with a total of **${moneyy}**.`)
                     .setColor('BLACK')
 
                 //message

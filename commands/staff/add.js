@@ -22,10 +22,14 @@ module.exports = {
                 }
                 
                 if(parseFloat(args[0]) <= 1) {
-                    return message.channel.send("You must give more")
+                    return message.channel.send("You must add more")
                 }
                 
                 const userresult = await userSchema.findOne({ _id: user })
+
+                if(!userresult) {
+                    return message.channel.send("This user has not participated in the BBC before. Please use the ``setbal`` command.")
+                }
 
                 let newamt = parseFloat(userresult.money) + parseFloat(args[0])
 
@@ -67,7 +71,6 @@ module.exports = {
 
             } finally {
                 mongoose.connection.close()
-
             }
         })
     }

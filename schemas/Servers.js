@@ -22,6 +22,11 @@ const ServersSchema = mongoose.Schema({
    confessionChannel: {
       type: String,
       required: true,
+   },
+   mutiplyer: {
+      type: String,
+      default: "false",
+      required: true
    }
 })
 
