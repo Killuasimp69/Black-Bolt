@@ -10,9 +10,9 @@ module.exports = {
         if (args[0] == 'economy') {
             const embedForEconCommands = new Discord.MessageEmbed()
                 .setAuthor(`${message.author.username}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                .setDescription(`**14 economy commands** for your crippling gambling addiction.
+                .setDescription(`**16 economy commands** for your crippling gambling addiction.
 
-                \`\`${prefix}balance\`\`, \`\`${prefix}beg\`\`, \`\`${prefix}give (amount) (user)\`\`, \`\`${prefix}work\`\`, \`\`${prefix}bet (amount)\`\`, \`\`${prefix}daily\`\`, \`\`${prefix}leaderboard\`\`, \`\`${prefix}buy (product) (extra)\`\`, \`\`${prefix}sell (NFT) (NFT number)\`\`, \`\`${prefix}info (NFT) (NFT numner)\`\`, \`\`${prefix}inventory (NFT)\`\`
+                \`\`${prefix}balance\`\`, \`\`${prefix}beg\`\`, \`\`${prefix}give (amount) (user)\`\`, \`\`${prefix}work\`\`, \`\`${prefix}bet (amount)\`\`, \`\`${prefix}daily\`\`, \`\`${prefix}leaderboard\`\`, \`\`${prefix}buy (product) (extra)\`\`, \`\`${prefix}sell (NFT) (NFT number)\`\`, \`\`${prefix}info (NFT) (NFT numner)\`\`, \`\`${prefix}inventory (NFT)\`\`, \`\`${prefix}rename (NFT id) (new name)\`\`, \`\`${prefix}shares\`\`
                 
                 **[Special Commands](${"https://discord.com/channels/804323987106168842/838592520429764638/971004520589045850"} "Get level 2 to get access to these commands")** 
                 \`\`${prefix}steal (user)\`\`
@@ -38,7 +38,7 @@ module.exports = {
                 .setAuthor(`${message.author.username}| Help Menu`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                 .setDescription(`**10 fun commands** that can amuse even your dying grandma.
 
-                \`\`${prefix}dadjoke\`\`, \`\`${prefix}yomumma\`\`, \`\`${prefix}ppsize\`\`, \`\`${prefix}inspire\`\`, \`\`${prefix}meme\`\`, \`\`${prefix}8ball\`\`
+                \`\`${prefix}dadjoke\`\`, \`\`${prefix}yomumma\`\`, \`\`${prefix}ppsize\`\`, \`\`${prefix}inspire\`\`, \`\`${prefix}meme\`\`, \`\`${prefix}8ball\`\`, \`\`${prefix}WorseThanHitler\`\`
 
                 **[Special Commands](${"https://discord.com/channels/804323987106168842/838592520429764638/971004520589045850"} "Get level 2 to get access to these commands")** 
                 \`\`${prefix}hug (user)\`\` \`\`${prefix}kiss (user)\`\` \`\`${prefix}kill (user)\`\`

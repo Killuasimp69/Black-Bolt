@@ -25,7 +25,8 @@ module.exports = {
                         value: `• ${prefix}add (amount) (user)
                             • ${prefix}deduct (amount) (user)
                             • ${prefix}blacklist (user) (true/false)
-                            • ${prefix}commandset (command) (true/false)`
+                            • ${prefix}commandset (command) (true/false)
+                            • ${prefix}maxer (amount)`
                     }, {
                         name: "Other Commands",
                         value: `• %daily`
