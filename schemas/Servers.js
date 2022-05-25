@@ -7,25 +7,18 @@ const ServersSchema = mongoose.Schema({
       type: String,
       required: true,
    }, 
-   confessionsTrueFalse: {
-      type: String,
-      required: true,
-   },
    confessions: {
-      type: String,
-      required: true,
-   },
-   confessHereChannel: {
-      type: String,
-      required: true,
-   },
-   confessionChannel: {
       type: String,
       required: true,
    },
    mutiplyer: {
       type: String,
       default: "false",
+      required: true
+   },
+   maxbetamt: {
+      type: Number,
+      default: 10000000,
       required: true
    }
 })

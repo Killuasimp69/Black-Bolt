@@ -1,4 +1,5 @@
 const userSchema = require('../../schemas/userSchema')
+const serverSchema = require('../../schemas/Servers')
 const { prefix } = require('../../config.json')
 
 module.exports = {
@@ -13,6 +14,8 @@ module.exports = {
         }
         const user = message.member.user
 
+        const serverResult = await serverSchema.findOne({ _id: "804323987106168842" })
+
         if (isNaN(args[0])) {
             return message.channel.send("Please provide a valid amount")
         }
@@ -21,8 +24,8 @@ module.exports = {
             return message.channel.send("Please bet more than 5 BBC")
         }
 
-        if(parseFloat(args[0]) >= 10000001) {
-            return message.channel.send("You cannot bet more than 10mil BBC.")
+        if(parseFloat(args[0]) >= serverResult.maxbetamt) {
+            return message.channel.send(`You cannot bet more than ${serverResult.maxbetamt} BBC.`)
         }
 
         if(message.content.includes(".")) {

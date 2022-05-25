@@ -9,14 +9,10 @@ module.exports = (client) => {
         if (message.channel.id != "853386908376629309") return
         await mongo().then(async (mongoose) => {
             try {
-
                 const channel = client.channels.cache.find(channel => channel.id === "897945427687636993")
                 const serverResult = await ServersSchema.findOne({ _id: message.guild.id })
-
-                //checks 
-
                 if (message.author.id == '783789982300373053' || message.author.id == '804610350128955392') return
-                
+
 
                 if (message.content.length >= 1023) {
                     message.delete()
@@ -28,87 +24,45 @@ module.exports = (client) => {
                         })
                 }
 
-                //templates
+                let serverConfessions
 
-                if (!serverResult.confessions) {
-                    await ServersSchema.findOneAndUpdate({
-                        _id: message.guild.id
-                    }, {
-                        confessions: '1'
-                    }, {
-                        upsert: true
-                    })
-
-                    //templates
-                    message.delete()
-
-                    const embedForConfessions = new Discord.MessageEmbed()
-                        .setTitle(`Confession 1`)
-                        .setDescription(`${message.content}`)
-                        .setColor('#c90404')
-                        .setTimestamp()
-
-                    channel.send(embedForConfessions)
-
-                    return message.channel.send(`Thanks, your confession has been sent to the <#897945427687636993> channel`)
-                        .then((m) => {
-                            setTimeout(() => {
-                                m.delete()
-                            }, 5000);
-                        })
+                if (!serverResult || !serverResult.confessions) {
+                    serverConfessions = "1"
+                } else {
+                    serverConfessions = parseFloat(serverConfessions) + 1
                 }
 
-                //database
-
-                const newConfessionAmount = parseFloat(serverResult.confessions) + parseFloat("1")
-                await ServersSchema.findOneAndUpdate({
-                    _id: message.guild.id
-                }, {
-                    confessions: newConfessionAmount
-                }, {
-                    upsert: true
-                })
+                await ServersSchema.findOneAndUpdate(
+                    {
+                        _id: "804323987106168842",
+                    },
+                    {
+                        confessions: serverConfessions,
+                    },
+                    {
+                        upsert: true,
+                    }
+                );
 
                 const embedForConfessions = new Discord.MessageEmbed()
-                    .setTitle(`Confession ${newConfessionAmount}`)
-                    .setDescription(`${message.content}`)
-                    .setColor('#c90404')
-                    .setTimestamp()
-
-                message.delete()
+                .setTitle(`Confession ${serverConfessions}`)
+                .setColor("RED")
+                .setDescription(message.content)
+                .setTimestamp()
 
                 channel.send(embedForConfessions)
 
-                message.channel.send(`Thanks, your confession has been sent to the <#897945427687636993> channel`)
+                return message.channel.send("Your confession has been sent to the <#897945427687636993> channel.")
                     .then((m) => {
                         setTimeout(() => {
                             m.delete()
                         }, 5000);
                     })
 
-
-                //confession logging
-                if (message.guild.id == '804323987106168842') {
-                    await ConfessionSchema.findOneAndUpdate({
-                        _id: newConfessionAmount
-                    }, {
-                        Author: message.author.tag
-                    }, {
-                        upsert: true
-                    })
-                    await ConfessionSchema.findOneAndUpdate({
-                        _id: newConfessionAmount
-                    }, {
-                        Confession: message.content
-                    }, {
-                        upsert: true
-                    })
-                }
-
             } finally {
                 mongoose.connection.close()
             }
         })
-    }, 1600)
+    })
 }
 
