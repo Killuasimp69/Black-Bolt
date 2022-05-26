@@ -1,6 +1,5 @@
 const commandSchema = require('../../schemas/commandSchema')
 const { prefix } = require('../../config.json')
-const mongo = require("../../mongo")
 
 module.exports = {
     commands: ['commandset'],

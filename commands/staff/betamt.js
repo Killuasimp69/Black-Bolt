@@ -23,7 +23,6 @@ module.exports = {
                 message.channel.send(`The betting amount was set to ${args[0]}`)
             } finally {
                 mongoose.connection.close()
-
             }
         })
     }

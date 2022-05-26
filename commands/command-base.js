@@ -80,6 +80,7 @@ module.exports = async (client, commandOptions) => {
 
   client.on("message", async (message) => {
     const { member, content, guild } = message;
+    if(message.channel.id == "838588912041066496") return
     for (const alias of commands) {
       if (content.toLowerCase().startsWith(`${prefix}${alias.toLowerCase()}`)) {
         if (message.guild === null) {

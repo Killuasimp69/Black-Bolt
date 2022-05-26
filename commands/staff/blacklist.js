@@ -96,9 +96,12 @@ module.exports = {
           )
           .setColor("BLACK");
 
-        message.mentions.members.first().send(emedForUse).catch((err) => {
-            return
-        })
+        message.mentions.members
+          .first()
+          .send(emedForUse)
+          .catch((err) => {
+            return;
+          });
       } finally {
         mongoose.connection.close();
       }
