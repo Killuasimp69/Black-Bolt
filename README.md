@@ -24,3 +24,5 @@ Here are some major frameworks and libraries that I use to bootstrap Black Bolt.
 * [git](https://www.npmjs.com/package/git)
 * [ms](https://www.npmjs.com/package/ms)
 * [nodemon](https://www.npmjs.com/package/nodemon)
+
+A full list of dependecies can be found here (https://github.com/NeoYaBoi/Black-Bolt/network/dependencies)
