@@ -11,7 +11,7 @@ module.exports = {
         await mongo().then(async (mongoose) => {
             try {
                 if (!message.member.roles.cache.has('838679476774371408')) {
-                    return message.content.send("You cannot use that")
+                    return message.channel.send("You cannot use that")
                 }
 
                 if (!message.mentions.members.first()) {
@@ -19,7 +19,7 @@ module.exports = {
                 }
 
                 if (isNaN(args[0])) {
-                    return message.content.send("Please specify a number")
+                    return message.channel.send("Please specify a number")
                 }
 
                 const userResult = await userSchema.findOne({ _id: user.user })

@@ -10,6 +10,9 @@ module.exports = {
     callback: async (message, args, Discord, client, mongo) => {
         const user = message.mentions.members.first()
         if(message.guild.id != "804323987106168842") return
+        if(!message.member.roles.cache.has('838679476774371408')) {
+            return message.channel.send("You cannot use that")
+        }
         await mongo().then(async (mongoose) => {
             try {
                 if(isNaN(args[0])) return message.channel.send("Please specify a valid amount.")

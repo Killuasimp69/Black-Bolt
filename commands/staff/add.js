@@ -18,7 +18,7 @@ module.exports = {
                 }
 
                 if(isNaN(args[0])) {
-                    return message.content.send("Please specify a number")
+                    return message.channel.send("Please specify a number")
                 }
                 
                 if(parseFloat(args[0]) <= 1) {

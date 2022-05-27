@@ -9,6 +9,9 @@ module.exports = {
   permissions: ["ADMINISTRATOR"],
   requiredRoles: [],
   callback: async (message, args, Discord, client, mongo) => {
+    if(!message.member.roles.cache.has('838679476774371408')) {
+      return message.channel.send("You cannot use that")
+    }
     await mongo().then(async (mongoose) => {
       try {
         const user = message.mentions.members.first().user;
