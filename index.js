@@ -118,10 +118,12 @@ client.on('ready', () => {
 const confessions = require('./not commands/confessions')
 const welcome = require('./not commands/welcome');
 const xp = require('./not commands/xp')
+const chests = require('./not commands/chests')
 client.on('ready', () => {
     confessions(client)
     welcome(client)
     xp(client)
+    chests(client)
 })
 
 client.login(token)

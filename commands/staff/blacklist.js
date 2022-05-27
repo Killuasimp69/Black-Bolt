@@ -14,13 +14,17 @@ module.exports = {
     }
     await mongo().then(async (mongoose) => {
       try {
-        const user = message.mentions.members.first().user;
+        let user 
         if (!message.mentions.members.first()) {
           return message.channel.send("You must ping someone to black list!");
         }
-        if (message.mentions.members.first().id == "555991737072615424") {
-          return message.channel.send("This user cannot be black listed.");
+
+        if(!message.mentions.members.first().user) {
+          user = `<@${message.mentions.members.first().id}>`
         }
+        
+        user = message.mentions.members.first().user;
+        
         if (
           args[1].toUpperCase() != "TRUE" &&
           args[1].toUpperCase() != "FALSE"
@@ -39,13 +43,14 @@ module.exports = {
             user.displayAvatarURL({ format: "jpg", dynamic: true })
           )
           .setColor("BLACK")
-          .setDescription("This user has been black listed");
 
         if (args[1] == "true") {
           toSet = "true";
+          embedForDone.setDescription("This user has been black listed");
         }
         if (args[1] == "false") {
           toSet = "false";
+          embedForDone.setDescription("This user has been removed from the black list");
         }
 
         if (!userResult) {

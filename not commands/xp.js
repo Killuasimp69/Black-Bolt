@@ -50,6 +50,7 @@ module.exports = (client) => {
                 );
             } catch {
                 mongoose.connection.close()
+                console.log("ISSUE IN XP")
             }
         })
     })

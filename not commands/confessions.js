@@ -6,12 +6,15 @@ const { prefix } = require("../config.json")
 
 module.exports = (client) => {
     client.on('message', async message => {
+        const { member, content, guild } = message;
         if (message.channel.id != "853386908376629309") return
+        if (message.author.id == '783789982300373053' || message.author.id == '804610350128955392') return
         await mongo().then(async (mongoose) => {
             try {
+                message.delete()
+                
                 const channel = client.channels.cache.find(channel => channel.id === "897945427687636993")
                 const serverResult = await ServersSchema.findOne({ _id: message.guild.id })
-                if (message.author.id == '783789982300373053' || message.author.id == '804610350128955392') return
 
 
                 if (message.content.length >= 1023) {
@@ -29,8 +32,10 @@ module.exports = (client) => {
                 if (!serverResult || !serverResult.confessions) {
                     serverConfessions = "1"
                 } else {
-                    serverConfessions = parseFloat(serverConfessions) + 1
+                    serverConfessions = parseFloat(serverResult.confessions) + 1
                 }
+                console.log(serverResult)
+                console.log(serverResult.confessions)
 
                 await ServersSchema.findOneAndUpdate(
                     {
@@ -59,8 +64,9 @@ module.exports = (client) => {
                         }, 5000);
                     })
 
-            } finally {
+            } catch {
                 mongoose.connection.close()
+                console.log("ISSUE IN CONFESSIONS")
             }
         })
     })

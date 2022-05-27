@@ -168,7 +168,6 @@ module.exports = {
         embedForMoney
           .setAuthor(`${message.member.displayName} | ${amountToAdd} BBC`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
           .setDescription(`You just got **${amountToAdd}** BBC`)
-          .setColor("BLACK");
         message.channel.send(embedForMoney);
       } finally {
         mongoose.connection.close();

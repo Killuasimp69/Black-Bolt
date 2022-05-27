@@ -23,6 +23,10 @@ module.exports = {
                     return message.channel.send("That NFT cannot be found")
                 }
 
+                if(itemResult.owner != `<@${message.author.id}>`) {
+                    return message.channel.send("You do not own that house.")
+                }
+
                 const nameToSet = message.content.replace(`${prefix}rename ${args[0]} `, ``)
 
                 await itemSchema.findOneAndUpdate(
