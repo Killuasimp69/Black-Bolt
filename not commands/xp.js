@@ -31,6 +31,8 @@ module.exports = (client) => {
                     );
                 }
 
+                if(isNaN(userResult.xp)) return
+
                 if (userResult.mutiplyer == "true") {
                     xp = xp * 2
                 }

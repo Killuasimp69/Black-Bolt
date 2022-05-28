@@ -27,13 +27,7 @@ module.exports = {
 
         if (!userResult || !userResult.money) {
           return message.channel.send(
-            "You must have at least 1000B BBC to get a job."
-          );
-        }
-
-        if (parseFloat(userResult.money) <= 1000) {
-          return message.channel.send(
-            "You must have at least 1000 BBC to get a job."
+            "You must have at least 1 BBC to use the daily command."
           );
         }
 

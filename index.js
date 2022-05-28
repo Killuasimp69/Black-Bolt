@@ -57,25 +57,6 @@ setInterval(async () => {
     }
 }, 86400 * 1000)
 
-//todays shares
-
-setInterval(async () => {
-    await mongo().then(async (mongoose) => {
-        try {
-            const shareResult = await shareSchema.findOne({ _id: "default" })
-            await shareSchema.findOneAndUpdate({
-                _id: "default"
-            }, {
-                yesterdayshare: shareResult.price
-            }, {
-                upsert: true
-            })
-        } finally {
-            mongoose.connection.close()
-        }
-    })
-}, 86400 * 1000)
-
 //Sets the status of the bot  
 client.on('ready', () => {
     const activities_list = [

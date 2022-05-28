@@ -34,8 +34,6 @@ module.exports = (client) => {
                 } else {
                     serverConfessions = parseFloat(serverResult.confessions) + 1
                 }
-                console.log(serverResult)
-                console.log(serverResult.confessions)
 
                 await ServersSchema.findOneAndUpdate(
                     {
