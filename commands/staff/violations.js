@@ -1,6 +1,7 @@
 const { prefix } = require('../../config.json')
 const userSchema = require('../../schemas/userSchema')
 const mongo = require('../../mongo')
+const warnSchema = require('../../schemas/warnSchema')
 
 module.exports = {
     commands: ['violations', 'warns'],
@@ -26,45 +27,36 @@ module.exports = {
         await mongo().then(async (mongoose) => {
             try {
                 const userResult = await userSchema.findOne({ _id: user.user })
+                const results = await warnSchema.find({ warneduserID : user.id})
 
                 //template
 
                 const embedForWarnCheck = new Discord.MessageEmbed()
-                    .setAuthor(`${user.displayName}`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setTimestamp()
                     .setColor("BLACK")
 
-                //database
-
-                if (!userResult) {
-                    await userSchema.findOneAndUpdate({
-                        _id: user.user
-                    }, {
-                        warns: "0"
-                    }, {
-                        upsert: true
-                    })
-
+                if (!userResult || !userResult.warns || !results) {
                     embedForWarnCheck.setDescription(`This user has **0 warns**`)
                     return message.channel.send(embedForWarnCheck)
                 }
 
-                if (!userResult.warns) {
-                    await userSchema.findOneAndUpdate({
-                        _id: user.user
-                    }, {
-                        warns: "0"
-                    }, {
-                        upsert: true
-                    })
-
-                    embedForWarnCheck.setDescription(`This user has **0 warns**`)
-                    return message.channel.send(embedForWarnCheck)
+                if(results[1]) {
+                    embedForWarnCheck.addField("Warning 1", `> **${results[0].warning}** | ${results[0]._id}`)
+                    embedForWarnCheck.setAuthor(`${user.displayName} | 1 Warning`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                } else if(results[2]) {
+                    embedForWarnCheck.addField("Warning 2", `> **${results[1].warning}** | ${results[1]._id}`)
+                    embedForWarnCheck.setAuthor(`${user.displayName} | 2 Warning`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                } else if(results[3]) {
+                    embedForWarnCheck.addField("Warning 3", `> **${results[2].warning}** | ${results[2]._id}`)
+                    embedForWarnCheck.setAuthor(`${user.displayName} | 3 Warning`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                } else if(results[4]) {
+                    embedForWarnCheck.addField("Warning 4", `> **${results[3].warning}** | ${results[3]._id}`)
+                    embedForWarnCheck.setAuthor(`${user.displayName} | 4 Warning`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                } else if(results[5]) {
+                    embedForWarnCheck.addField("Warning 5", `> **${results[4].warning}** | ${results[4]._id}`)
+                    embedForWarnCheck.setAuthor(`${user.displayName} | 5 Warning`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                 }
 
-                const warns = userResult.warns
-
-                embedForWarnCheck.setDescription(`This user has **${warns} warns**`)
                 message.channel.send(embedForWarnCheck)
 
             } finally {

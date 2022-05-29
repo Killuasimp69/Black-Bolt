@@ -18,7 +18,7 @@ module.exports = (client) => {
                             const userResult = await userSchema.findOne({
                                 _id: message.member.user,
                             });
-                            if (!userResult || !userResult.money) return message.reply("You would have just gotten a chest, but since you've never used our economy it was voided (canceld)");
+                            if (!userResult || !userResult.money) return message.reply("You would have just gotten a chest, but since you've never used our economy it was voided (canceled)");
                             let chestAmount = 0;
                             let EmbedForE = new Discord.MessageEmbed()
                                 .setAuthor(
@@ -97,7 +97,6 @@ module.exports = (client) => {
                                             message.author.id != "783789982300373053"
                                         ) {
                                             if (message.content.toUpperCase() == "CLAIM") {
-                                                console.log(chestAmount)
                                                 const newUserMoney =
                                                     chestAmount + userResult.money;
                                                 await userSchema.findOneAndUpdate(
