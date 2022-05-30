@@ -63,7 +63,7 @@ module.exports = {
                         name: "MeeMoo",
                         value: `\`\`${prefix}buy trophy MeeMoo\`\` | `
                     })
-                    .setFooter(`Eatch trophy comes with its own role."`)
+                    .setFooter(`Each trophy comes with its own role."`)
                 message.channel.send(embedForSore)
             }
 
