@@ -11,6 +11,9 @@ module.exports = {
     const user = message.member.user;
     const dailyjobs = ["You sold your hair for"];
     const randomJobs = Math.floor(Math.random() * dailyjobs.length);
+    if(coolDown.has(message.author.id)) {
+      return message.channel.send("You must wait 1 day inbetween using this command.")
+    }
     await mongo().then(async (mongoose) => {
       try {
         let moneyToBase = 0;
@@ -163,6 +166,11 @@ module.exports = {
           .setAuthor(`${message.member.displayName} | ${amountToAdd} BBC`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
           .setDescription(`You just got **${amountToAdd}** BBC`)
         message.channel.send(embedForMoney);
+
+        coolDown.add(message.author.id)
+        setTimeout(() => {
+          coolDown.delete(message.author.id)
+      }, cdSecs * 1000)
       } finally {
         mongoose.connection.close();
       }

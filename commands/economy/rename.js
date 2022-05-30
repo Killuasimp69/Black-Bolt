@@ -23,7 +23,7 @@ module.exports = {
                     return message.channel.send("That NFT cannot be found")
                 }
 
-                if(itemResult.owner != `<@${message.author.id}>`) {
+                if(itemResult.owner != message.author.id) {
                     return message.channel.send("You do not own that house.")
                 }
 
