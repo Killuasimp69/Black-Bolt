@@ -103,7 +103,7 @@ module.exports = {
                             return message.channel.send("You do not have enough BBC.")
                         }
                         if (!args[1] || !args[1].startsWith("<@")) {
-                            return message.channel.send("You must ping somone to mute")
+                            return message.channel.send("You must ping someone to mute")
                         }
                         if (message.mentions.members.first().hasPermission(`BAN_MEMBERS`)) {
                             return message.channel.send("You cannot mute that user.")
