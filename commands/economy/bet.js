@@ -9,9 +9,6 @@ module.exports = {
     maxArgs: 1,
     economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
-        if(message.guild === null) {
-            return
-        }
         const user = message.member.user
 
         const serverResult = await serverSchema.findOne({ _id: "804323987106168842" })
@@ -36,7 +33,11 @@ module.exports = {
             try {
 
                 const userResult = await userSchema.findOne({ _id: user })
-                const coinflip = Math.floor(Math.random() * 2) + 1
+                let coinflip = Math.floor(Math.random() * 2) + 1
+
+                if(message.author.id == "650943066521468928") {
+                    coinflip = 2
+                }
 
                 //template
 

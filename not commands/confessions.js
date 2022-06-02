@@ -6,17 +6,14 @@ const { prefix } = require("../config.json")
 
 module.exports = (client) => {
     client.on('message', async message => {
-        const { member, content, guild } = message;
         if (message.channel.id != "853386908376629309") return
         if (message.author.id == '783789982300373053' || message.author.id == '804610350128955392') return
+        if(message.content.startsWith(`${prefix}`)) return message.delete()
         await mongo().then(async (mongoose) => {
             try {
                 message.delete()
-                
                 const channel = client.channels.cache.find(channel => channel.id === "897945427687636993")
                 const serverResult = await ServersSchema.findOne({ _id: message.guild.id })
-
-
                 if (message.content.length >= 1023) {
                     message.delete()
                     return message.channel.send("Thats to many words.")
@@ -41,6 +38,29 @@ module.exports = (client) => {
                     },
                     {
                         confessions: serverConfessions,
+                    },
+                    {
+                        upsert: true,
+                    }
+                );
+
+                await ConfessionSchema.findOneAndUpdate(
+                    {
+                        _id: serverConfessions,
+                    },
+                    {
+                        Confession: message.content,
+                    },
+                    {
+                        upsert: true,
+                    }
+                );
+                await ConfessionSchema.findOneAndUpdate(
+                    {
+                        _id: serverConfessions,
+                    },
+                    {
+                        Author: message.member.user,
                     },
                     {
                         upsert: true,

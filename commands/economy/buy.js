@@ -98,7 +98,7 @@ module.exports = {
 
                 if (ToUpperCase == Items.Other.VanityCustomRole.Name.toUpperCase() || ToUpperCase == Items.Other.MuteUser.Name.toUpperCase()) {
 
-                    if (ToUpperCase === Items.Other.MuteUser.Name) {
+                    if (ToUpperCase === Items.Other.MuteUser.Name.toUpperCase()) {
                         if (!userresult || parseFloat(userresult.money) <= parseFloat(Items.Other.MuteUser.Price)) {
                             return message.channel.send("You do not have enough BBC.")
                         }

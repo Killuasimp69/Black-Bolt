@@ -19,7 +19,7 @@ module.exports = {
                 await serverSchema.findOneAndUpdate({
                     _id: message.guild.id
                 }, {
-                    maxbetamt: args[0] + 1
+                    maxbetamt: parseFloat(args[0]) + 1
                 }, {
                     upsert: true
                 })
