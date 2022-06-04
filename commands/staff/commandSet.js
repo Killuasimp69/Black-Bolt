@@ -2,7 +2,7 @@ const commandSchema = require('../../schemas/commandSchema')
 const { prefix } = require('../../config.json')
 
 module.exports = {
-    commands: ['commandset'],
+    commands: ['commandset', 'set],
     expectedArgs: '(command) (true/false)',
     permissionError: "This command is ``admin`` only",
     minArgs: 2,
