@@ -29,9 +29,9 @@ module.exports = {
             return message.channel.send("You cannot give money to yourself.")
         }
 
-        if(message.content.includes(".")) return message.channel.send("You cannot give that amount.")
+        if (message.content.includes(".")) return message.channel.send("You cannot give that amount.")
 
-        if(message.content.includes(".")) return message.channel.send("You canot give that amount")
+        if (message.content.includes(".")) return message.channel.send("You canot give that amount")
 
         const user = message.mentions.members.first()
         await mongo().then(async (mongoose) => {
@@ -40,38 +40,11 @@ module.exports = {
                 const userResult = await userSchema.findOne({ _id: user.user })
                 const senderResult = await userSchema.findOne({ _id: message.member.user })
 
+                if(!senderResult || !senderResult.money) return message.channel.send(`You have not used our database before. Please use the \`\`${prefix}balance\`\` command to join our database.`)
+                if(!userResult || !userResult.money)return message.channel.send(`This user has not used our database before. Please tell them to use the \`\`${prefix}balance\`\` command to join our database.`)
+
                 if (parseFloat(senderResult.money) == parseFloat[args[1]]) {
                     return message.channel.send("You cannot give all your money to somone.")
-                }
-
-                //newuser
-                if (!userResult || !userResult.money || !senderResult || !senderResult.money) {
-                    if (!userResult || !userResult.money) {
-                        const newuserMoney1 = parseFloat("1000") + parseFloat(args[1])
-                        await userSchema.findOneAndUpdate({
-                            _id: user.user
-                        }, {
-                            money: newuserMoney1
-                        }, {
-                            upsert: true
-                        })
-                    }
-
-                    if (!senderResult || !senderResult.money) {
-                        if (parseFloat(args[1]) >= 1000) {
-                            return message.channel.send("You dont have enough money.")
-                        }
-                        const newuserMoney = parseFloat("1000") - parseFloat(args[1])
-                        await userSchema.findOneAndUpdate({
-                            _id: message.member.user
-                        }, {
-                            money: newuserMoney
-                        }, {
-                            upsert: true
-                        })
-                    }
-                    const newuserMoney1 = parseFloat("1000") + parseFloat(args[1])
-                    return message.channel.send(`You gave ${args[1]} BBC to ${args[0]}. They now have ${newuserMoney1} BBC`)
                 }
 
                 if (parseFloat(senderResult.money) == parseFloat[args]) {

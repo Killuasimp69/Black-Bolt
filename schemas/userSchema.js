@@ -41,7 +41,11 @@ const userSchema = mongoose.Schema({
     },
     xp : {
         type: Number,
-        required: true
+        required: true,
+    },
+    xpmultiplyed : {
+        type: String,
+        required: true,
     }
 })
 

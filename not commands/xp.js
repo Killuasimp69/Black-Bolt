@@ -13,6 +13,7 @@ module.exports = (client) => {
                 const userResult = await userSchema.findOne({ _id: user })
                 const serverResult = await serverSchema.findOne({ _id: "804323987106168842" })
                 let xp = Math.floor(Math.random() * 1000);
+                if (!serverResult.mutiplyer) return
                 if (serverResult.mutiplyer == "true") {
                     xp = xp * 2
                 }
@@ -31,10 +32,12 @@ module.exports = (client) => {
                     );
                 }
 
-                if(isNaN(userResult.xp)) return
+                if (isNaN(userResult.xp)) return
 
-                if (userResult.mutiplyer == "true") {
-                    xp = xp * 2
+                if (!userResult.mutiplyer) { } else {
+                    if (userResult.mutiplyer == "true") {
+                        xp = xp * 2
+                    }
                 }
 
                 let finalXP = xp + userResult.xp

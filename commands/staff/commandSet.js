@@ -10,6 +10,7 @@ module.exports = {
     permissions: ["ADMINISTRATOR"],
     requiredRoles: [],
     callback: async (message, args, Discord, client, mongo) => {
+        if(message.content.startsWith(`${prefix}setbal`)) return
         await mongo().then(async (mongoose) => {
             try {
                 if(!message.member.roles.cache.has('838679476774371408')) {
