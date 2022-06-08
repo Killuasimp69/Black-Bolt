@@ -10,10 +10,12 @@ module.exports = {
             return
         }
         const user = message.member.user
+        const toUpperCaseContent = message.content.toUpperCase()
+        const toUpperCaseArgs0 = args[0].toUpperCase()
 
         if (args[0]) {
 
-            if (args[0] == "levels" || args[0] == "Levels") {
+            if (toUpperCaseArgs0 == "LEVELS" || toUpperCaseArgs0 == "LEVEL") {
                 const embedForSore = new Discord.MessageEmbed()
                     .setAuthor(`${message.member.displayName} | Store`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setDescription("Here you can find all the levels that are for sale.")
@@ -39,7 +41,7 @@ module.exports = {
                 message.channel.send(embedForSore)
             }
 
-            if (args[0] == "NFTS" || args[0] == "nfts" || args[0] == "NFTs") {
+            if (toUpperCaseArgs0 == "NFTS" || toUpperCaseArgs0 == "NFT") {
                 const embedForSore = new Discord.MessageEmbed()
                     .setAuthor(`${message.member.displayName} | Store`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setDescription("Here you can find all the NFTs that are for sale.")
@@ -57,17 +59,20 @@ module.exports = {
                         name: `> 🏘️ Large House`,
                         value: `\`\`${prefix}buy house large\`\` | 💵 ${Items.Houses.Large.Price} BBC`
                     }, {
-                        name: "Trophys",
+                        name: "Trophy's",
                         value: "\u200b"
                     }, {
-                        name: "MeeMoo",
-                        value: `\`\`${prefix}buy trophy MeeMoo\`\` | `
+                        name: "> 🏆 MeeMoo",
+                        value: `\`\`${prefix}buy trophy MeeMoo\`\` | 💵 ${Items.Trophys.MeeMoo.Price} BBC`
+                    }, {
+                        name: "> 🏆 King",
+                        value: `\`\`${prefix}buy trophy King\`\` | 💵 ${Items.Trophys.King.Price} BBC`
                     })
-                    .setFooter(`Each trophy comes with its own role."`)
+                    .setFooter(`Trophys are coming soon..`)
                 message.channel.send(embedForSore)
             }
 
-            if (args[0] == "other" || args[0] == "Other") {
+            if (toUpperCaseArgs0 == "OTHER") {
                 const embedForSore = new Discord.MessageEmbed()
                     .setAuthor(`${message.member.displayName} | Store`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                     .setDescription("Here is a list of everything else I sell.")

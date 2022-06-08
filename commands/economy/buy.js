@@ -12,7 +12,7 @@ module.exports = {
     permissionError: "You need more permissions",
     economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
-        if(message.guild === null) {
+        if (message.guild === null) {
             return
         }
         const user = message.member.user
@@ -398,7 +398,7 @@ module.exports = {
                     if (!userresult || !userresult.money) {
                         return message.channel.send("You do not have enough BBC.")
                     }
-                    
+
                     if (args[1].toUpperCase() == "LARGE") {
                         if (parseFloat(userresult.money) <= parseFloat(Items.Houses.Large.Price)) {
                             return message.channel.send("You do not have enough BBC.")
@@ -412,9 +412,9 @@ module.exports = {
                             return message.channel.send("There are no large houses avalible right now.")
                         }
 
-                        if(!userresult.houses) {} else {
+                        if (!userresult.houses) { } else {
                             const splitA = userresult.houses.split(/[ ]+/)
-                            if(splitA[4]) {
+                            if (splitA[4]) {
                                 return message.channel.send("You can only own 5 houses")
                             }
                         }
@@ -473,9 +473,9 @@ module.exports = {
                         if (!unowned || unowned == "undefined") {
                             return message.channel.send("There are no medium houses avalible right now.")
                         }
-                        if(!userresult.houses) {} else {
+                        if (!userresult.houses) { } else {
                             const splitA = userresult.houses.split(/[ ]+/)
-                            if(splitA[4]) {
+                            if (splitA[4]) {
                                 return message.channel.send("You can only own 5 houses")
                             }
                         }
@@ -533,9 +533,9 @@ module.exports = {
                         if (!unowned || unowned == "undefined") {
                             return message.channel.send("There are no small houses avalible right now.")
                         }
-                        if(!userresult.houses) {} else {
+                        if (!userresult.houses) { } else {
                             const splitA = userresult.houses.split(/[ ]+/)
-                            if(splitA[4]) {
+                            if (splitA[4]) {
                                 return message.channel.send("You can only own 5 houses")
                             }
                         }
@@ -580,14 +580,43 @@ module.exports = {
                             .setColor("BLACK")
                             .setFooter(`${Items.Houses.Small.Price} BBC has been deducted from your accunt.`)
                         message.channel.send(embedForMdiumHouse)
-                    } else if(ToUpperCase == "CARS") {
-                        return message.channel.send("Cars are currently unnavalible")
+                    } else if (ToUpperCase == "CARS") {
+                        return message.channel.send("Cars are currently unavailable")
                     } else if (ToUpperCase == "STOCKS") {
-                        if(isNaN(args[1])) {
+                        return message.channel.send("Stocks are on there way and will be releasing soon.")
+                        if (isNaN(args[1])) {
                             message.channel.send("You must specify to buy a number.")
                         }
-                        if(parseFloat(args[1]) <= 1) {
+                        if (parseFloat(args[1]) <= 1) {
                             return message.channel.send("You must buy more than 1 share.")
+                        }
+                    } else if (ToUpperCase == "TROPHY") {
+                        return message.channel.send("Sorry, Trophys are coming soon.")
+                        const args1ToUpperCase = args[1].toUpperCase()
+                        if (args1ToUpperCase == "MEEMOO") {
+                            //MEEMOO
+                            if (!userresult || !userresult.money) {
+                                return message.channel.send("You do not have enough Money.")
+                            }
+                            if (parseFloat(userresult.money) <= parseFloat(Items.Trophys.MeeMoo.Price)) {
+                                return message.channel.send("You do not have enough BBC.")
+                            }
+                            if (message.member.roles.cache.has('892770075977859133')) {
+                                return message.channel.send("You already own this Trophy.")
+                            }
+                        } else if (args1ToUpperCase == "KING") {
+                            //KING
+                            if (!userresult || !userresult.money) {
+                                return message.channel.send("You do not have enough Money.")
+                            }
+                            if (parseFloat(userresult.money) <= parseFloat(Items.Trophys.King.Price)) {
+                                return message.channel.send("You do not have enough BBC.")
+                            }
+                            if (message.member.roles.cache.has('983924171480399962')) {
+                                return message.channel.send("You already own this Trophy.")
+                            }
+                        } else {
+                            return message.channel.send("That is not a trophy")
                         }
                     }
                 } else {
