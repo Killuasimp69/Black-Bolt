@@ -108,6 +108,9 @@ module.exports = {
                         if (message.mentions.members.first().hasPermission(`BAN_MEMBERS`)) {
                             return message.channel.send("You cannot mute that user.")
                         }
+                        if (message.member.roles.cache.has('840074523659599882')) {
+                            return message.channel.send("This user is already muted.")
+                        }
                         MuteMember()
                         const monay = parseFloat(userresult.money) - parseFloat(Items.Other.MuteUser.Price)
                         await userSchema.findOneAndUpdate({
@@ -580,7 +583,9 @@ module.exports = {
                             .setColor("BLACK")
                             .setFooter(`${Items.Houses.Small.Price} BBC has been deducted from your accunt.`)
                         message.channel.send(embedForMdiumHouse)
-                    } else if (ToUpperCase == "CARS") {
+                    } 
+                } else {
+                    if (ToUpperCase == "CARS") {
                         return message.channel.send("Cars are currently unavailable")
                     } else if (ToUpperCase == "STOCKS") {
                         return message.channel.send("Stocks are on there way and will be releasing soon.")
@@ -591,7 +596,6 @@ module.exports = {
                             return message.channel.send("You must buy more than 1 share.")
                         }
                     } else if (ToUpperCase == "TROPHY") {
-                        return message.channel.send("Sorry, Trophys are coming soon.")
                         const args1ToUpperCase = args[1].toUpperCase()
                         if (args1ToUpperCase == "MEEMOO") {
                             //MEEMOO
@@ -604,8 +608,17 @@ module.exports = {
                             if (message.member.roles.cache.has('892770075977859133')) {
                                 return message.channel.send("You already own this Trophy.")
                             }
+                            const role = message.guild.roles.cache.find(r => r.id === "892770075977859133")
+                            message.member.roles.add(role)
+
+                            const embedforMEEMOO = new Discord.MessageEmbed()
+                                .setAuthor(`${message.member.displayName} | MeeMoo`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                                .setDescription(`Everyone congratulate ${message.member.displayName} for becoming a MeeMoo, this is the most respected role in all of Meme Arcade.`)
+                                .setColor("BLUE")
+                            message.channel.send(embedforMEEMOO)
                         } else if (args1ToUpperCase == "KING") {
-                            //KING
+                            
+                            //KING FINISH THIS
                             if (!userresult || !userresult.money) {
                                 return message.channel.send("You do not have enough Money.")
                             }
@@ -615,12 +628,23 @@ module.exports = {
                             if (message.member.roles.cache.has('983924171480399962')) {
                                 return message.channel.send("You already own this Trophy.")
                             }
+                            const role = message.guild.roles.cache.find(r => r.id === "892770075977859133")
+                            message.member.roles.add(role)
+
+                            const embedforKING = new Discord.MessageEmbed()
+                                .setAuthor(`${message.member.displayName} | MeeMoo`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                                .setDescription(`Everyone congratulate ${message.member.displayName} for becoming a King, this is a really hot role!`)
+                                .setColor("GOLD")
+                            message.channel.send(embedforKING)
+                        } else if(args1ToUpperCase == "GUM"){
+
                         } else {
                             return message.channel.send("That is not a trophy")
                         }
+                    } else {
+                        return message.channel.send("That is not an item for sale.")
                     }
-                } else {
-                    message.channel.send("That is not an item for sale.")
+                    
                 }
             } finally {
                 mongoose.connection.close()

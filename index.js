@@ -1,7 +1,3 @@
-console.log("==========================")
-console.log("BOOTING")
-console.log("==========================")
-
 const Discord = require('discord.js');
 const { token } = require('./config.json')
 const { version } = require('./package.json')
@@ -12,11 +8,14 @@ const fs = require('fs')
 const mongo = require("./mongo");
 const shareSchema = require('./schemas/shareSchema')
 
-var clientinfo = {
-    name: name,
-    version: version,
-    booted: "true",
-}
+console.log(`
+###################################
+#                                 #
+#           BLACK BOLT            #
+#                                 #
+#              ${version}              #
+#                                 #
+###################################`)
 
 //makes commands work
 client.setMaxListeners(1000)
@@ -74,24 +73,20 @@ client.on('ready', () => {
         `running version ${version}`
     ];
 
-    console.clear()
-
-    setTimeout(() => {
-        console.log("==========================")
-        console.table(clientinfo)
-        console.log("==========================")
-        var clientinfo2 = {
-            Status: "COMING SOON",
-            DataBase: "Connected",
-            Final: "Started",
-        }
-        console.table(clientinfo2)
-        console.log("==========================")
-    }, 1 * 1000);
-
     setInterval(() => {
         const index = Math.floor(Math.random() * (activities_list.length - 1) + 1);
-        client.user.setActivity(activities_list[index]);
+        const currentStatus = activities_list[index]
+        client.user.setActivity(currentStatus);
+        console.clear()
+    console.log(`
+###################################
+#                                 #
+#           BLACK BOLT            #
+#                                 #
+#              ${version}              #
+#                                 #
+###################################`)
+console.log(`Current status: ${currentStatus}`)
     }, 10000);
 })
 

@@ -9,11 +9,10 @@ module.exports = {
         if (message.guild === null) {
             return
         }
-        const user = message.member.user
-        const toUpperCaseContent = message.content.toUpperCase()
-        const toUpperCaseArgs0 = args[0].toUpperCase()
+        const user = message.member.user        
 
         if (args[0]) {
+            const toUpperCaseArgs0 = args[0].toUpperCase()
 
             if (toUpperCaseArgs0 == "LEVELS" || toUpperCaseArgs0 == "LEVEL") {
                 const embedForSore = new Discord.MessageEmbed()
