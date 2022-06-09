@@ -8,9 +8,6 @@ module.exports = {
     economyCheck: "true",
     callback: async (message, args, Discord, client, mongo) => {
         const user = message.member.user
-        if (message.guild === null) {
-            return
-        }
         await mongo().then(async (mongoose) => {
             try {
                 if(message.author.id != "650943066521468928") {

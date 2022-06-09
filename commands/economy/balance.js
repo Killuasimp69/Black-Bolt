@@ -39,11 +39,12 @@ module.exports = {
                     xp = 0
                 }
 
-                const moneyy = parseFloat(userResult.money)
+                const money = parseFloat(userResult.money);
+                const overAll = parseFloat(money) * 100 / 4;
 
                 const embedForBalance = new Discord.MessageEmbed()
                     .setAuthor(`${user.displayName} | Balance`, user.user.displayAvatarURL({ format: 'jpg', dynamic: true }))
-                    .setDescription(`You have **${moneyy} BBC** and **${xp} xp**, with a total of **${moneyy}**.`)
+                    .setDescription(`You have **${money} BBC** and **${xp} xp**, with a total of **${overAll}**.`)
                     .setColor('BLACK')
 
                 //message

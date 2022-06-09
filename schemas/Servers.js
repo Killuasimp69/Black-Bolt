@@ -20,7 +20,11 @@ const ServersSchema = mongoose.Schema({
       type: Number,
       default: 10000000,
       required: true
-   }
+   },
+   notices: {
+      type: String,
+      required: true
+   },
 })
 
 module.exports = mongoose.model('Servers', ServersSchema)

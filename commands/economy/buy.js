@@ -618,7 +618,7 @@ module.exports = {
                             message.channel.send(embedforMEEMOO)
                         } else if (args1ToUpperCase == "KING") {
                             
-                            //KING FINISH THIS
+                            //KING 
                             if (!userresult || !userresult.money) {
                                 return message.channel.send("You do not have enough Money.")
                             }
@@ -628,16 +628,33 @@ module.exports = {
                             if (message.member.roles.cache.has('983924171480399962')) {
                                 return message.channel.send("You already own this Trophy.")
                             }
-                            const role = message.guild.roles.cache.find(r => r.id === "892770075977859133")
+                            const role = message.guild.roles.cache.find(r => r.id === "983924171480399962")
                             message.member.roles.add(role)
 
                             const embedforKING = new Discord.MessageEmbed()
-                                .setAuthor(`${message.member.displayName} | MeeMoo`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                                .setAuthor(`${message.member.displayName} | King`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
                                 .setDescription(`Everyone congratulate ${message.member.displayName} for becoming a King, this is a really hot role!`)
                                 .setColor("GOLD")
                             message.channel.send(embedforKING)
                         } else if(args1ToUpperCase == "GUM"){
+                            //GUM
+                            if (!userresult || !userresult.money) {
+                                return message.channel.send("You do not have enough Money.")
+                            }
+                            if (parseFloat(userresult.money) <= parseFloat(Items.Trophys.PieceOfGum.Price)) {
+                                return message.channel.send("You do not have enough BBC.")
+                            }
+                            if (message.member.roles.cache.has('984338669232074796')) {
+                                return message.channel.send("You already own this Trophy.")
+                            }
+                            const role = message.guild.roles.cache.find(r => r.id === "984338669232074796")
+                            message.member.roles.add(role)
 
+                            const embedforGUM = new Discord.MessageEmbed()
+                                .setAuthor(`${message.member.displayName} | Piece Of Gum`, user.displayAvatarURL({ format: 'jpg', dynamic: true }))
+                                .setDescription(`Everyone congratulate ${message.member.displayName} for becoming a Piece of gum, this is a really hot role!`)
+                                .setColor("WHITE")
+                            message.channel.send(embedforGUM)
                         } else {
                             return message.channel.send("That is not a trophy")
                         }

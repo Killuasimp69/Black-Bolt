@@ -8,6 +8,7 @@ const fs = require('fs')
 const mongo = require("./mongo");
 const shareSchema = require('./schemas/shareSchema')
 
+console.clear()
 console.log(`
 ###################################
 #                                 #
@@ -86,7 +87,13 @@ client.on('ready', () => {
 #              ${version}              #
 #                                 #
 ###################################`)
-console.log(`Current status: ${currentStatus}`)
+console.log(`
+===================================
+        The Current Status Is`)
+
+console.log('\x1b[36m%s\x1b[0m', `
+        "${currentStatus}"`)           
+console.log(`===================================`);
     }, 10000);
 })
 
