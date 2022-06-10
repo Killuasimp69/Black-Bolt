@@ -31,7 +31,7 @@ module.exports = {
 
         if (message.content.includes(".")) return message.channel.send("You cannot give that amount.")
 
-        if (message.content.includes(".")) return message.channel.send("You canot give that amount")
+        if (message.content.includes(".")) return message.channel.send("You cannot give that amount")
 
         const user = message.mentions.members.first()
         await mongo().then(async (mongoose) => {
@@ -44,7 +44,7 @@ module.exports = {
                 if(!userResult || !userResult.money)return message.channel.send(`This user has not used our database before. Please tell them to use the \`\`${prefix}balance\`\` command to join our database.`)
 
                 if (parseFloat(senderResult.money) == parseFloat[args[1]]) {
-                    return message.channel.send("You cannot give all your money to somone.")
+                    return message.channel.send("You cannot give all your money to someone.")
                 }
 
                 if (parseFloat(senderResult.money) == parseFloat[args]) {
